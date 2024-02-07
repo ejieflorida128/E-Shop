@@ -1,0 +1,365 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.header{
+    background-color: #365D1E;
+    height: 121px;
+    width: 1280px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+.logo img{
+    width:108px;
+    height: 92px;
+    margin-top: 12px;
+    margin-left: 30px;
+    border-radius: 10px;
+}
+
+.loginText{
+    position: relative;
+    left: 710px;
+    margin-top:29px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+@keyframes switch1 {
+    0%{
+        background-image: url("images/c1.jpg");
+        background-position: center;
+        background-size:cover;
+       
+    }
+    20%{
+        background-image: url("images/c2.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    40%{
+        background-image: url("images/c3.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    60%{
+        background-image: url("images/c4.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    80%{
+        background-image: url("images/c5.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    100%{
+        background-image: url("images/c1.jpg");
+        background-position: center;
+        background-size:cover;
+        
+    }
+}
+
+@keyframes switch2 {
+    0%{
+        background-image: url("images/c6.jpg");
+        background-position: center;
+        background-size:cover;
+       
+    }
+    20%{
+        background-image: url("images/c7.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    40%{
+        background-image: url("images/c8.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    60%{
+        background-image: url("images/c9.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    80%{
+        background-image: url("images/c10.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    100%{
+        background-image: url("images/c6.jpg");
+        background-position: center;
+        background-size:cover;
+        
+    }
+}
+
+@keyframes switch3 {
+    0%{
+        background-image: url("images/c11.jpg");
+        background-position: center;
+        background-size:cover;
+       
+    }
+    20%{
+        background-image: url("images/c4.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    40%{
+        background-image: url("images/c12.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    60%{
+        background-image: url("images/c13.jpg");
+        background-position: center;
+        background-size:cover;
+    }
+    80%{
+        background-image: url("images/c14.jpg");
+        background-position: center;
+        background-size:cover;
+        
+    }
+    100%{
+        background-image: url("images/c11.jpg");
+        background-position: center;
+        background-size:cover;
+       
+    }
+}
+
+body{
+    overflow: hidden;
+}
+
+
+
+.firstPicture{
+    width: 257px;
+    height:231px;
+    animation: switch1 10s infinite alternate;
+    position: relative;
+    left: 31px;
+    top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    
+}
+
+.picStorage1{
+    display: flex;
+
+}
+
+.ShopNaText b{
+    font-size: 40px;
+    position: relative;
+    left: 50px;
+    top: 60px;
+}
+
+.line1{
+    height: 8px;
+    width: 60px;
+    background-color: #365D1E;
+    position: relative;
+    top: 55px;
+    left:50px;
+}
+
+.line2{
+    height: 8px;
+    width: 70px;
+    background-color: #365D1E;
+    position: relative;
+    top: 47px;
+    left:130px;
+}
+
+.SecondPicture{
+    animation: switch2 10s infinite alternate;
+    width: 141px;
+    height: 133px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    position: relative;
+    left: 55px;
+    top: 53px;
+}
+
+.footer{
+    width: 1280px;
+    height: 32px;
+    background-color: #365D1E;
+    position: absolute;
+    top:599px;
+}
+
+.picStorage2{
+    display: flex;
+}
+
+.line3{
+    height: 188px;
+    width: 11px;
+    background-color: #365D1E;
+    position: relative;
+    left: 35px;
+    top:40px;
+}
+
+.ThirdPicture{
+    animation: switch3 10s infinite alternate;
+    width: 293px;
+    height: 188px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    position: relative;
+    top:40px;
+    left: 70px;
+    
+}
+
+.paragraph1{
+    width: 315px;
+    font-size: 12px;
+    position: relative;
+    left: 90px;
+    top: 70px;
+}
+
+.linkToRegister{
+    position: relative;
+    left: 90px;
+    top: 90px;
+    text-decoration: none;
+    color: white;
+    background-color: #365D1E;
+    padding: 7px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+
+}
+
+.linkToRegister:hover{
+
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+.main{
+    display: flex;
+}
+
+.storageForLogIn{
+    width: 400px;
+    height: 430px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    position: relative;
+    left: 210px;
+    top: 26px;
+}
+
+.storageForLogIn img{
+    animation: bagTilt 1s infinite alternate;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    left: 127px;
+    
+}
+
+@keyframes bagTilt {
+    0%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.user{
+    display: flex;
+}
+.user img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top:-180px;
+    left: 220px;
+}
+.user input{
+    width: 300px;
+    position: relative;
+    top:-180px;
+    left: 230px;
+    padding: 5px;
+}
+
+.password{
+    display: flex;
+    margin-top: 20px;
+}
+.password img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top:-180px;
+    left: 220px;
+}
+.password input{
+    
+    width: 300px;
+    position: relative;
+    top:-180px;
+    left: 230px;
+    padding: 5px;
+}
+
+.forLoginButton input{
+    position: relative;
+    top: -160px;
+    left: 310px;
+    padding: 6px;
+    width: 200px;
+    background-color: #365D1E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+
+}
+
+.forLoginButton input:hover{
+    background-color: #4883b9;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+
+}
+
+.option img{
+    width: 30px;
+    height: 25px;
+    position: relative;
+    top:-200px;
+    left: 220px;
+    
+}
+
+.option select{
+    width: 100px;
+    position: relative;
+    top:-207px;
+    padding: 10px;
+    left: 225px;
+    padding: 5px;
+
+}
+
+
+

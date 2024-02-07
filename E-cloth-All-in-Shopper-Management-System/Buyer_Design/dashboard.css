@@ -1,0 +1,67 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.header{
+    height: 121px;
+    width: 1280px;
+    background-color: #365D1E;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+}
+
+.logo img{
+    width:108px;
+    height: 92px;
+    margin-top: 12px;
+    margin-left: 30px;
+    border-radius: 10px;
+}
+
+.searchbar input{
+    width: 921px;
+    height: 35px;
+    border-radius:20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    position: relative;
+    top:60px;
+    left: 40px;
+    padding: 5px;
+    padding-left: 30px;
+}
+
+.searchbar svg{
+    position: relative;
+    left: 950px;
+    top: 57px;
+    z-index: 2;
+}
+
+.cart svg{
+    position: relative;
+    top: 53px;
+    left: 90px;
+}
+
+.content{
+   
+    display: flex;
+    justify-content: space-around;
+   
+}
+
+.main{
+    margin-top: 150px;
+    width: 1280px;
+    
+}
+
+body{
+    overflow-x: hidden;
+}
