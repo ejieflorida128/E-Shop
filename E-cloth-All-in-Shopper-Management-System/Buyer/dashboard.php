@@ -18,9 +18,9 @@
             </div>
             <div class="list">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Transactions</a></li>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="#">Shops</a></li>
+                    <li><a href="#">Delivery Status</a></li>
                     <li><a href="#">About Us</a></li>
 
                 </ul>

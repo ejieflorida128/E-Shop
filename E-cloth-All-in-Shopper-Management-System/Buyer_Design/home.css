@@ -1,0 +1,15 @@
+.header{
+    background-color: #365D1E;
+    height: 80px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+
+}
+
+.logo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-top: 15%;
+}
