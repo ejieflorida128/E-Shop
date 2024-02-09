@@ -14,41 +14,6 @@
     margin-top: 15%;
 }
 
-.list ul {
-    display: flex;
-    
-}
-
-.list{
-    margin-top: 1.7%;
-    margin-left: 12%;
-}
-
-
-
-
-.list ul li{
-    text-decoration: none;
-    list-style: none;
-    margin-left: 50px;
-    margin-right: 50px;
-
-}
-
-.list ul li a{
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-}
-
-.list ul li a:hover{
-    border-bottom: red 10px solid;
-
-}
-
-
-
 .logoutBtn{
     margin-left: 14%;
     display: flex;
@@ -63,79 +28,69 @@
 
 #logout{
     text-decoration: none;   
-    margin-left: 10%;
+    margin-left: 80%;
     margin-top: 0.2%;
+    
 }
 
 body{
-    animation: bgDashboard 10s infinite alternate;
-}
-
-@keyframes bgDashboard {
-        0%{
-            background-image: url("../images/c6.jpg");
-            background-position: center;
-            background-size:cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            
-           
-        }
-        50%{
-            background-image: url("../images/c4.jpg");
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        100%{
-            background-image: url("../images/c7.jpg ");
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-}
-
-.text{
-    color: rgb(249, 249, 249);
-    width: 70%;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-    letter-spacing: 3px;
-    text-indent: 70px;
-    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-}
-
-.textForDashboard{
-    margin-left: 3%;
-    margin-top: 7%;
-    
-
-}
-
-.redirectToAboutUs a{
-    text-decoration: none;
-    color: black;
     background-color: white;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 10px;
+}
+
+.box{
+    height: 230px;
+    width: 500px;
     box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    margin: 15px;
+    border-radius: 20px;
+}
+
+.main{
+    margin-left: 100px;
+}
+
+
+
+.section1,.section2{
+    display: flex;
+    
+    
+}
+
+.title, .logo,.dis{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    font-size: 50px;
     font-weight: bold;
-
+    color: rgb(114, 111, 111);
 }
 
-.redirectToAboutUs a:hover{
-    color: red;
+.dis{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    color: rgb(114, 111, 111);
 }
 
-.redirectToAboutUs{
-    margin-top: 1.5%;
-    margin-left: .4%;
+.box a{
+    text-decoration: none;
 }
+
+.box:hover{
+    background-color: black;
+    
+}
+
+
+
+
+
+
+
+
 
 
 

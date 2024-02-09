@@ -142,7 +142,7 @@ body{
 .firstPicture{
     width: 257px;
     height:231px;
-    animation: switch1 10s infinite alternate;
+    animation: switch1 50s infinite alternate;
     position: relative;
     left: 31px;
     top: 15px;
@@ -182,7 +182,7 @@ body{
 }
 
 .SecondPicture{
-    animation: switch2 10s infinite alternate;
+    animation: switch2 50s infinite alternate;
     width: 141px;
     height: 133px;
     border-radius: 10px;
@@ -214,7 +214,7 @@ body{
 }
 
 .ThirdPicture{
-    animation: switch3 10s infinite alternate;
+    animation: switch3 50s infinite alternate;
     width: 293px;
     height: 188px;
     border-radius: 10px;

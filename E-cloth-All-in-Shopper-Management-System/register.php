@@ -1,6 +1,6 @@
 <?php
 include("connection/conn.php");
-include("footer.php");
+include("includes/footer.php");
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){

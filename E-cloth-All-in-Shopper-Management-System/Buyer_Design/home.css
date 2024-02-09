@@ -3,81 +3,67 @@
     height: 80px;
     display: flex;
     box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 900; 
 }
 
-.logo img{
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    margin-left: 20%;
-    margin-top: 15%;
-}
+
 
 .searchBar input{
-    margin-left: 40%;
-    margin-top: 11%;
+    margin-left: 10%;
+    margin-top: 4%;
     padding: 5px;
-    width: 200%;
+    width: 600px;
     
 }
 
 .searchBar svg{
-
-        position: relative;
-        left: 430px;
-        bottom: 33px;
-    
+   position: relative;
+    left: 600px;
+     bottom: 33px; 
 }
 
-.shop a svg{
-   
-    margin-top: -7px;
+.menu{
+    display: flex;
+    justify-content: center;
 }
 
-.shop a{
-    text-decoration: none;
-    color: white;
-    margin-left: 30vw;
-    
-    
-}
-
-.shop{
-    margin-top: 26px;
-}
-
-
-.cart a svg{
-    
-    margin-top: -7px;
-}
-
-.cart a{
-    text-decoration: none;
-    color: white;
-    margin-left: 7vw;
-    
+.stores{
+    margin-left: 60px;
+    margin-top: 18px;
 }
 
 .cart{
-    margin-top: 26px;
+    margin-left: 60px;
+    margin-top: 18px;
 }
 
+.home{
+    margin-left: 20px;
+    margin-top: 18px;
+}
 
-.logoutBtn{
-    margin-left: 19%;
+.about{
+    margin-left: 60px;
+    margin-top: 18px;
+}
+
+.logout a{
+    margin-left: 160px;
+    margin-top: 18px;
     display: flex;
-    margin-top: 6.5%;
+    text-decoration: none;
 
 }
 
-
-#logout{
-    text-decoration: none;   
-    margin-left: 19%;
-    margin-top: 0.6%;
+.logout h6{
+    margin-top: 10px;
+    color: white;
 }
+
+
 
 
 
