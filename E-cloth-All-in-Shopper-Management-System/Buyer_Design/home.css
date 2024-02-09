@@ -13,3 +13,73 @@
     margin-left: 20%;
     margin-top: 15%;
 }
+
+.searchBar input{
+    margin-left: 40%;
+    margin-top: 11%;
+    padding: 5px;
+    width: 200%;
+    
+}
+
+.searchBar svg{
+
+        position: relative;
+        left: 430px;
+        bottom: 33px;
+    
+}
+
+.shop a svg{
+   
+    margin-top: -7px;
+}
+
+.shop a{
+    text-decoration: none;
+    color: white;
+    margin-left: 30vw;
+    
+    
+}
+
+.shop{
+    margin-top: 26px;
+}
+
+
+.cart a svg{
+    
+    margin-top: -7px;
+}
+
+.cart a{
+    text-decoration: none;
+    color: white;
+    margin-left: 7vw;
+    
+}
+
+.cart{
+    margin-top: 26px;
+}
+
+
+.logoutBtn{
+    margin-left: 19%;
+    display: flex;
+    margin-top: 6.5%;
+
+}
+
+
+#logout{
+    text-decoration: none;   
+    margin-left: 19%;
+    margin-top: 0.6%;
+}
+
+
+
+
+
