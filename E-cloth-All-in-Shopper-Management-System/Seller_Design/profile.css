@@ -1,0 +1,11 @@
+.searchBar input{
+    display: none;
+}
+
+.logout a{
+    margin-left: 760px;
+}
+
+.logout h6{
+    font-size: 17px;
+}

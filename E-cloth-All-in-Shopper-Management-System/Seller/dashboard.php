@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="box">
-                            <a href="#">
+                            <a href="store.php">
                                 <div class="title">
                                  Store
                                 </div>
@@ -70,7 +70,7 @@
           <div class="section2">
             
                     <div class="box">
-                        <a href="#">
+                        <a href="cart.php">
                                 <div class="title">
                                     My cart
                                 </div>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="box">
-                        <a href="#">
+                        <a href="profile.php">
                                  <div class="title">
                                     Seller Profile
                                 </div>
