@@ -57,8 +57,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     ";
 
                     }else{
-                        $store = "none";
-                        $sql = "INSERT INTO seller_account (store,username,password) VALUES ('$store','$username','$password')";
+                        
+                        $sql = "INSERT INTO seller_account (username,password) VALUES ('$username','$password')";
                         mysqli_query($connForMyDatabase,$sql);
         
                         echo "

@@ -9,3 +9,12 @@
 .logout h6{
     font-size: 17px;
 }
+
+.main{
+    margin-top: 110px;
+    margin-left: 30px;
+}
+
+button{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}

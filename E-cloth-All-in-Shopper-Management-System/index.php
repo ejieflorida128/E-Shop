@@ -2,6 +2,7 @@
     // start sa php code
 
     include("connection/conn.php");
+    session_start();
 
     
 
@@ -35,7 +36,7 @@
                         if($seller['username'] == $username && $seller['password'] == $password){
                             // code for redirecting to the buyer dashboard
                             
-
+                            $_SESSION['username'] = $username; 
                             header('Location: Seller/dashboard.php');
                         }
                     }
