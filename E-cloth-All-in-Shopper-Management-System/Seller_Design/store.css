@@ -18,3 +18,12 @@
 button{
     box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
 }
+
+body{
+    overflow-x: hidden;
+}
+
+.shopList{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}

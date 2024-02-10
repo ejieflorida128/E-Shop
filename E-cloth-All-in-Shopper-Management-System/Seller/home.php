@@ -106,7 +106,7 @@
 
             function DisplayItems(searchValue) {
                     $.ajax({
-                        url: "../ajax/buyer_ajax.php",
+                        url: "../ajax/seller_ajax.php",
                         type: 'post',
                         data: {
                             searchItems: true,
