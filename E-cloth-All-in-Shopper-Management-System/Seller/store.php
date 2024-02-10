@@ -43,6 +43,8 @@
                 </div>
             </div>
         </div>
+
+        
         <!-- Notification Modal for Shop Creation -->
         <div class="modal" tabindex="-1" id="succesfullyCreatedaShop" style="margin-top: 150px;">
             <div class="modal-dialog">
