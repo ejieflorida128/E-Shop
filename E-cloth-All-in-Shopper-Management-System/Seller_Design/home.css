@@ -1,0 +1,71 @@
+.header{
+    background-color: #365D1E;
+    height: 80px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 900; 
+}
+
+
+
+.searchBar input{
+    margin-left: 10%;
+    margin-top: 4%;
+    padding: 5px;
+    width: 600px;
+    
+}
+
+.searchBar svg{
+   position: relative;
+    left: 600px;
+     bottom: 33px; 
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+}
+
+.stores{
+    margin-left: 60px;
+    margin-top: 18px;
+}
+
+.cart{
+    margin-left: 60px;
+    margin-top: 18px;
+}
+
+.home{
+    margin-left: 20px;
+    margin-top: 18px;
+}
+
+.about{
+    margin-left: 60px;
+    margin-top: 18px;
+}
+
+.logout a{
+    margin-left: 160px;
+    margin-top: 18px;
+    display: flex;
+    text-decoration: none;
+
+}
+
+.logout h6{
+    margin-top: 10px;
+    color: white;
+}
+
+
+
+
+
+
+

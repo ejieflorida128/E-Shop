@@ -88,7 +88,7 @@
                     <div class="box">
                         <a href="#">
                                  <div class="title">
-                                    About Us
+                                   Buyer Profile
                                 </div>
                                 <div class="logo">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(114, 111, 111)" class="bi bi-file-person-fill" viewBox="0 0 16 16">
