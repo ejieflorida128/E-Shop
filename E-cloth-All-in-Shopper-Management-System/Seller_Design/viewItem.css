@@ -1,0 +1,137 @@
+.searchBar input{
+    display: none;
+}
+
+.logout a{
+    margin-left: 760px;
+}   
+
+.logout h6{
+    font-size: 17px;
+}
+
+.container{
+    display: flex;
+}
+
+#forDeleteItem{
+   margin-left: 30px;
+   margin-top: 30px;
+}
+
+button{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+.lineSeperator{
+    height: 500px;
+    border: 5px solid rgb(114, 111, 111);
+    position: absolute;
+    left: 880px;
+    top: 92px;
+}
+
+.section3{
+    width: 350px;
+    height: 450px;
+    position: absolute;
+    left: 910px;
+    top: 80px;
+    
+}
+
+.facebook svg{
+    position: relative;
+    left: -5px;
+}
+
+.facebook{
+    position: relative;
+    top: 30px;
+    margin: 30px;
+    width: 100px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    border-radius: 20px;
+}
+
+
+.messanger svg{
+    position: relative;
+    left: -5px;
+}
+
+.messanger{
+    position: relative;
+    top: 30px;
+    margin: 30px;
+    width: 100px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    border-radius: 20px;
+}
+
+
+.email svg{
+    position: relative;
+    left: -5px;
+}
+
+.email{
+    position: relative;
+    top: 30px;
+    margin: 30px;
+    width: 100px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    border-radius: 20px;
+}
+
+
+.instagram svg{
+    position: relative;
+    left: -5px;
+}
+
+.instagram{
+    position: relative;
+    top: 30px;
+    margin: 30px;
+    width: 100px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    border-radius: 20px;
+}
+
+.sec1 , .sec2{
+    display: flex;
+}
+
+
+.sec3{
+    color: rgb(114, 111, 111);
+}
+
+.informations{
+position: relative;
+left: 10px;
+}
+
+.facebook:hover{
+    background-color: black;
+}
+
+.messanger:hover{
+    background-color: black;
+}
+
+.instagram:hover{
+    background-color: black;
+}
+.email:hover{
+    background-color: black;
+}
+
+#forEditOfItem{
+    margin-top:30px;
+}

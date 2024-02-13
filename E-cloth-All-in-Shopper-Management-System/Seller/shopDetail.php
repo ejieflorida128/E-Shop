@@ -22,11 +22,15 @@
 </head>
 <body>
         <div class="header2" style = "position: fixed; top: 0; z-index: 3000; width: 1000px;">
-            <h4>Example's Shop</h4>
+            <h4>
+                <?php    echo $_GET['shopName'];  ?>  's STORE
+            </h4>
         </div>
 
-        <div class="main">
-             <!-- Modal for shop creation -->
+        <div class="main"> 
+        <a href = "store.php" class = "btn btn-danger" style = "position:relative; bottom: 65px;   box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Back to list of Store</a>
+           
+        <!-- Modal for shop creation -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#putItemToChosenStore" style = "margin-top: -130px;">
             Add Item
         </button>

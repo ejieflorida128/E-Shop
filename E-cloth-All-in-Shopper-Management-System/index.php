@@ -1,6 +1,8 @@
 <?php
     // start sa php code
 
+    include("includes/footer.php");
+
     include("connection/conn.php");
     session_start();
 
@@ -154,8 +156,6 @@
             <!-- end sa main na section -->
 
         </div>
-        <?php
-    include("includes/footer.php");
-        ?>
+        
 </body>
 </html>

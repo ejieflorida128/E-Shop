@@ -201,15 +201,18 @@ session_start();
               $picInDb = $get['img'];
               $itemPrice = $get['item_price'];
               $itemName = $get['item_name'];
+
+              $itemId = $get['id'];
              
 
               $div.='
               <div class="col-md-3">
-              <div class="card" style="width: 15rem; height: 23rem;  margin:10px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+              <div class="card" style="width: 15rem; height:25rem; margin: 10px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
               <img src='.$picInDb.' class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                 <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
+                <a href = "ViewItem.php?ItemId='.$itemId.'" class = "btn btn-danger" style = "position: absolute; bottom: 10px;width: 200px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Show Item</a>
                 
                 
               </div>
@@ -250,16 +253,18 @@ session_start();
             $picInDb = $get['img'];
             $itemPrice = $get['item_price'];
             $itemName = $get['item_name'];
+
+            $itemId = $get['id'];
            
 
             $div.='
             <div class="col-md-3">
-            <div class="card" style="width: 15rem; height: 23rem; margin: 10px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+            <div class="card" style="width: 15rem; height:25rem; margin: 10px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
             <img src='.$picInDb.' class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                 <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
-            
+                <a href = "ViewItem.php?ItemId='.$itemId.'" class = "btn btn-danger" style = "position: absolute; bottom: 10px;width: 200px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Show Item</a>
                 
             </div>
           </div>
@@ -303,6 +308,18 @@ session_start();
             $insertItemToDb = "INSERT INTO items (img,item_name,item_price,item_source) VALUES ('$ItemImage','$ItemName','$ItemPrice','$ItemSource')";
             mysqli_query($connForMyDatabase,$insertItemToDb);
   }
+
+   
+  if(isset($_POST['clickForDelete'])){
+
+      $ItemToBeDeleted = $_POST['deleteThisItem'];
+
+      $sqlForDelete = "DELETE FROM items WHERE id = $ItemToBeDeleted";
+      mysqli_query($connForMyDatabase,$sqlForDelete);
+
+     
+
+    }
 
 
 
