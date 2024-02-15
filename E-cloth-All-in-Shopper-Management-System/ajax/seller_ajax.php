@@ -309,7 +309,7 @@ session_start();
             mysqli_query($connForMyDatabase,$insertItemToDb);
   }
 
-   
+    // deletion sa selected item sa ViewItem page
   if(isset($_POST['clickForDelete'])){
 
       $ItemToBeDeleted = $_POST['deleteThisItem'];
@@ -320,6 +320,43 @@ session_start();
      
 
     }
+
+
+    // para ma butanagan ang input sa edit sa ViewItem page
+    if(isset($_POST['editIdForTheSelectedItem'])){
+            $item_id = $_POST['editIdForTheSelectedItem'];
+
+            $sql = "SELECT * FROM items WHERE id = $item_id";
+            $result = mysqli_query($connForMyDatabase,$sql);
+            $response = array();
+
+            while($row = mysqli_fetch_assoc($result)){
+                $response = $row;
+            }
+
+            echo json_encode($response);
+        }else{
+            $response['status'] =   200;
+            $response['message'] = "Invalid or Data Information!";
+        }
+
+
+
+  // para ma edit natu ang data sa SelectedItem sa ViewItem na page
+  if(isset($_POST['clickForEdit'])){
+
+    $ItemToBeEdited = $_POST['EditThisItem'];
+    $itemName = $_POST['item_name'];
+    $itemPrice = $_POST['item_price'];
+
+    $sqlForEdit = "UPDATE items SET item_name = '$itemName', item_price = '$itemPrice' WHERE id = $ItemToBeEdited";
+    mysqli_query($connForMyDatabase,$sqlForEdit);
+
+   
+
+  }
+
+
 
 
 

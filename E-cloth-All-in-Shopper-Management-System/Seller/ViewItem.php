@@ -71,7 +71,7 @@
 
                     <button class = "btn btn-danger" id = "forDeleteItem" onclick = "deleteItemFromTheSelectedShop()">DELETE</button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModal" style = "margin-top: 30px;">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModal" style = "margin-top: 30px;" onclick = "openEditBoxWithValues()">
                     Edit Information
                     </button>
 
@@ -89,7 +89,7 @@
                         
         <div class="sec1">
                              <div class="facebook">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="5    0" fill="rgb(114, 111, 111)" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="rgb(114, 111, 111)" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                                     </svg>
                             </div>
@@ -175,11 +175,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-                            
+              <label for="item_Name">Item Name:</label><br>   
+              <input type="text" id = "item_Name" class = "form-control">
+              <label for="item_Price">Item Price:</label><br>
+              <input type="text" id = "item_Price" class = "form-control">       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick = "EditItemFromTheSelectedShop()">Save changes</button>
       </div>
     </div>
   </div>
@@ -191,11 +194,11 @@
 
 
                         
-                    // function refreshIfClose(){
-                    //             $(document).ready(function(){
-                                   
-                    //             });
-                    // }
+                    function refreshIfClose(){
+                                $(document).ready(function(){
+                                  location.reload();
+                                });
+                    }
 
 
                     function deleteItemFromTheSelectedShop() {  
@@ -217,17 +220,43 @@
 
 
 
-                    function EditItemFromTheSelected() {  
+                    function openEditBoxWithValues(){
+
+                            var id =  '<?php echo $_GET['ItemId']; ?>';
+                          
+                            $.post("../ajax/seller_ajax.php", { editIdForTheSelectedItem:id}, function(data, status) {
+                              console.log(data); // Log the raw response to the console
+
+                              var SelectedItemDatas = JSON.parse(data);
+
+                              $('#item_Name').val(SelectedItemDatas.item_name);
+                              $('#item_Price').val(SelectedItemDatas.item_price);
+                              
+                            
+                          });
+                    }
+
+
+                    function EditItemFromTheSelectedShop() {  
+
+                      var itemName = $('#item_Name').val();
+                      var itemPrice = $('#item_Price').val();
+
+
                         $.ajax({
                             url: "../ajax/seller_ajax.php",
                             type: 'post',
                             data: {
                                 clickForEdit: true,
+                                item_name:itemName,
+                                item_price:itemPrice,
                                 EditThisItem: '<?php echo $_GET['ItemId']; ?>'
                             },
                             success: function (data, status) {
                                 console.log("clicked!");
                                 // Handle success response if needed
+
+                                refreshIfClose();
 
                                 // $('#modalForDeletion').modal('show');
                             }
