@@ -23,6 +23,7 @@
                         if($buyer['username'] == $username && $buyer['password'] == $password){
                             // code for redirecting to the buyer dashboard
                            
+                            $_SESSION['username'] = $username; 
                             header('Location: Buyer/dashboard.php');
                         }
                     }

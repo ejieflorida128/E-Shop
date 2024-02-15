@@ -152,7 +152,8 @@ session_start();
                             <h5 class="card-title" style = "display: flex; justify-content: center; color: rgb(114, 111, 111);">'.$shopname.'</h5>
                             <h6 class="card-text"  style = "display: flex; justify-content: center; color: rgb(114, 111, 111);"> '.$shop_contact.' </h6>
                             <a href="../Seller/shopDetail.php?shopName='.$shopname.'" class="btn btn-primary" style = "width:200px;">Visit Store</a>
-                          </div>
+                          
+                            </div>
                         </div>
                         </div>
                           
@@ -373,6 +374,26 @@ session_start();
 }else{
     $response['status'] =   200;
     $response['message'] = "Invalid or Data Information!";
+}
+
+
+
+// mao ne query for editing profile information sa profile.php
+if(isset($_POST['EditClicked'])){
+      
+  $SellerFullname = $_POST['SellerFullname'];
+  $SellerAge = $_POST['SellerAge'];
+  $SellerBio = $_POST['SellerBio'];
+  if(empty($_POST['SellerPic']) || $_POST['SellerPic'] == null){
+    $SellerPic = "../profile_picture/default.jpg";
+  }else{
+    
+    $SellerPic = "../profile_picture/".$_POST['SellerPic'];
+  }
+  $SelectedUserNameTObeEdited = $_POST['SelectedUserNameTObeEdited'];
+
+  $sql = "UPDATE seller_account SET fullname = '$SellerFullname', age = '$SellerAge', bio = '$SellerBio', profile_pic = '$SellerPic' WHERE username = '$SelectedUserNameTObeEdited'";
+  mysqli_query($connForMyDatabase, $sql);
 }
 
 

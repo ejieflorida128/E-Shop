@@ -1,6 +1,6 @@
 <?php
 session_start();    
-include("../includes/seller_header.php");
+include("../includes/buyer_header.php");
 include("../includes/footer.php");
 include("../connection/conn.php");
 ?>
@@ -43,9 +43,31 @@ include("../connection/conn.php");
 
             <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px;" for="selectProfilePicture" id = "chooseBtnForPic">Choose Profile Pic</label>
             <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImage(event)">
-            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Save Edit</button>
+            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" onclick = "EditDataFromTheProfile()">Save Edit</button>
         </div>
     </div>
+</div>
+
+
+
+
+<!-- modal -->
+<div class="modal" tabindex="-1" id = "SuccesfullEdit" style = "margin-top: 150px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notice!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Edited Successfully!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Close</button>
+        
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -77,6 +99,8 @@ include("../connection/conn.php");
         reader.readAsDataURL(selectedFile);
     }
 
+
+//     para ma display ang current na data sa usa ka seller account 
     function DisplayAllDataOfTheSaidAccount() {
         var username = '<?php echo $_SESSION['username']; ?>';
       
@@ -90,6 +114,39 @@ include("../connection/conn.php");
             $('#SellerBio').val(SelectedProfileDatas.bio);
         });
     }
+
+
+    function EditDataFromTheProfile(){
+                var EditClicked = true;
+                var SellerFullname = $('#SellerFullname').val();
+                var SellerAge = $('#SellerAge').val();
+                var SellerBio = $('#SellerBio').val();
+                var Username = '<?php echo $_SESSION['username']; ?>';
+                var SelectedProfilePicture = $('#selectProfilePicture').val();
+                var SellerPic = SelectedProfilePicture.replace(/C:\\fakepath\\/i, '');
+        
+
+                          $.ajax({
+                                        url: "../ajax/seller_ajax.php",
+                                        type: 'post',
+                                        data: {
+                                           
+                                            SellerFullname: SellerFullname,
+                                            SellerAge: SellerAge,
+                                            SellerBio: SellerBio,
+                                            SellerPic:SellerPic,
+                                            EditClicked:EditClicked,
+                                            SelectedUserNameTObeEdited:Username
+                                        },
+                                        success: function (data, status) {
+                                                        
+                                            $('#SuccesfullEdit').modal('show');
+                                        }
+                                    });
+                      
+                }
+
+                
 </script>
 
 </body>
