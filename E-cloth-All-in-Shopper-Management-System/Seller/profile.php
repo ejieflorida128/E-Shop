@@ -1,10 +1,10 @@
 <?php
 session_start();    
-    include("../includes/seller_header.php");
-    include("../includes/footer.php");
-    include("../connection/conn.php");
-    
+include("../includes/seller_header.php");
+include("../includes/footer.php");
+include("../connection/conn.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,44 +18,79 @@ session_start();
 </head>
 <body>
 
-
-<div class="container" style = "display: flex;">
-        <div class="leftside">
-
-                <div class="profilePic">
-                            <img src="
-                                    <?php
-                                            $LogInedUsername =  $_SESSION['username'];
-
-                                            $sql = "SELECT profile_pic FROM seller_account WHERE username = '$LogInedUsername' ";
-                                            $query = mysqli_query($connForMyDatabase,$sql);
-
-
-
-                                            while($check = mysqli_fetch_assoc($query)){
-                                                    echo $check['profile_pic'];
-                                            }
-                                    ?>
-                            " alt="error" style = "width: 400px;">
-                </div>
-
+<div class="container" style="display: flex;">
+    <div class="leftside">
+        <div class="profilePic">
+            <img id="profileImage" src="<?php
+                $LogInedUsername =  $_SESSION['username'];
+                $sql = "SELECT profile_pic FROM seller_account WHERE username = '$LogInedUsername' ";
+                $query = mysqli_query($connForMyDatabase, $sql);
+                while($check = mysqli_fetch_assoc($query)) {
+                    echo $check['profile_pic'];
+                }
+            ?>" alt="Profile Picture" style="width: 450px;">
         </div>
-        <div class="rightside">
+    </div>
+    <div class="rightside">
+        <div class="sellerInformation">
+                <label for="SellerFullname"> Fullname:</label>
+            <input type="text" id="SellerFullname" class="form-control" style="width: 300px">
+            <label for="SellerAge">Age:</label>
+            <input type="number" id="SellerAge" class="form-control" style="width: 100px">
+            <label for="SellerBio">Bio:</label>
+            <textarea class="form-control" rows="6" style="width: 500px" id = "SellerBio"></textarea>
 
-                            <div class="sellerInformation">
-                                     <input type="text" id = "SellerUsername" class = "form-control" style = "width: 300px">
-                                     <input type="number" id = "SellerAge" class = "form-control" style = "width: 100px">
-                                     <textarea class="form-control" id="Bio" rows="6" style = "width: 500px"></textarea>
-                                     <label class = "btn btn-primary" style = "margin-left: 10px; margin-top: 20px; " for = "selectProfilePicture">Choose Profile Pic</label>
-                                     <input type="file" id = "selectProfilePicture" hidden>
-                                     <button class = "btn btn-success" style = "margin-left: 10px; margin-top: 20px; ">Confirm Edit</button>
-                                      
-                                    </div>
+
+            <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px;" for="selectProfilePicture" id = "chooseBtnForPic">Choose Profile Pic</label>
+            <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImage(event)">
+            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;">Save Edit</button>
         </div>
+    </div>
 </div>
 
+<script>
+    window.onload = function() {
+      
+        DisplayAllDataOfTheSaidAccount();
 
+       
+        setTimeout(function() {
+            location.reload();
+        }, 60000); // Refresh the page every 60 seconds
+    };
 
-    
+    function refreshIfClose() {
+        $(document).ready(function() {
+            location.reload();
+        });
+    }
+
+    function displaySelectedImage(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(event) {
+            var imgElement = document.getElementById('profileImage');
+            imgElement.src = event.target.result;
+        };
+        
+        reader.readAsDataURL(selectedFile);
+    }
+
+    function DisplayAllDataOfTheSaidAccount() {
+        var username = '<?php echo $_SESSION['username']; ?>';
+      
+        $.post("../ajax/seller_ajax.php", { EditInformationOfTheSaidProfileAccount: username }, function(data, status) {
+            console.log(data); // Log the raw response to the console
+
+            var SelectedProfileDatas = JSON.parse(data);
+
+            $('#SellerFullname').val(SelectedProfileDatas.fullname);
+            $('#SellerAge').val(SelectedProfileDatas.age);
+            $('#SellerBio').val(SelectedProfileDatas.bio);
+        });
+    }
+</script>
+
 </body>
 </html>

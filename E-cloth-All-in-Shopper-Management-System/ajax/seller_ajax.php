@@ -357,6 +357,25 @@ session_start();
   }
 
 
+  // para ma butangan ug information ang mga inputs sa profile php
+  if(isset($_POST['EditInformationOfTheSaidProfileAccount'])){
+    $sellerUsername = $_POST['EditInformationOfTheSaidProfileAccount'];
+
+    $sql = "SELECT * FROM seller_account WHERE username = '$sellerUsername' ";
+    $result = mysqli_query($connForMyDatabase,$sql);
+    $response = array();
+
+    while($row = mysqli_fetch_assoc($result)){
+        $response = $row;
+    }
+
+    echo json_encode($response);
+}else{
+    $response['status'] =   200;
+    $response['message'] = "Invalid or Data Information!";
+}
+
+
 
 
 

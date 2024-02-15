@@ -264,6 +264,11 @@
                     }
 
 
+                    function EditDataFromTheProfile(){
+                      
+                    }
+
+
 
 </script>
 
