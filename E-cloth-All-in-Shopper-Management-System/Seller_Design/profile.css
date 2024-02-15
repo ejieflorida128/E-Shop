@@ -9,3 +9,34 @@
 .logout h6{
     font-size: 17px;
 }
+
+.profilePic {
+        margin-top: 140px;
+}
+
+.profilePic img{
+    border-radius: 30px;
+    border: 2px solid grey;
+    padding: 2px;
+}
+
+.sellerInformation{
+    margin-top: 190px;
+    margin-left: 50px;
+}
+
+.sellerInformation input{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    padding: 5px;
+    margin: 10px;
+}
+
+.sellerInformation textarea{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+    padding: 5px;
+    margin: 10px;
+}
+
+.sellerInformation button,label{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}

@@ -57,8 +57,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     ";
 
                     }else{
-                        
-                        $sql = "INSERT INTO seller_account (username,password) VALUES ('$username','$password')";
+
+                        $DefaultProfilePic = "../profile_picture/default.jpg";
+                        $age = 0;
+                        $bio = " bio is a way to give people a quick glimpse into who you are.";
+                        $fullname = "Please input information";
+
+                        $sql = "INSERT INTO seller_account (username,password,profile_pic,fullname,age,bio) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$bio')";
                         mysqli_query($connForMyDatabase,$sql);
         
                         echo "
@@ -117,8 +122,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     ";
 
                     }else{
-                        
-                        $sql = "INSERT INTO buyer_account (username,password) VALUES ('$username','$password')";
+
+                        $DefaultProfilePic = "../profile_picture/default.jpg";
+                        $age = 0;
+                        $bio = "bio is a way to give people a quick glimpse into who you are.";
+                        $fullname = "Please input information";
+
+                        $sql = "INSERT INTO buyer_account (username,password,profile_pic,fullname,age,bio) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$bio')";
                         mysqli_query($connForMyDatabase,$sql);
         
                         echo "
