@@ -1,4 +1,5 @@
 <?php
+        session_start();
         include("../connection/conn.php");
         include("../includes/footer.php");
         
@@ -51,6 +52,34 @@
                         </a>
                 </div>
             </div>
+
+            <div class="count" style = "background-color: red; height: 20px; width: 20px; border-radius: 50%; position: absolute; left: 256px; top: 13px;">
+                            
+                            <?php
+
+                                include("../connection/conn.php");
+
+                                $id = $_SESSION['id'];
+
+
+
+                                $sql = "SELECT * FROM cart_pending WHERE SellerId = $id";
+                                $query = mysqli_query($connForMyDatabase,$sql);
+
+                                $count = 0;
+
+                                while($check = mysqli_fetch_assoc($query)){
+                                    $count++;
+                                }
+
+
+                                echo '
+                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 5px; bottom: -7px;">'.$count.'</h4>
+                                    ';
+
+                            ?>
+                        
+                </div>
             
             <div class = "searchBar">
                 <input type = "text" name = "searchData" id = "searchData" class = "form-control">

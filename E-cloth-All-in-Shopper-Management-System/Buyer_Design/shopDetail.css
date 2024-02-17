@@ -1,0 +1,58 @@
+.header input{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+button{
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+.home{
+    display: none;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.stores{
+    display: none;
+}
+
+.cart{
+    display: none;
+}
+
+.logout{
+    margin-left: -10px;
+}
+
+.about{
+    display: none;
+}
+
+.searchBar input{
+    margin-left: 400px;
+    margin-top: 23px;
+}
+
+.searchBar svg{
+    margin-left:360px;
+}
+
+.header2 h4{
+    z-index: 1100;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 23px;
+    color: white;
+    font-weight: bolder;
+}
+
+.main{
+    position: relative;
+    top: 100px;
+    left: 10px;
+
+}
+
+.form-group input{
+    box-shadow: 0 4px 8px lightblue;
+}

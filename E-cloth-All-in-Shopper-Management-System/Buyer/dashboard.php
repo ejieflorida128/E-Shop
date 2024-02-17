@@ -98,7 +98,7 @@
                                 <div class="dis">
                                 provides concise information about the organization, company, or individuals behind the products or services offered, including details such as its history, mission, values.
                                 </div>
-                        s</a>
+                        </a>
                     </div>
           </div>
 

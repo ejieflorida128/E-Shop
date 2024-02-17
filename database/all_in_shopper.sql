@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 03:26 PM
+-- Generation Time: Feb 17, 2024 at 11:03 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,7 +42,7 @@ CREATE TABLE `buyer_account` (
 --
 
 INSERT INTO `buyer_account` (`id`, `username`, `password`, `profile_pic`, `fullname`, `age`, `location`) VALUES
-(10, 'athena', 'athena', '../profile_picture/default.jpg', 'Athena Joy Barola Campania', 20, 'San Jose, Sogod Southern Leyte 6606 Atbang Emirates dapit Vet na Vet sulod lang sa kanto');
+(10, 'athena', 'athena', '../profile_picture/ejie4.jpg', 'Athena Joy Barola Campania', 20, 'San Jose, Sogod Southern Leyte 6606 Atbang Emirates dapit Vet na Vet sulod lang sa kanto');
 
 -- --------------------------------------------------------
 
@@ -56,8 +56,18 @@ CREATE TABLE `cart_pending` (
   `item_price` varchar(255) NOT NULL,
   `item_source` varchar(255) NOT NULL,
   `buyer_fullname` varchar(255) NOT NULL,
-  `buyer_location` text NOT NULL
+  `buyer_location` text NOT NULL,
+  `buyer_age` int(11) NOT NULL,
+  `seller` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart_pending`
+--
+
+INSERT INTO `cart_pending` (`id`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
+(1, 'brown polo shirt for women', '10$', 'T-bunny Shirts', 'Athena Joy Barola Campania', 'San Jose, Sogod Southern Leyte 6606 Atbang Emirates dapit Vet na Vet sulod lang sa kanto', 20, 'Ejie Cabales Florida'),
+(3, 'Black Dress for women', '12$', 'T-bunny Shirts', 'Athena Joy Barola Campania', 'San Jose, Sogod Southern Leyte 6606 Atbang Emirates dapit Vet na Vet sulod lang sa kanto', 20, 'Ejie Cabales Florida');
 
 -- --------------------------------------------------------
 
@@ -70,19 +80,19 @@ CREATE TABLE `items` (
   `img` varchar(255) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `item_price` varchar(255) NOT NULL,
-  `item_source` varchar(255) NOT NULL
+  `item_source` varchar(255) NOT NULL,
+  `seller` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `img`, `item_name`, `item_price`, `item_source`) VALUES
-(37, '../items/i1.jpg', 'Biege Polo shirt for women', '10$', 'T-bunny Shirts'),
-(38, '../items/i2.jpg', 'LightBlue Polo shirt for women', '12$', 'T-bunny Shirts'),
-(39, '../items/i3.jpg', 'Black Polo shirt for women', '11$', 'T-bunny Shirts'),
-(40, '../items/i6.jpg', 'Black Dress Mid Range for women', '15$', 'T-bunny Shirts'),
-(41, '../items/i5.jpg', 'White Polo Shirt for women', '12$', 'T-bunny Shirts');
+INSERT INTO `items` (`id`, `img`, `item_name`, `item_price`, `item_source`, `seller`) VALUES
+(44, '../items/i4.jpg', 'brown polo shirt for women', '10$', 'T-bunny Shirts', 'Ejie Cabales Florida'),
+(45, '../items/i6.jpg', 'Black Dress for women', '12$', 'T-bunny Shirts', 'Ejie Cabales Florida'),
+(49, '../items/i11.jpg', 'Green T-Shirt for women', '9$', 'T-bunny Shirts', 'Ejie Cabales Florida'),
+(50, '../items/i17.jpg', 'Pink T-Shirt for women', '9$', 'JeansB', 'Ejie Cabales Florida');
 
 -- --------------------------------------------------------
 
@@ -181,13 +191,13 @@ ALTER TABLE `buyer_account`
 -- AUTO_INCREMENT for table `cart_pending`
 --
 ALTER TABLE `cart_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `seller_account`

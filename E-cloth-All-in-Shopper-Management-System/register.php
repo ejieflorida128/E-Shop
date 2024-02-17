@@ -125,10 +125,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
                         $DefaultProfilePic = "../profile_picture/default.jpg";
                         $age = 0;
-                        $bio = "bio is a way to give people a quick glimpse into who you are.";
-                        $fullname = "Please input information";
+                        $location = "Please put your designated location for delivery!";
+                        $fullname = "Please input information!";
 
-                        $sql = "INSERT INTO buyer_account (username,password,profile_pic,fullname,age,bio) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$bio')";
+                        $sql = "INSERT INTO buyer_account (username,password,profile_pic,fullname,age,location) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$location')";
                         mysqli_query($connForMyDatabase,$sql);
         
                         echo "

@@ -297,16 +297,17 @@ session_start();
 
 
   if(isset($_POST['item_image']) && isset($_POST['item_price']) && isset($_POST['item_name'])){
-           $Pic = $_POST['item_image'];  
+             $Pic = $_POST['item_image'];  
             
             $ItemName = $_POST['item_name'];
             $ItemPrice = $_POST['item_price'];
             $ItemImage = "../items/"  . $Pic;
             $ItemSource = $_POST['SelectedShop'];
-
+            $Seller = $_POST['seller'];
+            $SellerId = $_POST['SellerId'];
            
 
-            $insertItemToDb = "INSERT INTO items (img,item_name,item_price,item_source) VALUES ('$ItemImage','$ItemName','$ItemPrice','$ItemSource')";
+            $insertItemToDb = "INSERT INTO items (img,item_name,item_price,item_source,seller,SellerId) VALUES ('$ItemImage','$ItemName','$ItemPrice','$ItemSource','$Seller','$SellerId')";
             mysqli_query($connForMyDatabase,$insertItemToDb);
   }
 

@@ -37,7 +37,7 @@ include("../connection/conn.php");
             <input type="text" id="BuyerFullname" class="form-control" style="width: 300px">
             <label for="BuyerAge">Age:</label>
             <input type="number" id="BuyerAge" class="form-control" style="width: 100px">
-            <label for="BuyerLocation">Bio:</label>
+            <label for="BuyerLocation">Location:</label>
             <textarea class="form-control" rows="6" style="width: 500px" id = "BuyerLocation"></textarea>
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();    
-include("../includes/buyer_header.php");
+include("../includes/seller_header.php");
 include("../includes/footer.php");
 include("../connection/conn.php");
 ?>

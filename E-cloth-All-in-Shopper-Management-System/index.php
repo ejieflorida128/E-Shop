@@ -24,6 +24,7 @@
                             // code for redirecting to the buyer dashboard
                            
                             $_SESSION['username'] = $username; 
+                            $_SESSION['id'] = $buyer['id'];
                             header('Location: Buyer/dashboard.php');
                         }
                     }
@@ -39,7 +40,8 @@
                         if($seller['username'] == $username && $seller['password'] == $password){
                             // code for redirecting to the buyer dashboard
                             
-                            $_SESSION['username'] = $username; 
+                            $_SESSION['username'] = $username;
+                            $_SESSION['id'] = $seller['id']; 
                             header('Location: Seller/dashboard.php');
                         }
                     }

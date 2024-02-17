@@ -1,8 +1,10 @@
 <?php
+session_start();
+    include("../connection/conn.php");
     include("../includes/seller_header.php");
     include("../includes/footer.php");
     
-    session_start();
+    
 
 
    
@@ -28,10 +30,10 @@
         </div>
 
         <div class="main"> 
-        <a href = "store.php" class = "btn btn-danger" style = "position:relative; bottom: 65px;   box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Back to list of Store</a>
+        <a href = "store.php" class = "btn btn-danger" style = " box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Back to list of Store</a>
            
         <!-- Modal for shop creation -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#putItemToChosenStore" style = "margin-top: -130px;">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#putItemToChosenStore" style = "">
             Add Item
         </button>
         <div class="modal fade" id="putItemToChosenStore" style="margin-top: 100px;" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -82,7 +84,7 @@
         <!-- end sa notification sa add items -->
 
 
-            <div class="itemsInTheShop" id = "itemsInTheShop" style = "margin-top: -40px; margin-bottom: 170px; margin-left: 25px;">
+            <div class="itemsInTheShop" id = "itemsInTheShop" style = "margin-top: 20px; margin-bottom: 170px; margin-left: 25px;">
                 <!-- automatically regenrated kay naa tay code sa seller ajax -->
             </div>
 
@@ -130,7 +132,32 @@
                                             item_image: item_image,
                                             item_price: item_price,
                                             item_name: item_name,
+                                            seller:'<?php
+                                                    $username = $_SESSION['username'];
+
+                                                    $sql = "SELECT fullname FROM seller_account WHERE username = '$username'";
+                                                    $query = mysqli_query($connForMyDatabase,$sql);
+
+                                                    $call = mysqli_fetch_assoc($query);
+
+                                                    if($call){
+                                                        echo $call['fullname'];
+                                                    }
+                                                 ?>',
+                                             SellerId:'<?php
+                                                    $username = $_SESSION['username'];
+
+                                                    $sql = "SELECT id FROM seller_account WHERE username = '$username'";
+                                                    $query = mysqli_query($connForMyDatabase,$sql);
+
+                                                    $call = mysqli_fetch_assoc($query);
+
+                                                    if($call){
+                                                        echo $call['id'];
+                                                    }
+                                            ?>',
                                             SelectedShop: '<?php echo $_GET['shopName']; ?>'
+                                            
                                         },
                                         success: function (data, status) {
                                             $('#putItemToChosenStore').modal('hide');                

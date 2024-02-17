@@ -77,6 +77,10 @@
     color: white;
 }
 
+.count{
+    background-color: red;
+}
+
         </style>
 </head>
 <body>
@@ -103,11 +107,12 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-cart2" viewBox="0 0 16 16">
                                     <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
                                     </svg>
-                        </a>
+                    </a>
+                   
                 </div>
 
                 <div class="about">
-                    <a href="../Buyer   /profile.php">
+                    <a href="../Buyer/profile.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-person-check" viewBox="0 0 16 16">
                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                                     <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
@@ -116,6 +121,34 @@
                         </a>
                 </div>
             </div>
+
+            <div class="count" style = "background-color: red; height: 20px; width: 20px; border-radius: 50%; position: absolute; left: 256px; top: 13px;">
+                            
+                            <?php
+
+                                include("../connection/conn.php");
+
+                                $id = $_SESSION['id'];
+
+
+
+                                $sql = "SELECT * FROM cart_pending WHERE BuyerId = $id";
+                                $query = mysqli_query($connForMyDatabase,$sql);
+
+                                $count = 0;
+
+                                while($check = mysqli_fetch_assoc($query)){
+                                    $count++;
+                                }
+
+
+                                echo '
+                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 5px; bottom: -7px;">'.$count.'</h4>
+                                    ';
+
+                            ?>
+                        
+                </div>
             
             <div class = "searchBar">
                 <input type = "text" name = "searchData" id = "searchData" class = "form-control">
