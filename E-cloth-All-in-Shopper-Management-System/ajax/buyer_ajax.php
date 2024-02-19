@@ -354,10 +354,107 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
     }
 
 
- 
-
-  
-
 }
+
+
+
+
+  // para ni sa cart para ma display
+
+    if(isset($_POST['displayCart']) && $_POST['displayCart'] == true){
+
+        echo '<div style="max-height: 300px; max-width: 1200px; font-size: 11px; position: relative; left: 0px; top: 40px; overflow-y: auto; " class="table">';
+        $table = '<table class="table table-bordered table-hover">
+                <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+                <tr> 
+                    <th scope="col" class="text-center align-middle">Item Name</th>
+                    <th scope="col" class="text-center align-middle">Item Price</th>
+                    <th scope="col" class="text-center align-middle">Item Source</th>
+                    <th scope="col" class="text-center align-middle">Action</th>
+                </tr>
+                </thead>
+                <tbody>';
+
+                $BuyerId =  $_SESSION['id'];
+                $sql = "SELECT * FROM cart_pending WHERE BuyerId = $BuyerId";
+
+                $result = mysqli_query($connForMyDatabase,$sql);
+                $number = 1;
+
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+
+                      $Cartid = $row['id'];
+                      $BuyerID = $row['BuyerId'];
+                      $SellerId = $row['SellerId'];
+                      $itemName = $row['item_name'];
+                      $itemPrice = $row['item_price'];
+                      $itemSource = $row['item_source'];
+                      $BuyerFullname = $row['buyer_fullname'];
+                      $BuyerLocation = $row['buyer_location'];
+                      $BuyerAge = $row['buyer_age'];
+                      $Seller = $row['seller'];
+                      
+                      
+                     
+                    
+              
+                      $table .= '<tr>
+                          <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                          <td class="text-center align-middle">
+                          <button class="btn btn-outline-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="AddToOrderPending('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Buy Product</button>
+                              <button class = "btn btn-outline-danger"  style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick = "DeleteCart('. $Cartid .')">Delete</button>
+                          </td
+                          
+                      </tr>';
+              
+                      $number++;
+              
+              
+                  }
+              } else {
+                  // If no data, display a row with "No Data Information"
+                  $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+              }
+              
+                  $table .= '</tbody></table>';
+                  echo $table;
+                  echo '</div>';
+    }
+
+
+    if(isset($_POST['toDeleteCart']) && $_POST['toDeleteCart'] == true){
+
+            $cartIdToDelete = $_POST['CartId'];
+
+            $delete = "DELETE FROM cart_pending WHERE id = $cartIdToDelete";
+            mysqli_query($connForMyDatabase,$delete);
+    }
+
+    if(isset($_POST['AddToOrderPending']) && $_POST['AddToOrderPending'] == true){
+
+            $cartId = $_POST['cartId'];
+            $BuyerId = $_POST['BuyerId'];
+            $SellerId = $_POST['SellerId'];
+            $itemName = $_POST['itemName'];
+            $itemPrice = $_POST['itemPrice'];
+            $itemSource = $_POST['itemSource'];
+            $buyerFullname = $_POST['buyerFullname'];
+            $buyerLocation = $_POST['buyerLocation'];
+            $buyerAge = $_POST['buyerAge'];
+            $Seller = $_POST['Seller'];
+
+
+            $insertToOrderPennding = "INSERT INTO order_pending (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,	buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
+            mysqli_query($connForMyDatabase,$insertToOrderPennding);
+
+            $deleteFromcartPending = "DELETE FROM cart_pending WHERE id = $cartId";
+            mysqli_query($connForMyDatabase,$deleteFromcartPending);
+
+
+            header("Location: ../Buyer/pending_order.php");
+    }
 
 ?>
