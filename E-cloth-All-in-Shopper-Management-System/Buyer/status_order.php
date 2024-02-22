@@ -1,5 +1,5 @@
 <?php
-    include("../connection/conn.php");
+        include("../connection/conn.php");
     session_start();
     include("../includes/buyer_header.php");
     include("../includes/footer.php");
@@ -24,10 +24,9 @@
             <a href="success_order.php" class = "btn btn-success" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin: 10px;">Successful Delivery</a>
         </div>
 
-
         <div class="container">
                 <div class="table">
-                        <div class="tableInfo" id = "tableForPending">
+                        <div class="tableInfo" id = "tableForStatus">
                             <!-- displaying current cart of the buyer -->
 
                         </div>
@@ -35,8 +34,10 @@
         </div>
 
 
-        <!-- modal -->
-<div class="modal" tabindex="-1" id = "SuccessFulCancellation" style = "margin-top: 150px;">
+    
+
+
+ <div class="modal" tabindex="-1" id = "Delivery" style = "margin-top: 150px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,7 +45,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Cancelled Successfully!</p>
+        <p>Selected Item Succesfully Delivered! </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Close</button>
@@ -52,27 +53,7 @@
       </div>
     </div>
   </div>
-</div>
-
-
-
- <div class="modal" tabindex="-1" id = "cancelItem" style = "margin-top: 150px;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Notice!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Selected Item Succesfully Cancelled </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
+</div> 
 
 
 
@@ -80,35 +61,35 @@
         <script>
 
             $(document).ready(function () {
-                    displayTableforPendingOrder();  
+                      displayOrderStatus();  
                               
             });
 
             function refreshIfClose(){
                     $(document).ready(function () {
                      location.reload();
-                     displayTableforPendingOrder();              
+                     displayOrderStatus();              
             });
             }
 
 
-            function displayTableforPendingOrder(){
+            function displayOrderStatus(){
                 $.ajax({
                         url: "../ajax/buyer_ajax.php",
                         type: 'post',
                         data: {
-                                DisplayPendingOrder:true
+                                displayOrderStatus:true
                         },
                         success:function (data, status) {
                             console.log(data); // Check the data in the console
-                            $('#tableForPending').html(data);                       
+                            $('#tableForStatus').html(data);                       
                         }
                     });
             }
 
 
 
-            function Cancel(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller){
+            function Approved(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller){
 
                     var cartId = cartId;
                     var BuyerId = BuyerId;
@@ -125,7 +106,7 @@
                             url: "../ajax/buyer_ajax.php",
                             type: 'post',
                             data: {
-                                    CancelOrder:true,
+                                    ApproveOrder:true,
                                     cartId:cartId,
                                     BuyerId:BuyerId,
                                     SellerId:SellerId,
@@ -139,7 +120,7 @@
                             },
                             success: function (data, status) {
                                 console.log(data); // Check the data in the console
-                                $('#cancelItem').modal('show');                       
+                                $('#Delivery').modal('show');                       
                             }
                         });
 
@@ -149,5 +130,6 @@
             
             
         </script>
+
 </body>
 </html>

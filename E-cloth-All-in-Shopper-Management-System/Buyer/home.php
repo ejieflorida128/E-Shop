@@ -104,12 +104,49 @@
 
 
 
-<div class="main" style = "margin-top: 10%; margin-bottom: 5%;">
+<div class="main" style = "margin-top: 10%; margin-bottom: 5%; overflow-x: hidden;">
 
     <div class="container">
         <div class="searchItems" id = "searchItems">
                 <!-- search items from the database -->
         </div>
+
+        
+    </div>
+
+    <div class  = "container-fluid" style = "margin-top: 30px; margin-bottom: 1px; font-size: 30px; color: rgb(133, 129, 129);">
+                
+                <div class = "store" style = "margin-left: 33%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="rgb(133, 129, 129)" class="bi bi-search" viewBox="0 0 16 16" style = "margin-left: 30px;">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                         Search More Product
+                </div>
+
+                <div class = "info" style = "width: 97vw; border:rgb(133, 129, 129) solid 1px; margin-top: 10px; "></div>
+                <div class = "info" style = "width: 97vw;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin-top: 30px; border-radius: 10px; font-size: 16px; height: 200px; padding: 28px; display:flex;">
+                        
+
+                    <div class = "t1">
+                                     Project: E Cloth All in Shopper Management System<br>
+                                    Programmer: Ejie Cabales Florida<br>
+                                    Course: Bachelor of Science in Information Technology<br>
+                                    Year: 2nd Year<br>
+                                    Section: BSIT-201<br>   
+                                    School: Southern Leyte State University<br>
+                            </div>
+
+                            <div class = "t2" style = "margin-left: 300px;">
+                                    Gmail: ejieflorida128@gmail.com or ejieflorida000@gmail.com<br>
+                                    Contact Number: 09125081976 <br>
+                                    GIthub: https://github/ejieflorida128<br>
+                                    Facebook: https://facebook/ejieflorida14<br>
+                                    Instagram: https://instagram/Code-ejiePrimaryKeysDupss<br>
+                                    Online Database: sql6.freesqldatabase.com<br>
+
+                            </div>
+                        
+            </div>
     </div>
             
 </div>

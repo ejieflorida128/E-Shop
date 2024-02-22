@@ -21,7 +21,7 @@ include("../connection/conn.php");
 <div class="container" style="display: flex;">
     <div class="leftside">
         <div class="profilePic">
-            <img id="profileImage" src="<?php
+            <img id="profileImage"  style = "height: 450px; width: 400px;" src="<?php
                 $LogInedUsername =  $_SESSION['username'];
                 $sql = "SELECT profile_pic FROM seller_account WHERE username = '$LogInedUsername' ";
                 $query = mysqli_query($connForMyDatabase, $sql);

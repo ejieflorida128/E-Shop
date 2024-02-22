@@ -143,7 +143,7 @@
 
 
                                 echo '
-                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 5px; bottom: -7px;">'.$count.'</h4>
+                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 2px; bottom: -7px;">'.$count.'</h4>
                                     ';
 
                             ?>
