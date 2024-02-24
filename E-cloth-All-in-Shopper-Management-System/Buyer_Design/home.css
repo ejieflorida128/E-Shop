@@ -63,6 +63,26 @@
     color: white;
 }
 
+.returnTop{
+    background-color: #365D1E;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 7vh;
+    right: 1vw;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+.returnTop svg{
+    position: relative;
+    top: 15px;
+    left: 15px;
+}
+
+.returnTop:hover{
+    background-color: black;
+}
 
 
 

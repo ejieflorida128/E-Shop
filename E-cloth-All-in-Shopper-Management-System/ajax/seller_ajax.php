@@ -11,7 +11,7 @@ session_start();
         if($value == null){
           // if walay value ang search bar
 
-            $getAllItems = "SELECT * FROM items";
+            $getAllItems = "SELECT * FROM items ORDER BY id DESC";
             $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
 
             $counToRow = 0;
@@ -188,7 +188,7 @@ session_start();
       if($value == null){
         // if walay value ang search bar
 
-          $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ";
+          $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
           $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
 
           $counToRow = 0;
@@ -415,7 +415,7 @@ if(isset($_POST['DisplayPendingOrder']) && $_POST['DisplayPendingOrder'] == true
           <tbody>';
 
           $SellerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM order_pending WHERE SellerId = $SellerId";
+          $sql = "SELECT * FROM order_pending WHERE SellerId = $SellerId ORDER BY id DESC";
 
           $result = mysqli_query($connForMyDatabase,$sql);
           $number = 1;

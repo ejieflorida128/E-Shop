@@ -13,7 +13,7 @@ session_start();
         if($value == null){
           // if walay value ang search bar
 
-            $getAllItems = "SELECT * FROM items";
+            $getAllItems = "SELECT * FROM items ORDER BY id DESC";
             $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
 
             $counToRow = 0;
@@ -70,7 +70,7 @@ session_start();
 
           // if naay value ang search bar
 
-          $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' ";
+          $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
           $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
 
           $counToRow = 0;
@@ -254,7 +254,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
     if($value == null){
       // if walay value ang search bar
 
-        $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ";
+        $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
         $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
 
         $counToRow = 0;
@@ -376,7 +376,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                 <tbody>';
 
                 $BuyerId =  $_SESSION['id'];
-                $sql = "SELECT * FROM cart_pending WHERE BuyerId = $BuyerId";
+                $sql = "SELECT * FROM cart_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
                 $result = mysqli_query($connForMyDatabase,$sql);
                 $number = 1;
@@ -474,7 +474,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
               <tbody>';
 
               $BuyerId =  $_SESSION['id'];
-              $sql = "SELECT * FROM order_pending WHERE BuyerId = $BuyerId";
+              $sql = "SELECT * FROM order_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
               $result = mysqli_query($connForMyDatabase,$sql);
               $number = 1;
@@ -565,6 +565,7 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
               <th scope="col" class="text-center align-middle">Buyer Location</th>
               <th scope="col" class="text-center align-middle">Buyer Age</th>
               <th scope="col" class="text-center align-middle">Item Seller</th>
+              <th scope="col" class="text-center align-middle">Time Cancelled</th>
               <th scope="col" class="text-center align-middle">Delivery Status</th>
               
           </tr>
@@ -572,7 +573,7 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
           <tbody>';
 
           $BuyerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM cancelled WHERE BuyerId = $BuyerId";
+          $sql = "SELECT * FROM cancelled WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
           $result = mysqli_query($connForMyDatabase,$sql);
           $number = 1;
@@ -589,6 +590,7 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
                 $BuyerFullname = $row['buyer_fullname'];
                 $BuyerLocation = $row['buyer_location'];
                 $BuyerAge = $row['buyer_age'];
+                $cancelled = $row['time'];
                 $Seller = $row['seller'];
                 
                 
@@ -603,6 +605,7 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
                     <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
                     <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
                     <td scope="row" class="text-center align-middle">' . $Seller . '</td>
+                    <td scope="row" class="text-center align-middle">' . $cancelled . '</td>
                     <td scope="row" class="text-center align-middle"><h6 style = "border: 2px solid red; padding: 5px;">Cancelled</h6></td>         
                    
                     
@@ -643,7 +646,7 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
           <tbody>';
 
           $BuyerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = $BuyerId";
+          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
           $result = mysqli_query($connForMyDatabase,$sql);
           $number = 1;
@@ -737,6 +740,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
               <th scope="col" class="text-center align-middle">Buyer Location</th>
               <th scope="col" class="text-center align-middle">Buyer Age</th>
               <th scope="col" class="text-center align-middle">Item Seller</th>
+              <th scope="col" class="text-center align-middle">Delivery Success Date</th>
               <th scope="col" class="text-center align-middle">Delivery Status</th>
               
           </tr>
@@ -744,7 +748,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
           <tbody>';
 
           $BuyerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM complete_order WHERE BuyerId = $BuyerId";
+          $sql = "SELECT * FROM complete_order WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
           $result = mysqli_query($connForMyDatabase,$sql);
           $number = 1;
@@ -762,6 +766,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
                 $BuyerLocation = $row['buyer_location'];
                 $BuyerAge = $row['buyer_age'];
                 $Seller = $row['seller'];
+                $complete = $row['time'];
                 
                 
                
@@ -775,6 +780,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
                     <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
                     <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
                     <td scope="row" class="text-center align-middle">' . $Seller . '</td>
+                    <td scope="row" class="text-center align-middle">' . $complete . '</td>
                     <td scope="row" class="text-center align-middle"><h6 style = "border: 2px solid green; padding: 5px;">Delivery Complete</h6></td>         
                    
                     

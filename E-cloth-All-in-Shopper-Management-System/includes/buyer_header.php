@@ -79,6 +79,7 @@
 
 .count{
     background-color: red;
+
 }
 
         </style>
@@ -143,7 +144,7 @@
 
 
                                 echo '
-                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 2px; bottom: -7px;">'.$count.'</h4>
+                                        <h4 style = "position: absolute; color: white; font-size: 17px; left: 4px; bottom: -7px;">'.$count.'</h4>
                                     ';
 
                             ?>

@@ -15,8 +15,10 @@
     <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+
+<div id="top" style = "position: absolute; top: 0;"></div>
     
-<div class="header">
+<div class="header" >
             <div class="menu">
 
                 <div class="home">
@@ -104,7 +106,7 @@
 
 
 
-<div class="main" style = "margin-top: 10%; margin-bottom: 5%; overflow-x: hidden;">
+<div class="main" style = "margin-top: 10%; margin-bottom: 5%; margin-left: -60px; overflow-x: hidden;">
 
     <div class="container">
         <div class="searchItems" id = "searchItems">
@@ -123,8 +125,8 @@
                          Search More Product
                 </div>
 
-                <div class = "info" style = "width: 97vw; border:rgb(133, 129, 129) solid 1px; margin-top: 10px; "></div>
-                <div class = "info" style = "width: 97vw;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin-top: 30px; border-radius: 10px; font-size: 16px; height: 200px; padding: 28px; display:flex;">
+                <div class = "info" style = "width: 97vw; border:rgb(133, 129, 129) solid 1px; margin-top: 10px; margin-left: 63px;"></div>
+                <div class = "info" style = "width: 97vw;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin-top: 10px; margin-left: 63px; border-radius: 10px; font-size: 16px; height: 200px; padding: 28px; display:flex;">
                         
 
                     <div class = "t1">
@@ -149,6 +151,16 @@
             </div>
     </div>
             
+</div>
+
+<div class="functions">
+        <a href="#top">
+                <div class="returnTop">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0"/>
+                </svg>
+                </div>
+        </a>
 </div>
 
 
