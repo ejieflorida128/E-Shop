@@ -61,11 +61,11 @@
 
                                 include("../connection/conn.php");
 
-                                $id = $_SESSION['id'];
+                                $id = $_SESSION['sellerID'];
 
 
 
-                                $sql = "SELECT * FROM cart_pending WHERE SellerId = $id";
+                                $sql = "SELECT * FROM order_pending WHERE SellerId = $id";
                                 $query = mysqli_query($connForMyDatabase,$sql);
 
                                 $count = 0;
@@ -162,6 +162,14 @@
                 <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0"/>
                 </svg>
                 </div>
+        </a>
+
+        <a href="messanger.php">
+            <div class="mess">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                </svg>
+            </div>
         </a>
 </div>
 

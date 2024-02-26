@@ -1,0 +1,63 @@
+.searchBar{
+    display: none;
+}
+
+.logout{
+    margin-left: 620px;
+}
+
+.container{
+    border: 1px solid black;
+    height: 300px;
+    height: 470px;
+    margin-top: 100px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+#profileImage{
+    margin-top: 5px;
+    border-radius: 10%;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    border: white 1px solid;
+}
+
+.messTop{
+    background-color: rgb(31, 31, 57);
+    width:1140px;
+    position: relative;
+    left: -13px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.messBot{
+    background-color: rgb(31, 31, 57);
+    width:1140px;
+    position: absolute;
+    left: 70px;
+    bottom: 63px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 60px;
+}
+
+.messBot input{
+    width: 1000px;
+    position: relative;
+    top: 10px;
+    left: 40px;
+}
+
+.messBot svg{
+    position: relative;
+    bottom: 21px;
+    left: 1070px;
+}
+
+.messMain{
+    border: 1px solid black;
+    height: 340px;
+    margin-top: 4px;
+}

@@ -89,6 +89,26 @@
     background-color: black;
 }
 
+.mess{
+    background-color: #365D1E;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 19vh;
+    right: 1vw;
+    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+}
+
+.mess svg{
+    position: relative;
+    top: 15px;
+    left: 15px;
+} 
+
+.mess:hover{
+    background-color: black;
+}
 
 
 

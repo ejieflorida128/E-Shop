@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 07:44 AM
+-- Generation Time: Feb 26, 2024 at 02:35 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -62,15 +62,17 @@ CREATE TABLE `cancelled` (
   `buyer_fullname` varchar(255) NOT NULL,
   `buyer_location` varchar(255) NOT NULL,
   `buyer_age` int(11) NOT NULL,
-  `seller` varchar(255) NOT NULL
+  `seller` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cancelled`
 --
 
-INSERT INTO `cancelled` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(1, 3, 2, 3, 'Hoodies Korean Fashion Loose Oversize', '27$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
+INSERT INTO `cancelled` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`, `time`) VALUES
+(2, 2, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry', '2024-02-24 13:03:03'),
+(3, 4, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '24$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry', '2024-02-26 00:10:42');
 
 -- --------------------------------------------------------
 
@@ -96,11 +98,7 @@ CREATE TABLE `cart_pending` (
 --
 
 INSERT INTO `cart_pending` (`id`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(2, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '21$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(3, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(6, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(8, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
-(10, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
+(14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '24$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry');
 
 -- --------------------------------------------------------
 
@@ -119,15 +117,16 @@ CREATE TABLE `complete_order` (
   `buyer_fullname` varchar(255) NOT NULL,
   `buyer_location` varchar(255) NOT NULL,
   `buyer_age` varchar(255) NOT NULL,
-  `seller` varchar(255) NOT NULL
+  `seller` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `complete_order`
 --
 
-INSERT INTO `complete_order` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(1, 1, 2, 2, 'Mom Jeans HighWaist WIDE LEG Jeans', '19$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry');
+INSERT INTO `complete_order` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`, `time`) VALUES
+(2, 2, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '11$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith', '2024-02-24 13:06:30');
 
 -- --------------------------------------------------------
 
@@ -148,6 +147,13 @@ CREATE TABLE `confirmedorder` (
   `buyer_age` varchar(255) NOT NULL,
   `seller` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `confirmedorder`
+--
+
+INSERT INTO `confirmedorder` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
+(3, 8, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry');
 
 -- --------------------------------------------------------
 
@@ -224,6 +230,16 @@ INSERT INTO `items` (`id`, `SellerId`, `img`, `item_name`, `item_price`, `item_s
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_pending`
 --
 
@@ -246,9 +262,13 @@ CREATE TABLE `order_pending` (
 --
 
 INSERT INTO `order_pending` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(2, 5, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(4, 4, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '24$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(5, 9, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '11$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
+(6, 2, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '21$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
+(7, 3, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
+(9, 12, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '10$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
+(10, 11, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '12$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
+(11, 8, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
+(12, 10, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
+(13, 13, 2, 3, 'Casual Solid Drawstring Shorts for Woman', '9$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
 
 -- --------------------------------------------------------
 
@@ -341,6 +361,12 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `order_pending`
 --
 ALTER TABLE `order_pending`
@@ -372,25 +398,25 @@ ALTER TABLE `buyer_account`
 -- AUTO_INCREMENT for table `cancelled`
 --
 ALTER TABLE `cancelled`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cart_pending`
 --
 ALTER TABLE `cart_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `complete_order`
 --
 ALTER TABLE `complete_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `confirmedorder`
 --
 ALTER TABLE `confirmedorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -399,10 +425,16 @@ ALTER TABLE `items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order_pending`
 --
 ALTER TABLE `order_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `seller_account`

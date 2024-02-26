@@ -41,7 +41,7 @@
                             // code for redirecting to the buyer dashboard
                             
                             $_SESSION['username'] = $username;
-                            $_SESSION['id'] = $seller['id']; 
+                            $_SESSION['sellerID'] = $seller['id']; 
                             header('Location: Seller/dashboard.php');
                         }
                     }

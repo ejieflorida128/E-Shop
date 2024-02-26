@@ -414,8 +414,8 @@ if(isset($_POST['DisplayPendingOrder']) && $_POST['DisplayPendingOrder'] == true
           </thead>
           <tbody>';
 
-          $SellerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM order_pending WHERE SellerId = $SellerId ORDER BY id DESC";
+          $SellerId =  $_SESSION['sellerID'];
+          $sql = "SELECT * FROM order_pending WHERE SellerId = '$SellerId'";
 
           $result = mysqli_query($connForMyDatabase,$sql);
           $number = 1;

@@ -124,11 +124,11 @@
 
                                 include("../connection/conn.php");
 
-                                $id = $_SESSION['id'];
+                                $id = $_SESSION['sellerID'];
 
 
 
-                                $sql = "SELECT * FROM cart_pending WHERE SellerId = $id";
+                                $sql = "SELECT * FROM order_pending WHERE SellerId = $id";
                                 $query = mysqli_query($connForMyDatabase,$sql);
 
                                 $count = 0;
