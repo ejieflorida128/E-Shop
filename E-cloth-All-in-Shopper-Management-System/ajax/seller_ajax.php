@@ -481,6 +481,12 @@ if(isset($_POST['approveOrder']) && $_POST['approveOrder'] == true){
   $cancel = "INSERT INTO confirmedorder (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
   mysqli_query($connForMyDatabase,$cancel);
 
+  $txt = "Thank you for Purchasing our product ".$itemName." with a price of ".$itemPrice." From our ".$itemSource." Please buy again our product!. ";
+
+
+  $insertIntoMessage = "INSERT INTO message (sender,reciever,mess) VALUES ('$SellerId','$BuyerId','$txt')";
+  mysqli_query($connForMyDatabase,$insertIntoMessage);
+
   $cancelData = "DELETE FROM order_pending WHERE id = $cartId";
   mysqli_query($connForMyDatabase,$cancelData);
 

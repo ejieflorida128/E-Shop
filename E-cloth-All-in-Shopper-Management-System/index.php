@@ -1,10 +1,9 @@
 <?php
     // start sa php code
-
-    include("includes/footer.php");
-
-    include("connection/conn.php");
     session_start();
+    include("includes/footer.php");
+    include("connection/conn.php");
+  
 
     
 
