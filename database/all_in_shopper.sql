@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2024 at 02:35 AM
+-- Generation Time: Feb 26, 2024 at 03:22 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,7 +42,6 @@ CREATE TABLE `buyer_account` (
 --
 
 INSERT INTO `buyer_account` (`id`, `username`, `password`, `profile_pic`, `fullname`, `age`, `location`) VALUES
-(1, 'ejie', 'ejie', '../profile_picture/default.jpg', 'Please input information!', 0, 'Please put your designated location for delivery!'),
 (2, 'buyer1', 'buyer1', '../profile_picture/ejie4.jpg', 'Ejie C. Florida', 19, 'Pinaskohan, Maasin City, Southern Leyte, 6600');
 
 -- --------------------------------------------------------
@@ -153,7 +152,20 @@ CREATE TABLE `confirmedorder` (
 --
 
 INSERT INTO `confirmedorder` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(3, 8, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry');
+(3, 8, 2, 2, 'Casual Tees round neck printed graphic shirt ', '14$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry'),
+(4, 9, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '10$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(5, 10, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '12$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(6, 6, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '21$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry'),
+(7, 7, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry'),
+(8, 11, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(9, 11, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(10, 11, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(11, 11, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(12, 11, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(13, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(14, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(15, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
+(16, 14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry');
 
 -- --------------------------------------------------------
 
@@ -234,8 +246,24 @@ INSERT INTO `items` (`id`, `SellerId`, `img`, `item_name`, `item_price`, `item_s
 --
 
 CREATE TABLE `message` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `reciever` int(11) NOT NULL,
+  `mess` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `sender`, `reciever`, `mess`, `time`) VALUES
+(1, 3, 2, 'Thank you for Purchasing our product Brown T-Shirt for Women with a price of 13$ From our T-Tops Hood Please buy again our product!. ', '2024-02-26 05:44:30'),
+(2, 2, 2, 'Thank you for Purchasing our product  Pants For Men Straight Leg Denim Jeans with a price of 23$ From our J-jeans Please buy again our product!. ', '2024-02-26 12:13:08'),
+(6, 2, 3, 'hello seller', '2024-02-26 14:05:10'),
+(7, 3, 2, 'ohh hello user! please visit our shop for more good quality clothes', '2024-02-26 14:12:40'),
+(8, 2, 3, 'okie dokie seller', '2024-02-26 14:17:54'),
+(9, 3, 2, 'thank you very much for buying our product once again buyer1!', '2024-02-26 14:18:30');
 
 -- --------------------------------------------------------
 
@@ -262,12 +290,6 @@ CREATE TABLE `order_pending` (
 --
 
 INSERT INTO `order_pending` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(6, 2, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '21$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(7, 3, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry'),
-(9, 12, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '10$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
-(10, 11, 2, 3, 'Cargo SEXY Short with 2 pocket and cord', '12$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
-(11, 8, 2, 3, 'Casual shorts men five-pointpants Korean', '14$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
-(12, 10, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith'),
 (13, 13, 2, 3, 'Casual Solid Drawstring Shorts for Woman', '9$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
 
 -- --------------------------------------------------------
@@ -404,7 +426,7 @@ ALTER TABLE `cancelled`
 -- AUTO_INCREMENT for table `cart_pending`
 --
 ALTER TABLE `cart_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `complete_order`
@@ -416,7 +438,7 @@ ALTER TABLE `complete_order`
 -- AUTO_INCREMENT for table `confirmedorder`
 --
 ALTER TABLE `confirmedorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -428,13 +450,13 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_pending`
 --
 ALTER TABLE `order_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `seller_account`
