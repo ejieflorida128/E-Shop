@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2024 at 03:22 PM
+-- Generation Time: Feb 27, 2024 at 11:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -97,7 +97,7 @@ CREATE TABLE `cart_pending` (
 --
 
 INSERT INTO `cart_pending` (`id`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '24$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry');
+(16, 2, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry');
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,8 @@ INSERT INTO `confirmedorder` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `ite
 (13, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
 (14, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
 (15, 12, 2, 3, 'Brown T-Shirt for Women', '13$', 'T-Tops Hood', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith'),
-(16, 14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry');
+(16, 14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '23$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Aleshia B. Curry'),
+(17, 13, 2, 3, 'Casual Solid Drawstring Shorts for Woman', '9$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', '19', 'Andrew M. Smith');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,13 @@ INSERT INTO `message` (`id`, `sender`, `reciever`, `mess`, `time`) VALUES
 (6, 2, 3, 'hello seller', '2024-02-26 14:05:10'),
 (7, 3, 2, 'ohh hello user! please visit our shop for more good quality clothes', '2024-02-26 14:12:40'),
 (8, 2, 3, 'okie dokie seller', '2024-02-26 14:17:54'),
-(9, 3, 2, 'thank you very much for buying our product once again buyer1!', '2024-02-26 14:18:30');
+(9, 3, 2, 'thank you very much for buying our product once again buyer1!', '2024-02-26 14:18:30'),
+(10, 2, 3, 'okie dokie', '2024-02-27 07:07:37'),
+(11, 3, 2, 'Thank you for Purchasing our product Casual Solid Drawstring Shorts for Woman with a price of 9$ From our Down Steep Please buy again our product!. ', '2024-02-27 07:08:33'),
+(12, 2, 3, 'thanks for high quality clothes', '2024-02-27 07:10:41'),
+(13, 3, 2, 'thank you buyer and buy again', '2024-02-27 10:27:11'),
+(14, 2, 3, 'hello seller athena ne palautot', '2024-02-27 10:27:48'),
+(15, 3, 2, 'aww araso tinuud na kaajo', '2024-02-27 10:28:26');
 
 -- --------------------------------------------------------
 
@@ -290,7 +297,7 @@ CREATE TABLE `order_pending` (
 --
 
 INSERT INTO `order_pending` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
-(13, 13, 2, 3, 'Casual Solid Drawstring Shorts for Woman', '9$', 'Down Steep', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Andrew M. Smith');
+(15, 14, 2, 2, ' Pants For Men Straight Leg Denim Jeans', '24$', 'J-jeans', 'Ejie C. Florida', 'Pinaskohan, Maasin City, Southern Leyte, 6600', 19, 'Aleshia B. Curry');
 
 -- --------------------------------------------------------
 
@@ -426,7 +433,7 @@ ALTER TABLE `cancelled`
 -- AUTO_INCREMENT for table `cart_pending`
 --
 ALTER TABLE `cart_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `complete_order`
@@ -438,7 +445,7 @@ ALTER TABLE `complete_order`
 -- AUTO_INCREMENT for table `confirmedorder`
 --
 ALTER TABLE `confirmedorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -450,13 +457,13 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `order_pending`
 --
 ALTER TABLE `order_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `seller_account`
