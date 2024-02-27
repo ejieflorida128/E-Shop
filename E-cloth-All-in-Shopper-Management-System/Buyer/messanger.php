@@ -74,7 +74,7 @@ include("../includes/footer.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Selected Item Succesfully Delivered! </p>
+        <p>Message Sent Successfully! </p>
       </div>
       <div class="modal-footer">
         <a href= "messanger.php?seller_id=<?php echo $_GET['seller_id']; ?>" class="btn btn-danger">Close</a>
@@ -95,43 +95,49 @@ include("../includes/footer.php");
 
     <script>
         $(document).ready(function() {
-            displayMessage();
-        });
+    displayMessage();
+});
 
-        function displayMessage() {
-            $.ajax({
-                    url: "../ajax/buyer_ajax.php",
-                    type: 'post',
-                    data: {
-                        
-                        seller_id:<?php echo $_GET['seller_id']; ?>,
-                        seeMessage: true
-                    },
-                    success: function(data, status) {
-                        console.log(data); // Check the data in the console
-                        $('#messageScreen').html(data);
-                    }
-                });
+function displayMessage() {
+    $.ajax({
+        url: "../ajax/buyer_ajax.php",
+        type: 'post',
+        data: {
+            seller_id: <?php echo $_GET['seller_id']; ?>,
+            seeMessage: true
+        },
+        success: function(data, status) {
+            console.log(data); 
+            $('#messageScreen').html(data);
+            scrollToBottom(); // Call the function to scroll to the bottom
         }
+    });
+}
 
+function messageSent() {
+    var message = $('#ChatText').val();
+    
+    $.ajax({
+        url: "../ajax/buyer_ajax.php",
+        type: 'post',
+        data: {
+            message: message,
+            messageSent: true, 
+            seller_id: <?php echo $_GET['seller_id']; ?>
+        },
+        success: function(data, status) {
+            console.log(data);
+            $('#MessageSent').modal('show');
+            scrollToBottom(); // Call the function to scroll to the bottom after sending the message
+        }
+    });
+}
 
-        function messageSent(){
-                var message = $('#ChatText').val();
-                
-                $.ajax({
-                    url: "../ajax/buyer_ajax.php",
-                    type: 'post',
-                    data: {
-                        message: message,
-                        messageSent: true, // Corrected parameter name
-                        seller_id: <?php echo $_GET['seller_id']; ?>
-                    },
-                    success: function(data, status) {
-                        console.log(data); // Check the data in the console
-                        $('#MessageSent').modal('show');
-                    }
-                });
-            }
+function scrollToBottom() {
+    var messageScreen = document.getElementById("messageScreen");
+    messageScreen.scrollTop = messageScreen.scrollHeight;
+}
+
 
 
     </script>

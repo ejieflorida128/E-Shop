@@ -495,6 +495,112 @@ if(isset($_POST['approveOrder']) && $_POST['approveOrder'] == true){
 }
 
 
+if(isset($_POST['ToMessage']) && $_POST['ToMessage'] == true){
+
+  echo '<div style="max-height: 300px; max-width: 1200px; font-size: 11px; position: relative; left: 0px; top: 0px; overflow-y: auto; " class="table">';
+  $table = '<table class="table table-bordered table-hover">
+          <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+          <tr> 
+              <th scope="col" class="text-center align-middle">Seller No.</th>
+              <th scope="col" class="text-center align-middle">Seller Picture</th>
+              <th scope="col" class="text-center align-middle">Seller Name</th>
+              <th scope="col" class="text-center align-middle">Seller Age</th>
+              <th scope="col" class="text-center align-middle">Action</th>
+          </tr>
+          </thead>
+          <tbody>';
+
+          $sql = "SELECT * FROM buyer_account";
+
+          $result = mysqli_query($connForMyDatabase,$sql);
+          $number = 1;
+
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+
+              $buyer_id = $row['id'];
+
+                $table .= '<tr>
+                    <td scope="row" class="text-center align-middle">' . $number . '</td>
+                    <td scope="row" class="text-center align-middle">
+                      <img src = '.$row['profile_pic'].' style = "height: 50px; width: 50px; border-radius: 10px; border: 1ps solid black; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                    </td>
+                    <td scope="row" class="text-center align-middle">' . $row['fullname'] . '</td>
+                    <td scope="row" class="text-center align-middle">' . $row['age'] . '</td>
+                    <td scope="row" class="text-center align-middle">
+                      <a href = "../Seller/messanger.php?buyer_id='.$buyer_id.'" class = "btn btn-success">Message User</a>
+                    </td>
+                                        
+                </tr>';
+        
+                $number++;
+        
+        
+            }
+        } else {
+            // If no data, display a row with "No Data Information"
+            $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+        }
+        
+            $table .= '</tbody></table>';
+            echo $table;
+            echo '</div>';
+
+}
+
+if(isset($_POST['seeMessage']) && $_POST['seeMessage'] == true) {
+
+  if(isset($_SESSION['sellerID']) && isset($_POST['buyer_id'])) {
+
+      $seller_id = $_SESSION['sellerID'];
+      $buyer_id = $_POST['buyer_id'];
+
+      $query = "SELECT * FROM message WHERE (sender = $buyer_id AND reciever = $seller_id) OR (sender = $seller_id AND reciever = $buyer_id)";
+      $sql = mysqli_query($connForMyDatabase, $query);
+
+      if(!$sql) {
+          echo "Error: " . mysqli_error($connForMyDatabase);
+      } else {
+          while($check = mysqli_fetch_assoc($sql)) {
+              if($check['sender'] == $buyer_id) {
+                  echo '
+
+                      <div class = "messageBubble" style = "width: 500px; background-color: rgb(68, 75, 80); color: white; padding: 10px; border-radius: 10px; position: relative; right: -570px; margin: 10px;">
+                        '.$check['mess'].'
+                      </div>
+
+                      <div class = "row" ></div>
+                  
+                  ';
+              } else {
+                echo '
+
+                <div class = "messageBubble" style = "width: 500px; background-color: rgb(63, 108, 170); color: white; padding: 10px; border-radius: 10px; position: relative; left:0px; margin: 10px;">
+                  '.$check['mess'].'
+                </div>
+
+                <div class = "row" ></div>
+            
+            ';
+              }
+          }
+      }
+  }else{
+    echo "failed";
+  }
+}
+
+if(isset($_POST['messageSent']) && $_POST['messageSent'] == true){
+
+    $buyer_id = $_POST['buyer_id'];
+    $seller_id = $_SESSION['sellerID'];
+    $txt = $_POST['message'];
+
+    $sql = "INSERT INTO `message`( `sender`, `reciever`, `mess`) VALUES ('$seller_id','$buyer_id','$txt')";
+    mysqli_query($connForMyDatabase,$sql);
+
+}
+
 
 
 ?>      
