@@ -15,7 +15,7 @@ include("../connection/conn.php");
           // if walay value ang search bar
 
             $getAllItems = "SELECT * FROM items ORDER BY id DESC";
-            $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+            $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
             $counToRow = 0;
 
@@ -72,7 +72,7 @@ include("../connection/conn.php");
           // if naay value ang search bar
 
           $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
-          $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+          $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
           $counToRow = 0;
 
@@ -138,7 +138,7 @@ include("../connection/conn.php");
     $buyerUsername = $_POST['EditInformationOfTheSaidProfileAccount'];
 
     $sql = "SELECT * FROM buyer_account WHERE username = '$buyerUsername' ";
-    $result = mysqli_query($connForMyDatabase,$sql);
+    $result = mysqli_query($connforMyOnlineDb,$sql);
     $response = array();
 
     while($row = mysqli_fetch_assoc($result)){
@@ -256,7 +256,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
       // if walay value ang search bar
 
         $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
-        $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+        $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
         $counToRow = 0;
 
@@ -308,7 +308,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
       // if naay value ang search bar
 
       $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ";
-      $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+      $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
       $counToRow = 0;
 
@@ -618,7 +618,7 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
             }
         } else {
             // If no data, display a row with "No Data Information"
-            $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+            $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
         }
         
             $table .= '</tbody></table>';

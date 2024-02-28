@@ -26,7 +26,7 @@ include("../connection/conn.php");
                             $id = $_GET['id'];
 
                             $pic = "SELECT img FROM items WHERE id = $id";
-                            $query = mysqli_query($connForMyDatabase,$pic);
+                            $query = mysqli_query($connforMyOnlineDb,$pic);
                             $sql = mysqli_fetch_assoc($query);
 
                             if($sql){
@@ -39,7 +39,7 @@ include("../connection/conn.php");
                             <?php
 
                                     $pic = "SELECT * FROM items WHERE id = $id";
-                                    $query = mysqli_query($connForMyDatabase,$pic);
+                                    $query = mysqli_query($connforMyOnlineDb,$pic);
                                     $sql = mysqli_fetch_assoc($query);
 
                                     if($sql){

@@ -30,7 +30,7 @@
              
 
              $sql = "SELECT img FROM items WHERE id = $idOfaItem";
-             $query = mysqli_query($connForMyDatabase,$sql);
+             $query = mysqli_query($connforMyOnlineDb,$sql);
 
              while($findTheImageId = mysqli_fetch_assoc($query)){
               
@@ -52,7 +52,7 @@
                             $idOfaItem = $_GET['ItemId'];
 
                             $sqlForDisplayingDatas = "SELECT * FROM items WHERE id = $idOfaItem";
-                            $queryForDispayingDatas = mysqli_query($connForMyDatabase,$sqlForDisplayingDatas);
+                            $queryForDispayingDatas = mysqli_query($connforMyOnlineDb,$sqlForDisplayingDatas);
 
                             while($DisplayData = mysqli_fetch_assoc($queryForDispayingDatas)){
                                     echo'

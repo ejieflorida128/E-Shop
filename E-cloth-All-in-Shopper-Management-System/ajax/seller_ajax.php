@@ -12,7 +12,7 @@ session_start();
           // if walay value ang search bar
 
             $getAllItems = "SELECT * FROM items ORDER BY id DESC";
-            $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+            $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
             $counToRow = 0;
 
@@ -61,7 +61,7 @@ session_start();
           // if naay value ang search bar
 
           $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
-          $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+          $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
           $counToRow = 0;
 
@@ -189,7 +189,7 @@ session_start();
         // if walay value ang search bar
 
           $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
-          $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+          $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
           $counToRow = 0;
 
@@ -241,7 +241,7 @@ session_start();
         // if naay value ang search bar
 
         $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ";
-        $queryForItems = mysqli_query($connForMyDatabase,$getAllItems);
+        $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
         $counToRow = 0;
 
@@ -308,7 +308,7 @@ session_start();
            
 
             $insertItemToDb = "INSERT INTO items (img,item_name,item_price,item_source,seller,SellerId) VALUES ('$ItemImage','$ItemName','$ItemPrice','$ItemSource','$Seller','$SellerId')";
-            mysqli_query($connForMyDatabase,$insertItemToDb);
+            mysqli_query($connforMyOnlineDb,$insertItemToDb);
   }
 
     // deletion sa selected item sa ViewItem page
@@ -317,7 +317,7 @@ session_start();
       $ItemToBeDeleted = $_POST['deleteThisItem'];
 
       $sqlForDelete = "DELETE FROM items WHERE id = $ItemToBeDeleted";
-      mysqli_query($connForMyDatabase,$sqlForDelete);
+      mysqli_query($connforMyOnlineDb,$sqlForDelete);
 
      
 
@@ -329,7 +329,7 @@ session_start();
             $item_id = $_POST['editIdForTheSelectedItem'];
 
             $sql = "SELECT * FROM items WHERE id = $item_id";
-            $result = mysqli_query($connForMyDatabase,$sql);
+            $result = mysqli_query($connforMyOnlineDb,$sql);
             $response = array();
 
             while($row = mysqli_fetch_assoc($result)){
@@ -352,7 +352,7 @@ session_start();
     $itemPrice = $_POST['item_price'];
 
     $sqlForEdit = "UPDATE items SET item_name = '$itemName', item_price = '$itemPrice' WHERE id = $ItemToBeEdited";
-    mysqli_query($connForMyDatabase,$sqlForEdit);
+    mysqli_query($connforMyOnlineDb,$sqlForEdit);
 
    
 
