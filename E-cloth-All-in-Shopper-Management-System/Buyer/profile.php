@@ -37,8 +37,10 @@ include("../connection/conn.php");
             <input type="text" id="BuyerFullname" class="form-control" style="width: 300px">
             <label for="BuyerAge">Age:</label>
             <input type="number" id="BuyerAge" class="form-control" style="width: 100px">
+            <label for="BuyerNumber">Gcash Number:</label>
+            <input type="number" id="BuyerNumber" class="form-control" style="width: 200px">
             <label for="BuyerLocation">Location:</label>
-            <textarea class="form-control" rows="6" style="width: 500px" id = "BuyerLocation"></textarea>
+            <textarea class="form-control" rows="3" style="width: 500px" id = "BuyerLocation"></textarea>
 
 
             <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px;" for="selectProfilePicture" id = "chooseBtnForPic">Choose Profile Pic</label>
@@ -78,7 +80,7 @@ include("../connection/conn.php");
        
         setTimeout(function() {
             location.reload();
-        }, 60000); // Refresh the page every 60 seconds
+        }, 1000000); // Refresh the page every 60 seconds
     };
 
     function refreshIfClose() {
@@ -111,6 +113,7 @@ include("../connection/conn.php");
 
             $('#BuyerFullname').val(SelectedProfileDatas.fullname);
             $('#BuyerAge').val(SelectedProfileDatas.age);
+            $('#BuyerNumber').val(SelectedProfileDatas.number);
             $('#BuyerLocation').val(SelectedProfileDatas.location);
         });
     }
@@ -120,6 +123,7 @@ include("../connection/conn.php");
                 var EditClicked = true;
                 var BuyerFullname = $('#BuyerFullname').val();
                 var BuyerAge = $('#BuyerAge').val();
+                var BuyerNumber = $('#BuyerNumber').val();
                 var BuyerLocation = $('#BuyerLocation').val();
                 var Username = '<?php echo $_SESSION['username']; ?>';
                 var SelectedProfilePicture = $('#selectProfilePicture').val();
@@ -133,6 +137,7 @@ include("../connection/conn.php");
                                            
                                             BuyerFullname: BuyerFullname,
                                             BuyerAge: BuyerAge,
+                                            BuyerNumber:BuyerNumber,
                                             BuyerLocation: BuyerLocation,
                                             BuyerPic:BuyerPic,
                                             EditClicked:EditClicked,

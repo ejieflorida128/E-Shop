@@ -417,7 +417,7 @@ if(isset($_POST['DisplayPendingOrder']) && $_POST['DisplayPendingOrder'] == true
           $SellerId =  $_SESSION['sellerID'];
           $sql = "SELECT * FROM order_pending WHERE SellerId = '$SellerId'";
 
-          $result = mysqli_query($connForMyDatabase,$sql);
+          $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
 
           if (mysqli_num_rows($result) > 0) {
@@ -488,7 +488,7 @@ if(isset($_POST['approveOrder']) && $_POST['approveOrder'] == true){
   mysqli_query($connForMyDatabase,$insertIntoMessage);
 
   $cancelData = "DELETE FROM order_pending WHERE id = $cartId";
-  mysqli_query($connForMyDatabase,$cancelData);
+  mysqli_query($connforMyOnlineDb,$cancelData);
 
 
   header("Location: ../Buyer/cancel_order.php");

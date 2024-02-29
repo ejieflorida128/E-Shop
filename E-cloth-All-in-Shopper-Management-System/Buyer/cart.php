@@ -58,7 +58,7 @@
 
 
  <!-- modal -->
- <div class="modal" tabindex="-1" id = "addToOrderPending" style = "margin-top: 150px;">
+ <div class="modal" tabindex="-1" id = "ManagePayment" style = "margin-top: 150px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,8 +66,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Selected Item is Processing in the Pending Order Page </p>
-        <p>Please wait for seller to confirm your item order!</p>
+        <p>Please Check your Payment Application In order to confirm Payment Transaction!</p>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Close</button>
@@ -130,7 +130,7 @@
             }
 
 
-            function AddToOrderPending(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller){
+            function ManagePayment(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller,GcashNumber){
 
                 var cartId = cartId;
                 var BuyerId = BuyerId;
@@ -142,12 +142,13 @@
                 var buyerLocation = buyerLocation;
                 var buyerAge = buyerAge;
                 var Seller = Seller;
+                var GcashNumber = GcashNumber;
 
                 $.ajax({
                         url: "../ajax/buyer_ajax.php",
                         type: 'post',
                         data: {
-                                AddToOrderPending:true,
+                                ManagePayment:true,
                                 cartId:cartId,
                                 BuyerId:BuyerId,
                                 SellerId:SellerId,
@@ -157,11 +158,12 @@
                                 buyerFullname:buyerFullname,
                                 buyerLocation:buyerLocation,
                                 buyerAge:buyerAge,
-                                Seller:Seller
+                                Seller:Seller,
+                                GcashNumber:GcashNumber
                         },
                         success: function (data, status) {
                             console.log(data); // Check the data in the console
-                            $('#addToOrderPending').modal('show');                       
+                            $('#ManagePayment').modal('show');                       
                         }
                     });
 

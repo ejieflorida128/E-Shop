@@ -108,7 +108,7 @@
 
 
 
-            function Cancel(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller){
+            function Cancel(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFullname,buyerLocation,buyerAge,Seller,number){
 
                     var cartId = cartId;
                     var BuyerId = BuyerId;
@@ -120,6 +120,7 @@
                     var buyerLocation = buyerLocation;
                     var buyerAge = buyerAge;
                     var Seller = Seller;
+                    var number = number;
 
                     $.ajax({
                             url: "../ajax/buyer_ajax.php",
@@ -135,7 +136,8 @@
                                     buyerFullname:buyerFullname,
                                     buyerLocation:buyerLocation,
                                     buyerAge:buyerAge,
-                                    Seller:Seller
+                                    Seller:Seller,
+                                    number:number
                             },
                             success: function (data, status) {
                                 console.log(data); // Check the data in the console

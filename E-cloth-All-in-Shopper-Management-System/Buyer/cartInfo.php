@@ -80,6 +80,7 @@ include("../connection/conn.php");
                             <input type="text" id = "BuyerLocation" hidden value = "<?php echo $call['location']; ?>" style = "position: absolute;">
                             <input type="text" id = "BuyerAge" hidden value = "<?php echo $call['age']; ?>"style = "position: absolute;" >
                             <input type="text" id = "BuyerId" hidden value = "<?php echo $call['id']; ?>"style = "position: absolute;" >
+                            <input type="number" id = "BuyerNumber" hidden value = "<?php echo "0".$call['number']; ?>"style = "position: absolute;" >
  
                             <?php
 
@@ -141,11 +142,13 @@ include("../connection/conn.php");
                 var itemShop = $('#itemShop').val();
                 var itemSeller = $('#itemSeller').val();
                 var SellerId = $('#SellerId').val();
+                
 
                 var BuyerFullname = $('#BuyerFullname').val();
                 var BuyerLocation = $('#BuyerLocation').val();
                 var BuyerAge = $('#BuyerAge').val();
                 var BuyerId = $('#BuyerId').val();
+                var BuyerNumber = $('#BuyerNumber').val();
 
                                  $.ajax({
                                         url: "../ajax/buyer_ajax.php",
@@ -160,6 +163,7 @@ include("../connection/conn.php");
                                             BuyerFullname:BuyerFullname,
                                             BuyerLocation:BuyerLocation,
                                             BuyerAge:BuyerAge,
+                                            BuyerNumber:BuyerNumber,
                                             BuyerId:BuyerId,
                                             SellerId:SellerId
                                             

@@ -134,7 +134,7 @@
 
 
                                 $sql = "SELECT * FROM cart_pending WHERE BuyerId = $id";
-                                $query = mysqli_query($connForMyDatabase,$sql);
+                                $query = mysqli_query($connforMyOnlineDb,$sql);
 
                                 $count = 0;
 

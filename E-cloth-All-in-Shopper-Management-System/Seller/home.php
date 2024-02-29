@@ -66,7 +66,7 @@
 
 
                                 $sql = "SELECT * FROM order_pending WHERE SellerId = $id";
-                                $query = mysqli_query($connForMyDatabase,$sql);
+                                $query = mysqli_query($connforMyOnlineDb,$sql);
 
                                 $count = 0;
 

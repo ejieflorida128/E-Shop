@@ -138,7 +138,7 @@ include("../connection/conn.php");
     $buyerUsername = $_POST['EditInformationOfTheSaidProfileAccount'];
 
     $sql = "SELECT * FROM buyer_account WHERE username = '$buyerUsername' ";
-    $result = mysqli_query($connforMyOnlineDb,$sql);
+    $result = mysqli_query($connForMyDatabase,$sql);
     $response = array();
 
     while($row = mysqli_fetch_assoc($result)){
@@ -158,6 +158,7 @@ if(isset($_POST['EditClicked'])){
       
   $BuyerFullname = $_POST['BuyerFullname'];
   $BuyerAge = $_POST['BuyerAge'];
+  $BuyerNumber = $_POST['BuyerNumber'];
   $BuyerLocation = $_POST['BuyerLocation'];
   if(empty($_POST['BuyerPic']) || $_POST['BuyerPic'] == null){
     $BuyerPic = "../profile_picture/default.jpg";
@@ -167,7 +168,7 @@ if(isset($_POST['EditClicked'])){
   }
   $SelectedUserNameTObeEdited = $_POST['SelectedUserNameTObeEdited'];
 
-  $sql = "UPDATE buyer_account SET fullname = '$BuyerFullname', age = '$BuyerAge', location = '$BuyerLocation', profile_pic = '$BuyerPic' WHERE username = '$SelectedUserNameTObeEdited'";
+  $sql = "UPDATE buyer_account SET fullname = '$BuyerFullname', age = '$BuyerAge', location = '$BuyerLocation', profile_pic = '$BuyerPic' , number = '$BuyerNumber' WHERE username = '$SelectedUserNameTObeEdited'";
   mysqli_query($connForMyDatabase, $sql);
 }
 
@@ -236,10 +237,11 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
   $BuyerLocation = $_POST['BuyerLocation'];
   $BuyerAge = $_POST['BuyerAge'];
   $BuyerId = $_POST['BuyerId'];
+  $BuyerNumber = $_POST['BuyerNumber'];
   $SellerId = $_POST['SellerId'];
 
-  $sql = "INSERT INTO cart_pending (item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller,BuyerId,SellerId) VALUES ('$itemName','$itemPrice','$itemShop','$BuyerFullname','$BuyerLocation','$BuyerAge','$itemSeller','$BuyerId','$SellerId')";
-  mysqli_query($connForMyDatabase,$sql);
+  $sql = "INSERT INTO cart_pending (item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller,BuyerId,SellerId,number) VALUES ('$itemName','$itemPrice','$itemShop','$BuyerFullname','$BuyerLocation','$BuyerAge','$itemSeller','$BuyerId','$SellerId',$BuyerNumber)";
+  mysqli_query($connforMyOnlineDb,$sql);
 
 }
 
@@ -371,6 +373,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                     <th scope="col" class="text-center align-middle">Item Name</th>
                     <th scope="col" class="text-center align-middle">Item Price</th>
                     <th scope="col" class="text-center align-middle">Item Source</th>
+                    <th scope="col" class="text-center align-middle">Buyer Gcash Number</th>
                     <th scope="col" class="text-center align-middle">Action</th>
                 </tr>
                 </thead>
@@ -379,7 +382,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                 $BuyerId =  $_SESSION['id'];
                 $sql = "SELECT * FROM cart_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
-                $result = mysqli_query($connForMyDatabase,$sql);
+                $result = mysqli_query($connforMyOnlineDb,$sql);
                 $number = 1;
 
                 if (mysqli_num_rows($result) > 0) {
@@ -395,6 +398,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                       $BuyerLocation = $row['buyer_location'];
                       $BuyerAge = $row['buyer_age'];
                       $Seller = $row['seller'];
+                      $GcashNumber = "0".$row['number'];
                       
                       
                      
@@ -404,8 +408,9 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                           <td scope="row" class="text-center align-middle">' . $itemName . '</td>
                           <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
                           <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                          <td scope="row" class="text-center align-middle">' . $GcashNumber . '</td>
                           <td class="text-center align-middle">
-                          <button class="btn btn-outline-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="AddToOrderPending('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Buy Product</button>
+                              <button class="btn btn-outline-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="ManagePayment('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\',\''.$GcashNumber.'\')">Buy Product</button>
                               <button class = "btn btn-outline-danger"  style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick = "DeleteCart('. $Cartid .')">Delete</button>
                           </td
                           
@@ -431,10 +436,10 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
             $cartIdToDelete = $_POST['CartId'];
 
             $delete = "DELETE FROM cart_pending WHERE id = $cartIdToDelete";
-            mysqli_query($connForMyDatabase,$delete);
+            mysqli_query($connforMyOnlineDb,$delete);
     }
 
-    if(isset($_POST['AddToOrderPending']) && $_POST['AddToOrderPending'] == true){
+    if(isset($_POST['ManagePayment']) && $_POST['ManagePayment'] == true){
 
             $cartId = $_POST['cartId'];
             $BuyerId = $_POST['BuyerId'];
@@ -446,16 +451,22 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
             $buyerLocation = $_POST['buyerLocation'];
             $buyerAge = $_POST['buyerAge'];
             $Seller = $_POST['Seller'];
+            $GcashNumber = $_POST['GcashNumber'];
 
 
-            $insertToOrderPennding = "INSERT INTO order_pending (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,	buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
-            mysqli_query($connForMyDatabase,$insertToOrderPennding);
+            $insertQuery = "
+            INSERT INTO manage_payment (cartPendingId, BuyerId, SellerId, item_name, item_price, item_source, buyer_fullname, buyer_location, buyer_age, seller, number) 
+            VALUES ('$cartId', '$BuyerId', '$SellerId', '$itemName', '$itemPrice', '$itemSource', '$buyerFullname', '$buyerLocation', '$buyerAge', '$Seller', '$GcashNumber'); 
+            INSERT INTO order_pending (cartPendingId, BuyerId, SellerId, item_name, item_price, item_source, buyer_fullname, buyer_location, buyer_age, seller, number) 
+            VALUES ('$cartId', '$BuyerId', '$SellerId', '$itemName', '$itemPrice', '$itemSource', '$buyerFullname', '$buyerLocation', '$buyerAge', '$Seller', '$GcashNumber');
+            DELETE FROM cart_pending WHERE id = $cartId;
+             ";
+        
+            mysqli_multi_query($connforMyOnlineDb, $insertQuery);
+        
+          
 
-            $deleteFromcartPending = "DELETE FROM cart_pending WHERE id = $cartId";
-            mysqli_query($connForMyDatabase,$deleteFromcartPending);
-
-
-            header("Location: ../Buyer/pending_order.php");
+          
     }
 
 
@@ -477,7 +488,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
               $BuyerId =  $_SESSION['id'];
               $sql = "SELECT * FROM order_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
-              $result = mysqli_query($connForMyDatabase,$sql);
+              $result = mysqli_query($connforMyOnlineDb,$sql);
               $number = 1;
 
               if (mysqli_num_rows($result) > 0) {
@@ -506,7 +517,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                         <td class="text-center align-middle">
                             <button class="btn btn-outline-danger" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="Cancel('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Cancel</button>
                            
-                        </td
+                        </tsuc
                         
                     </tr>';
             
@@ -544,8 +555,12 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
       $cancel = "INSERT INTO cancelled (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
       mysqli_query($connForMyDatabase,$cancel);
 
-      $cancelData = "DELETE FROM order_pending WHERE id = $cartId";
-      mysqli_query($connForMyDatabase,$cancelData);
+      $cancelData = "DELETE FROM order_pending WHERE id = $cartId;
+                      DELETE FROM manage_payment WHERE id = $cartId;   
+      ";
+
+      mysqli_multi_query($connforMyOnlineDb,$cancelData);
+      
 
 
       header("Location: ../Buyer/cancel_order.php");
@@ -793,7 +808,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
             }
         } else {
             // If no data, display a row with "No Data Information"
-            $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+            $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
         }
         
             $table .= '</tbody></table>';
