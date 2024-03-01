@@ -664,7 +664,7 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
           $BuyerId =  $_SESSION['id'];
           $sql = "SELECT * FROM confirmedorder WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
-          $result = mysqli_query($connForMyDatabase,$sql);
+          $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
 
           if (mysqli_num_rows($result) > 0) {
@@ -736,7 +736,7 @@ if(isset($_POST['ApproveOrder'])   && $_POST['ApproveOrder'] == true){
   mysqli_query($connForMyDatabase,$cancel);
 
   $cancelData = "DELETE FROM confirmedorder WHERE id = $cartId";
-  mysqli_query($connForMyDatabase,$cancelData);
+  mysqli_query($connforMyOnlineDb,$cancelData);
 
 
   header("Location: ../Buyer/success_order.php");

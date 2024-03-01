@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2024 at 01:19 PM
+-- Generation Time: Mar 01, 2024 at 04:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -135,6 +135,13 @@ CREATE TABLE `confirmedorder` (
   `seller` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `confirmedorder`
+--
+
+INSERT INTO `confirmedorder` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`) VALUES
+(2, 1, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', '19', 'Aleshia B. Curry');
+
 -- --------------------------------------------------------
 
 --
@@ -229,14 +236,6 @@ CREATE TABLE `manage_payment` (
   `number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `manage_payment`
---
-
-INSERT INTO `manage_payment` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`, `number`) VALUES
-(3, 2, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', 19, 'Aleshia B. Curry', '09123837402'),
-(4, 1, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', 19, 'Aleshia B. Curry', '09123837402');
-
 -- --------------------------------------------------------
 
 --
@@ -271,14 +270,6 @@ CREATE TABLE `order_pending` (
   `seller` varchar(255) NOT NULL,
   `number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `order_pending`
---
-
-INSERT INTO `order_pending` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`, `number`) VALUES
-(3, 2, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', 19, 'Aleshia B. Curry', '09123837402'),
-(4, 1, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', 19, 'Aleshia B. Curry', '09123837402');
 
 -- --------------------------------------------------------
 
@@ -329,6 +320,35 @@ INSERT INTO `shop` (`id`, `shop_name`, `shop_pic`, `shop_creator`, `shop_contact
 (3, 'J-jeans', '../Store_Pic/defaultPic.jpg', 'seller1', '09123912396', 'AleshiaCurry01@gmail.com'),
 (4, 'T-Tops Hood', '../Store_Pic/defaultPic.jpg', 'seller2', '09231839421', 'AndrewSmith03@gmail.com'),
 (5, 'Down Steep', '../Store_Pic/defaultPic.jpg', 'seller2', '09123462843', 'AndrewSmith03@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL,
+  `cartPendingId` int(11) NOT NULL,
+  `BuyerId` int(11) NOT NULL,
+  `SellerId` int(11) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
+  `item_price` varchar(255) NOT NULL,
+  `item_source` varchar(255) NOT NULL,
+  `buyer_fullname` varchar(255) NOT NULL,
+  `buyer_location` varchar(255) NOT NULL,
+  `buyer_age` varchar(255) NOT NULL,
+  `seller` varchar(255) NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `cartPendingId`, `BuyerId`, `SellerId`, `item_name`, `item_price`, `item_source`, `buyer_fullname`, `buyer_location`, `buyer_age`, `seller`, `number`, `date`) VALUES
+(2, 1, 58, 2, 'Toto Berry Color T- Shirt', '12$', 'Up-Style', 'Ejie Cabales Florida', 'Pinaskohan, Maasin City, Southern Leyte 6600', '19', 'Aleshia B. Curry', '09123837402', '2024-03-01 03:39:33');
 
 --
 -- Indexes for dumped tables
@@ -401,6 +421,12 @@ ALTER TABLE `shop`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -432,7 +458,7 @@ ALTER TABLE `complete_order`
 -- AUTO_INCREMENT for table `confirmedorder`
 --
 ALTER TABLE `confirmedorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -469,6 +495,12 @@ ALTER TABLE `seller_account`
 --
 ALTER TABLE `shop`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

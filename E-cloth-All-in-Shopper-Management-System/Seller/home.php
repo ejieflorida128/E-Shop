@@ -65,7 +65,7 @@
 
 
 
-                                $sql = "SELECT * FROM order_pending WHERE SellerId = $id";
+                                $sql = "SELECT * FROM seller_approval_list WHERE SellerId = $id";
                                 $query = mysqli_query($connforMyOnlineDb,$sql);
 
                                 $count = 0;

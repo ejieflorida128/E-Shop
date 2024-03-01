@@ -415,7 +415,7 @@ if(isset($_POST['DisplayPendingOrder']) && $_POST['DisplayPendingOrder'] == true
           <tbody>';
 
           $SellerId =  $_SESSION['sellerID'];
-          $sql = "SELECT * FROM order_pending WHERE SellerId = '$SellerId'";
+          $sql = "SELECT * FROM seller_approval_list WHERE SellerId = '$SellerId'";
 
           $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
@@ -479,7 +479,7 @@ if(isset($_POST['approveOrder']) && $_POST['approveOrder'] == true){
 
 
   $cancel = "INSERT INTO confirmedorder (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
-  mysqli_query($connForMyDatabase,$cancel);
+  mysqli_query($connforMyOnlineDb,$cancel);
 
   $txt = "Thank you for Purchasing our product ".$itemName." with a price of ".$itemPrice." From our ".$itemSource." Please buy again our product!. ";
 
@@ -487,7 +487,7 @@ if(isset($_POST['approveOrder']) && $_POST['approveOrder'] == true){
   $insertIntoMessage = "INSERT INTO message (sender,reciever,mess) VALUES ('$SellerId','$BuyerId','$txt')";
   mysqli_query($connForMyDatabase,$insertIntoMessage);
 
-  $cancelData = "DELETE FROM order_pending WHERE id = $cartId";
+  $cancelData = "DELETE FROM seller_approval_list WHERE id = $cartId";
   mysqli_query($connforMyOnlineDb,$cancelData);
 
 
