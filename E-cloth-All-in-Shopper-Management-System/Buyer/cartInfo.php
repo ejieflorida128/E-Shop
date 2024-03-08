@@ -51,6 +51,16 @@ include("../connection/conn.php");
                             <input type="text" id = "itemName" class = "form-control" style = "width: 630px;" value = "<?php echo $sql['item_name']; ?>" disabled>
                             <label for="itemPrice">Item Price:</label>
                             <input type="text" id = "itemPrice" class = "form-control" style = "width: 100px;" value = "<?php echo $sql['item_price']; ?>" disabled>
+                            <div class="div" style = "display: flex; font-size: 30px; position: absolute; left: 1050px; bottom: 120px;">
+                                      <?php
+                                              $rate = $sql['rate'];
+                                              echo $rate;
+                                              
+                                        ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>
+                            </div>
                             <label for="itemShop">Shop:</label>
                             <input type="text" id = "itemShop" class = "form-control" style = "width: 250px;" value = "<?php echo $sql['item_source']; ?>" disabled>
                             <label for="itemSeller">Seller Information:</label>

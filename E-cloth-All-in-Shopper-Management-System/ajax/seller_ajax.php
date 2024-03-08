@@ -25,6 +25,7 @@ session_start();
                 $picInDb = $get['img'];
                 $itemPrice = $get['item_price'];
                 $itemName = $get['item_name'];
+                $rate = $get['rate'];
                 
 
                 $div.='
@@ -35,6 +36,12 @@ session_start();
                   <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                   <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                   
+                      <div style ="font-size: 25px; position: absolute; top: 240px;">
+                    '.$rate.'
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                      </div>
                   
                 </div>
               </div>
@@ -202,6 +209,7 @@ session_start();
               $picInDb = $get['img'];
               $itemPrice = $get['item_price'];
               $itemName = $get['item_name'];
+              $rate = $get['rate'];
 
               $itemId = $get['id'];
              
@@ -214,7 +222,12 @@ session_start();
                 <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                 <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                 <a href = "ViewItem.php?ItemId='.$itemId.'" class = "btn btn-primary" style = "position: absolute; bottom: 10px;width: 200px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Show Item</a>
-                
+                <div style ="font-size: 25px; position: absolute; top: 240px;">
+                '.$rate.'
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                  </div>
                 
               </div>
             </div>
