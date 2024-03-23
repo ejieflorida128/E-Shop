@@ -655,6 +655,7 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
               <th scope="col" class="text-center align-middle">Buyer Location</th>
               <th scope="col" class="text-center align-middle">Buyer Age</th>
               <th scope="col" class="text-center align-middle">Item Seller</th>
+              <th scope="col" class="text-center align-middle">Delivery Rider</th>
               <th scope="col" class="text-center align-middle">Delivery Status</th>
               
           </tr>
@@ -662,7 +663,7 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
           <tbody>';
 
           $BuyerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = $BuyerId ORDER BY id DESC";
+          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = '$BuyerId' AND status IS NOT NULL AND status != ''";
 
           $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
@@ -680,6 +681,8 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
                 $BuyerLocation = $row['buyer_location'];
                 $BuyerAge = $row['buyer_age'];
                 $Seller = $row['seller'];
+                $status = $row['status'];
+                $rider = $row['rider'];
                 
                 
                
@@ -693,13 +696,9 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
                     <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
                     <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
                     <td scope="row" class="text-center align-middle">' . $Seller . '</td>
-                    <td scope="row" class="text-center align-middle">
-                    
-                    <button class="btn btn-outline-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="Approved('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Item Recieved</button>
-                           
-                          
-                    
-                    </td>         
+                    <td scope="row" class="text-center align-middle">' . $rider . '</td>
+
+                    <td scope="row" class="text-center align-middle">'.$status.'</td>         
                    
                     
                 </tr>';

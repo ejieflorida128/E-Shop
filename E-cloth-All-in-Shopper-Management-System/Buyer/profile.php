@@ -28,7 +28,7 @@ include("../connection/conn.php");
                 while($check = mysqli_fetch_assoc($query)) {
                     echo $check['profile_pic'];
                 }
-            ?>" alt="Profile Picture" style="width: 450px;">
+            ?>" alt="Profile Picture" style="width: 450px; height: 450px;">
         </div>
     </div>
     <div class="rightside">
