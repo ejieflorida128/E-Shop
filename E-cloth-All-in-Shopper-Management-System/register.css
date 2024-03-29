@@ -3,7 +3,7 @@
     margin: 0px;
 }
 .header{
-    background-color: #365D1E;
+    background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
     height: 121px;
     width: 1280px;
     display: flex;

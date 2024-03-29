@@ -1,7 +1,7 @@
 <?php
     // start sa php code
     session_start();
-    include("includes/footer.php");
+    
     include("connection/conn.php");
   
 
@@ -24,7 +24,7 @@
                            
                             $_SESSION['username'] = $username; 
                             $_SESSION['id'] = $buyer['id'];
-                            header('Location: Buyer/dashboard.php');
+                            header('Location: Buyer/LoadToUserDashboard.php');
                         }
                     }
                    
@@ -41,7 +41,7 @@
                             
                             $_SESSION['username'] = $username;
                             $_SESSION['sellerID'] = $seller['id']; 
-                            header('Location: Seller/dashboard.php');
+                            header('Location: Seller/LoadToSellerDashboard.php');
                         }
                     }
 
@@ -117,7 +117,7 @@
                              multifaceted needs of both retailers and consumers, ushering in a new era of efficiency 
                              and convenience.
                         </p>
-                        <a href = "register.php" class = "linkToRegister">CREATE ACCOUNT</a>
+                        <a href = "LoadRegister.php" class = "linkToRegister">CREATE ACCOUNT</a>
                     </div>
                   
                 </div>

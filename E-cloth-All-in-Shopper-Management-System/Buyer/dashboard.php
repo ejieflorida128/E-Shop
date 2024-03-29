@@ -17,7 +17,7 @@
                 <img src="../images/logo.png" alt="logo of the shop">
             </div>
 
-            <a href = "../index.php" id = "logout">
+            <a href = "LoadToLogout.php" id = "logout">
             <div class="logoutBtn">
                 
                     <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -34,7 +34,7 @@
           <div class="section1">
                 
                     <div class="box">
-                        <a href = "home.php">
+                        <a href = "LoadToHome.php">
                                 <div class="title"> 
                                     Home
                                 </div>
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="box">
-                            <a href="store.php">
+                            <a href="LoadToStore.php">
                                 <div class="title">
                                  Store
                                 </div>
@@ -70,7 +70,7 @@
           <div class="section2">
             
                     <div class="box">
-                        <a href="cart.php">
+                        <a href="LoadToMyCart.php">
                                 <div class="title">
                                     My cart
                                 </div>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="box">
-                        <a href="profile.php">
+                        <a href="LoadToMyProfile.php">
                                  <div class="title">
                                    Buyer Profile
                                 </div>

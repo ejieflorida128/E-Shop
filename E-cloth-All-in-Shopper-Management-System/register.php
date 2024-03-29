@@ -1,6 +1,6 @@
 <?php
 include("connection/conn.php");
-include("includes/footer.php");
+
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -196,7 +196,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                          multifaceted needs of both retailers and consumers, ushering in a new era of efficiency 
                          and convenience.
                     </p>
-                    <a href = "index.php" class = "linkToRegister">LOG IN</a>
+                    <a href = "LoadIndex.php" class = "linkToRegister">LOG IN</a>
                 </div>
             </div>
         </div>
