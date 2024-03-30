@@ -1,70 +1,66 @@
 <?php
-session_start();    
+session_start();
+include("../connection/conn.php");
 include("../includes/buyer_header.php");
 include("../includes/footer.php");
-include("../connection/conn.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add to Cart</title>
-    <link rel="stylesheet" href="../Buyer_Design/cartInfo.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Buyer Analysis</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+            body{
+                overflow-y:hidden;
+
+            }
+    </style>
+
 </head>
 <body>
-    <div class="container">
-        <div class="containerT">
-                <div class="image">
-                    <img src="
-                            <?php
-
-                            $id = $_GET['id'];
-
-                            $pic = "SELECT img FROM items WHERE id = $id";
-                            $query = mysqli_query($connforMyOnlineDb,$pic);
-                            $sql = mysqli_fetch_assoc($query);
-
-                            if($sql){
-                                echo $sql['img'];
-                            }
-                            ?>
-                    " style = "width: 250px; height: 250px; border-radius: 20px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin-left: 30px; margin-top: 40px;">
-                </div>
-                <div class="information">
-                            <?php
-
-                                    $pic = "SELECT * FROM items WHERE id = $id";
-                                    $query = mysqli_query($connforMyOnlineDb,$pic);
-                                    $sql = mysqli_fetch_assoc($query);
-
-                                    if($sql){
 
 
-                            ?>
+<div class="card mb-3" style="width: 1100px; height: 450px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); position:absolute; bottom: 10px; left: 80px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="
+            <?php
+                $id = $_GET['item_id'];
 
-                            <label for="itemName">Item Name:</label>
-                            <input type="text" id = "itemName" class = "form-control" style = "width: 630px;" value = "<?php echo $sql['item_name']; ?>" disabled>
-                            <label for="itemPrice">Item Price:</label>
-                            <input type="text" id = "itemPrice" class = "form-control" style = "width: 100px;" value = "<?php echo $sql['item_price']; ?>" disabled>
-                           
-                            <label for="itemShop">Shop:</label>
-                            <input type="text" id = "itemShop" class = "form-control" style = "width: 250px;" value = "<?php echo $sql['item_source']; ?>" disabled>
-                            <label for="itemSeller">Seller Information:</label>
-                            <input type="text" id = "itemSeller" class = "form-control" style = "width: 300px;" value = "<?php echo $sql['seller']; ?>" disabled>
-                            <input type="text" id = "SellerId" class = "form-control" style = "width: 300px;" value = "<?php echo $sql['SellerId']; ?>" disabled hidden>
-                                        
-                       
-                                 <a href = "rating_analysis.php?item_id=<?php echo $sql['id'] ?>">
+                $getDataForItemPic = "SELECT * FROM items WHERE id = $id";
+                $quryForGettingTheItemImage = mysqli_query($connforMyOnlineDb,$getDataForItemPic);
 
-                                 <?php
-                                    }
-                            ?>
-                                  <div class="div" style="display: flex; font-size: 30px; position: absolute; left:980px; bottom: 120px;">
+                while($check = mysqli_fetch_assoc($quryForGettingTheItemImage)){
+                    echo $check['img'];
+                
+            ?>
+      " class="img-fluid rounded-start" alt="..." style = "width: 400px; height:390px;position:absolute; top: 30px; left:20px; border-radius: 10px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <a href="LoadToHome.php" class = "btn btn-danger" style = "position: absolute; left: 660px; margin-top: 30px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Back</a>
+        <h5 class="card-title" style = "margin-top: 10px;"><?php  
+                    echo $check['item_name'];   
+    
+        ?></h5>
+        <h5 class="card-title" style = "margin-top: 10px;"><?php  
+                    echo $check['item_price'];   
+    
+        ?></h5>
+        <h5 class="card-title" style = "margin-top: 10px;"><?php  
+                    echo $check['item_source'];  } 
+    
+        ?></h5>
+          <div class="div" style="display: flex; font-size: 30px; position: absolute; left:620px; bottom: 125px; background-color: black; padding: 10px; border-radius: 10px;">
+
                                       <?php
                                       $selectAllRatingCondition = "SELECT * FROM irate_ratings WHERE item_id = $id";
                                       $check = mysqli_query($connforMyOnlineDb, $selectAllRatingCondition);
@@ -260,123 +256,69 @@ include("../connection/conn.php");
                             }
                                       ?>
                                   </div>
-                        </a>
-
-
-                            <?php
-
-                                    $id = $_SESSION['id'];
-
-                                    $sql = "SELECT * FROM buyer_account WHERE id = $id";
-                                    $query = mysqli_query($connForMyDatabase,$sql);
-
-                                    $call = mysqli_fetch_assoc($query);
-
-                                    if($call){
-
-                                    
-                                    
-                            ?>
-                            
-                            <input type="text" id = "BuyerFullname" hidden value = "<?php echo $call['fullname']; ?>" style = "position: absolute;">
-                            <input type="text" id = "BuyerLocation" hidden value = "<?php echo $call['location']; ?>" style = "position: absolute;">
-                            <input type="text" id = "BuyerAge" hidden value = "<?php echo $call['age']; ?>"style = "position: absolute;" >
-                            <input type="text" id = "BuyerId" hidden value = "<?php echo $call['id']; ?>"style = "position: absolute;" >
-                            <input type="number" id = "BuyerNumber" hidden value = "<?php echo "0".$call['number']; ?>"style = "position: absolute;" >
- 
-                            <?php
-
-                                    }
-                            ?>
-                            
-                           
-                            
-
-
+                                    <div class="row" style = "width: 400px; height: 400px; position: absolute; left: 80px;">
+                                  
+                                        <div class = "graph">
+                                        <canvas id="ratingsChart" width="600" height="300"></canvas>
+                        <script>
+<?php
+if(isset($_GET['item_id'])) {
+    $id = $_GET['item_id'];
+    $ratedCounts = array_fill(1, 5, 0); 
+    $selectAllRatingCondition = "SELECT * FROM irate_ratings WHERE item_id = $id";
+    $check = mysqli_query($connforMyOnlineDb, $selectAllRatingCondition);
+    while ($test = mysqli_fetch_assoc($check)) {
+        $rating = $test['rate'];
+        $ratedCounts[$rating]++;
+    }
+?>
+var ctx = document.getElementById('ratingsChart').getContext('2d');
+var ratingsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [{
+            label: 'Number of Users',
+            data: <?php echo json_encode(array_values($ratedCounts)); ?>,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1 // Specify step size as 1
+                }
+            }]
+        }
+    }
+});
+<?php } ?>
+</script>
+                        </div>
                         
-                </div>
-        </div>
-
-        <div class="buttons" style = "position: absolute; top: 480px; left: 170px; ">
-            <a href="home.php" class = "btn btn-danger" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); border-radius: 10px;">Back To Home</a>
-            <button class = "btn btn-primary" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); border-radius: 10px;" onclick = "AddtoCart()">Confirm Add to Cart</button>
-        </div>
-    </div>
 
 
-
-    <!-- modal -->
-<div class="modal" tabindex="-1" id = "SuccesfullAddToCart" style = "margin-top: 150px;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Notice!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick = "refreshIfClose()"></button>
-      </div>
-      <div class="modal-body">
-        <p>Added to cart Successfully!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Close</button>
-        
+                                    </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-    <script>
-
-        function refreshIfClose() {
-                $(document).ready(function() {
-                    location.reload();
-                });
-            }
-
-
-
-            function AddtoCart(){
-
-                var itemName = $('#itemName').val();
-                var itemPrice = $('#itemPrice').val();
-                var itemShop = $('#itemShop').val();
-                var itemSeller = $('#itemSeller').val();
-                var SellerId = $('#SellerId').val();
-                
-
-                var BuyerFullname = $('#BuyerFullname').val();
-                var BuyerLocation = $('#BuyerLocation').val();
-                var BuyerAge = $('#BuyerAge').val();
-                var BuyerId = $('#BuyerId').val();
-                var BuyerNumber = $('#BuyerNumber').val();
-
-                                 $.ajax({
-                                        url: "../ajax/buyer_ajax.php",
-                                        type: 'post',
-                                        data: {
-                                            
-                                            addtoCart:true,
-                                            itemName:itemName,
-                                            itemPrice:itemPrice,
-                                            itemShop:itemShop,
-                                            itemSeller:itemSeller,
-                                            BuyerFullname:BuyerFullname,
-                                            BuyerLocation:BuyerLocation,
-                                            BuyerAge:BuyerAge,
-                                            BuyerNumber:BuyerNumber,
-                                            BuyerId:BuyerId,
-                                            SellerId:SellerId
-                                            
-                                        },
-                                        success: function (data, status) {
-                                                        
-                                            $('#SuccesfullAddToCart').modal('show');
-                                        }
-                                    });
-            }
-    </script>
 
 </body>
 </html>

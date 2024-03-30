@@ -58,6 +58,7 @@ session_start();
                   <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                   <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                   
+                  <a href = "rating_analysis.php?item_id='.$id.'">
                   <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -238,6 +239,7 @@ session_start();
 
                   $div.='
                     </div>
+                    </a>
                   
                 </div>
               </div>
@@ -309,6 +311,7 @@ session_start();
                 <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                 <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                 
+                <a href = "rating_analysis.php?item_id='.$id.'">
                 <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
                 if($rateOfanItem == 1){
@@ -486,6 +489,7 @@ session_start();
 
                 $div.='
                   </div>
+                  </a>
                 
               </div>
             </div>
@@ -642,6 +646,7 @@ session_start();
                   <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                   <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                   
+                  <a href = "rating_analysis.php?item_id='.$itemId.'">
                   <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -820,7 +825,9 @@ session_start();
         }
 
                   $div.='
-                    </div>';
+                    </div>
+                    </a>
+                    ';
 
                 
                $div.=' 
@@ -899,6 +906,7 @@ session_start();
               <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
               <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
               
+              <a href = "rating_analysis.php?item_id='.$itemId.'">
               <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -1078,7 +1086,8 @@ session_start();
             
 
               $div.='
-                </div>';
+                </div>
+                </a>';
 
             
            $div.=' 

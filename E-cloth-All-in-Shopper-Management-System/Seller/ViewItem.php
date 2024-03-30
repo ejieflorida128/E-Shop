@@ -76,7 +76,7 @@
             
                  $div='
              
-                
+               <a href = "rating_analysis.php?item_id='.$idOfaItem.'">
                 <div style ="font-size: 25px; position: absolute; top: 160px; left: 30px;">';  
 
                 if($rateOfanItem == 1){
@@ -251,7 +251,10 @@
                     </svg>';
         }   
 
+        $div .='</a>';
+
                             echo '
+                            
                                      <div style ="font-size: 25px; position: absolute; top: 50px; left: 350px;">
 
                                       '.$div.'

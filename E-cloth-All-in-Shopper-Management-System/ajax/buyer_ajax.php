@@ -63,7 +63,7 @@ include("../connection/conn.php");
                   <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                   <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                  
-                  
+                  <a href = "rating_analysis.php?item_id='.$itemId.'">
                   <div style ="font-size: 25px; position: absolute; top: 240px;">';  
 
                                   if($rateOfanItem == 1){
@@ -240,7 +240,8 @@ include("../connection/conn.php");
                 
 
                   $div.='
-                    </div>';
+                    </div>
+                    </a>';
 
                 
                $div.=' 
@@ -325,6 +326,7 @@ include("../connection/conn.php");
                   <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
                   <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
                   
+                  <a href = "rating_analysis.php?item_id='.$itemId.'">
                   <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -504,7 +506,8 @@ include("../connection/conn.php");
                 
 
                   $div.='
-                    </div>';
+                    </div>
+                    </a>';
 
                 
                $div.=' 
@@ -718,6 +721,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
             <img src='.$picInDb.' class="card-img-top">
             <div class="card-body">
 
+            <a href = "rating_analysis.php?item_id='.$itemId.'">
             <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -897,7 +901,8 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                 
 
                   $div.='
-                    </div>';
+                    </div>
+                    </a>';
 
             
             $div.='
@@ -976,6 +981,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
           <img src='.$picInDb.' class="card-img-top">
           <div class="card-body">
 
+          <a href = "rating_analysis.php?item_id='.$itemId.'">
           <div style ="font-size: 25px; position: absolute; top: 240px;">';
 
 
@@ -1156,6 +1162,7 @@ $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yel
 
           $div.='
             </div>
+            </a>
 
 
               <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
