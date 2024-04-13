@@ -27,11 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 if($checkerNumber == 1){
 
                   
-                    echo "
-                        <script>
-                            alert('Account already existed in the Seller Account Database!');
-                        </script>
-                    ";
+                    $Existedinselleraccount = true;
 
                     $checkerNumber = 0;
 
@@ -50,11 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     } 
 
                     if($sellerChecker == 1){
-                        echo "
-                        <script>
-                            alert('Account exist in Buyer Account List!');
-                        </script>
-                    ";
+                        $Existedinbuyeraccount = true;
 
                     }else{
 
@@ -66,11 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         $sql = "INSERT INTO seller_account (username,password,profile_pic,fullname,age,bio) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$bio')";
                         mysqli_query($connForMyDatabase,$sql);
         
-                        echo "
-                            <script>
-                                alert('Seller Account Created Successfully!');
-                            </script>
-                        ";
+                       $SellerAccountCreatedSuccessfully = true;
                     }
                     
     
@@ -93,11 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 if($checkerNumber == 1){
 
                    
-                    echo "
-                    <script>
-                        alert('Account is Already in the Buyer Account Database!');
-                    </script>
-                ";
+                  $Existedinbuyeraccount = true;
 
 
                     
@@ -115,11 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     } 
 
                     if($sellerChecker == 1){
-                        echo "
-                        <script>
-                            alert('Account exist in Seller Account List!');
-                        </script>
-                    ";
+                        $Existedinselleraccount = true;
 
                     }else{
 
@@ -131,11 +111,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         $sql = "INSERT INTO buyer_account (username,password,profile_pic,fullname,age,location) VALUES ('$username','$password','$DefaultProfilePic','$fullname','$age','$location')";
                         mysqli_query($connForMyDatabase,$sql);
         
-                        echo "
-                            <script>
-                                alert('User Account Created Successfully!');
-                            </script>
-                        ";
+                          $BuyerAccountCreatedSuccessfully = true;
                     }
                     
                   
@@ -144,11 +120,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 }
             }
         }else{
-            echo "
-            <script>
-                alert('Please Select User Type!');
-            </script>
-        ";
+          $PleaseSelectUserType = true;
         }
 
        
@@ -163,18 +135,64 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel = "stylesheet" href = "register.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
     
 </head>
 <body>
     <div class = "header">
         <div class = "logo">
             <img src = "images/logo.png">
+            <h6>E-Shop Mobile Platform </h6>
         </div>
         <div class = "loginText">
             CREATE ACCOUNT
         </div>
     </div>
+
+    <div class="mobileView">
+           <form action="">
+            <h4>E-shop Online </h4>
+            <div class="bag"><i class='bx bxs-shopping-bags'></i></div>
+            <h2>Register with us now!</h2>
+
+            <div class="login">
+            <div class="classForLogin">
+                                             <a href="LoadIndex.php"><i class='bx bx-message-square-add'>Login</i></a>     
+                                        </div>
+                    <div class="inputs">
+                        <div class="option">
+                            <select name="choose_settings" id="dropdown" class = "form-control">
+                                <option value="None" name = "none">None</option>
+                                <option value="BUYER" name = "choose">Buyer</option>
+                                <option value="SELLER" name = "choose">Seller</option>     
+                            </select>
+                        </div>
+                        <div class="username">
+                            <input type="text" name = "username" class = "form-control" id = "username" required placeholder="Username">
+                        </div>
+                        <div class="password">
+                            <input type="text" name = "password" class = "form-control" id = "password" required placeholder="Password">
+                        </div>
+                        <div class="loginBtn">
+                            <input type="submit" value = "Register" class = "btn btn-success" >
+                        </div>
+                    </div>
+            </div>
+           </form>
+    </div>
+    
     <div class = "main">
+   
+
         <div class = "part1">
             <div class = "picStorage1">
                 <div class = "firstPicture"></div>
@@ -227,6 +245,227 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             </form>
         </div>
     </div>
+
+
+    
+<?php
+    if (isset($PleaseSelectUserType)) {
+    ?>
+        <div class='modal' tabindex='-1' role='dialog' style = "margin-top: 190px;">
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>SYSTEM</h5>
+                        
+                    </div>
+                    <div class='modal-body'>
+                        <p>Please Select User type!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-danger' id = "close" data-bs-dismiss='modal'>Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    // Use JavaScript to show the modal after the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+        myModal.show();
+
+        // Close modal when close button or outside modal area is clicked
+        var closeModalButton = document.querySelector('.modal #close');
+        closeModalButton.addEventListener('click', function () {
+            myModal.hide();
+        });
+    });
+</script>
+
+
+       
+    <?php
+    }
+    ?>
+
+
+
+<?php
+    if (isset($BuyerAccountCreatedSuccessfully)) {
+    ?>
+        <div class='modal' tabindex='-1' role='dialog' style = "margin-top: 190px;">
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>SYSTEM</h5>
+                        
+                    </div>
+                    <div class='modal-body'>
+                        <p>Buyer Account Created Successfully!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-danger' id = "close" data-bs-dismiss='modal'>Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    // Use JavaScript to show the modal after the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+        myModal.show();
+
+        // Close modal when close button or outside modal area is clicked
+        var closeModalButton = document.querySelector('.modal #close');
+        closeModalButton.addEventListener('click', function () {
+            myModal.hide();
+        });
+    });
+</script>
+
+
+       
+    <?php
+    }
+    ?>
+
+
+
+<?php
+    if (isset($SellerAccountCreatedSuccessfully)) {
+    ?>
+        <div class='modal' tabindex='-1' role='dialog' style = "margin-top: 190px;">
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>SYSTEM</h5>
+                        
+                    </div>
+                    <div class='modal-body'>
+                        <p>Seller Account Created Successfully!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-danger' id = "close" data-bs-dismiss='modal'>Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    // Use JavaScript to show the modal after the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+        myModal.show();
+
+        // Close modal when close button or outside modal area is clicked
+        var closeModalButton = document.querySelector('.modal #close');
+        closeModalButton.addEventListener('click', function () {
+            myModal.hide();
+        });
+    });
+</script>
+
+
+       
+    <?php
+    }
+    ?>
+
+
+<?php
+    if (isset($Existedinselleraccount)) {
+    ?>
+        <div class='modal' tabindex='-1' role='dialog' style = "margin-top: 190px;">
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>SYSTEM</h5>
+                        
+                    </div>
+                    <div class='modal-body'>
+                        <p>Already Existed in the seller account Database!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-danger' id = "close" data-bs-dismiss='modal'>Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    // Use JavaScript to show the modal after the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+        myModal.show();
+
+        // Close modal when close button or outside modal area is clicked
+        var closeModalButton = document.querySelector('.modal #close');
+        closeModalButton.addEventListener('click', function () {
+            myModal.hide();
+        });
+    });
+</script>
+
+
+       
+    <?php
+    }
+    ?>
+
+
+
+<?php
+    if (isset($Existedinbuyeraccount)) {
+    ?>
+        <div class='modal' tabindex='-1' role='dialog' style = "margin-top: 190px;">
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>SYSTEM</h5>
+                        
+                    </div>
+                    <div class='modal-body'>
+                        <p>Already Existed in the buyer account Database!</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-danger' id = "close" data-bs-dismiss='modal'>Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+    // Use JavaScript to show the modal after the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.querySelector('.modal'));
+        myModal.show();
+
+        // Close modal when close button or outside modal area is clicked
+        var closeModalButton = document.querySelector('.modal #close');
+        closeModalButton.addEventListener('click', function () {
+            myModal.hide();
+        });
+    });
+</script>
+
+
+       
+    <?php
+    }
+    ?>
+
+
    
 </body>
 </html>
