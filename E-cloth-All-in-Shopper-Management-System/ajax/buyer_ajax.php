@@ -3,7 +3,7 @@ session_start();
 include("../connection/conn.php");
 
 
-
+// ItemsSearchInTheCurrentShopForMobile
 
 
     // mao ne ang mag pa display sa items sa home php kung unsay ge search
@@ -549,7 +549,9 @@ include("../connection/conn.php");
     }
 
     // searchItemsForMobile
-    if (isset($_POST['searchItemsForMobile']) && $_POST['searchItemsForMobile'] == true){
+
+    //now
+    if (isset($_POST['searchItemsForMobile']) && $_POST['searchItemsForMobile'] == true){ 
 
       $value = $_POST['searchValue'];
 
@@ -776,6 +778,62 @@ if(isset($_POST['ListOfShop'])){
 
 }
 
+// list of shop sa Buyer
+if(isset($_POST['ListOfShopMobile'])){
+
+ 
+  
+    $queryToGetAllCreatedStore = "SELECT * FROM shop ";
+    $query = mysqli_query($connForMyDatabase,$queryToGetAllCreatedStore);
+  
+  
+    $itemCount = 0;
+  
+    $div = '<div class = "row">';
+  
+    while($get = mysqli_fetch_assoc($query)){
+  
+            $itemCount ++;
+  
+              $picInDb = $get['shop_pic'];
+              $shopname = $get['shop_name'];
+              $shop_contact = $get['shop_contactNo'];
+  
+              $div.='
+              <div class="col-md-3" style = "width:170px; margin:5px;">
+              <a href="../Buyer/shopDetail.php?shopName='.$shopname.'" style = "text-decoration:none;">
+              <div class="card" sstyle="width: 350px; height: 300px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+              <img src='.$picInDb.' class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title" style = "display: flex; justify-content: center; color: rgb(114, 111, 111); font-size: 12px; font-weight:bolder;">'.$shopname.'</h5>
+                <h6 class="card-text"  style = "display: flex; justify-content: center; color: rgb(114, 111, 111);"> '.$shop_contact.' </h6>
+                
+              
+                </div>
+                </a>
+            </div>
+            </div>
+              
+              
+              ';
+  
+            
+              if ($itemCount % 2 == 0) {
+                // Close the current row and start a new one
+                $div .= '</div><div class="row">';
+            }
+          }
+  
+  
+          
+           // Close the container div
+        $div .= '</div>';
+        
+        echo $div;
+  
+  
+  }
+
 if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
 
   $itemName = $_POST['itemName'];
@@ -875,7 +933,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                         </svg>';
-                  }else if($rateOfanItem == 1.5){
+                  }else if($rateOfanItem >= 1.1 && $rateOfanItem <= 1.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -908,7 +966,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                         </svg>';
-                  }else if($rateOfanItem == 2.5){
+                  }else if($rateOfanItem >= 2.1 && $rateOfanItem <= 2.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -942,7 +1000,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                         $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                     </svg>';
-                  } else if ($rateOfanItem == 3.5){
+                  } else if ($rateOfanItem >= 3.1 && $rateOfanItem <= 3.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -952,7 +1010,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
-        $div.= '    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+        $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
         <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
       </svg>';
                   $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
@@ -976,7 +1034,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
-                  } else if($rateOfanItem == 4.5){
+                  } else if($rateOfanItem >= 4.1 && $rateOfanItem <= 4.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -1135,7 +1193,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
-          }else if($rateOfanItem == 1.5){
+          }else if($rateOfanItem >= 1.1 && $rateOfanItem <= 1.9){
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
@@ -1168,7 +1226,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
-          }else if($rateOfanItem == 2.5){
+          }else if($rateOfanItem >= 2.1 && $rateOfanItem <= 2.9){
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
@@ -1202,7 +1260,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
                 $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
             </svg>';
-          } else if ($rateOfanItem == 3.5){
+          } else if ($rateOfanItem >= 3.1 && $rateOfanItem <= 3.9){
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
@@ -1236,7 +1294,7 @@ $div.= '    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill=
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
-          } else if($rateOfanItem == 4.5){
+          } else if($rateOfanItem >= 4.1 && $rateOfanItem <= 4.9){
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
@@ -1312,6 +1370,123 @@ $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="yel
           if($counToRow % 4 == 0){
             $div .= '</div>'; // Close current row
             $div .= '<div class="row">'; // Start new row
+          }
+      }
+
+
+      
+      $div.='</div>';
+      echo $div;
+    }
+
+
+}
+
+
+//para ni sa ShopDetail pero sa mobile version!
+
+if (isset($_POST['ItemsSearchInTheCurrentShopForMobile']) && $_POST['ItemsSearchInTheCurrentShopForMobile'] == true){
+
+    $value = $_POST['ItemSearchValue'];
+    $currentlySelectedShop = $_POST['SelectedShop'];
+
+
+    if($value == null){
+      // if walay value ang search bar
+
+        $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
+        $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
+
+        $itemCount = 0;
+
+        $div = '<div class = "row">';
+
+        while($get = mysqli_fetch_assoc($queryForItems)){
+
+          $itemCount ++;
+
+            $picInDb = $get['img'];
+            $itemPrice = $get['item_price'];
+            $itemName = $get['item_name'];
+
+            $itemId = $get['id'];
+
+         
+            
+           
+
+            $div.='
+            <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+                <a href="../Buyer/cartInfo.php?id='.$itemId.'" style="text-decoration: none; color: black;"> <!-- Anchor tag -->
+                    <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                        <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                        <div class="card-body">
+                            <p class="card-text" style="display:flex; justify-content: center; font-size: 10px;">' . $itemName . '</p>
+                        </div>
+                    </div>
+                </a> <!-- Closing anchor tag -->
+            </div>q
+            
+            
+            ';
+
+          
+            if ($itemCount % 2 == 0) {
+                // Close the current row and start a new one
+                $div .= '</div><div class="row">';
+            }
+        }
+
+
+        
+        $div.='</div>';
+        echo $div;
+
+        
+    }else{
+
+      // if naay value ang search bar
+
+      $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ";
+      $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
+
+      $itemCount = 0;
+
+      $div = '<div class = "row">';
+
+      while($get = mysqli_fetch_assoc($queryForItems)){
+
+        $itemCount ++;
+
+          $picInDb = $get['img'];
+          $itemPrice = $get['item_price'];
+          $itemName = $get['item_name'];
+
+          $itemId = $get['id'];
+
+       
+          
+         
+
+          $div.='
+          <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+              <a href="../Buyer/cartInfo.php?id='.$itemId.'" style="text-decoration: none; color: black;"> <!-- Anchor tag -->
+                  <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                      <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                      <div class="card-body">
+                          <p class="card-text" style="display:flex; justify-content: center; font-size: 10px;">' . $itemName . '</p>
+                      </div>
+                  </div>
+              </a> <!-- Closing anchor tag -->
+          </div>q
+          
+          
+          ';
+
+        
+          if ($itemCount % 2 == 0) {
+              // Close the current row and start a new one
+              $div .= '</div><div class="row">';
           }
       }
 
