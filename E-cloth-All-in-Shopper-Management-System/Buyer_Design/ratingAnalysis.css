@@ -1,49 +1,18 @@
-.searchBar input{
-    display: none;
-}
+body{
+    overflow-y:hidden;
 
-.logout a{
-    margin-left: 760px;
-}
-
-.logout h6{
-    font-size: 17px;
-}
-
-
-.containerT{
-    background-color: #365D1E;
-    width:1000px;
-    height: 400px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-    margin-left: 50px;
-    margin-top: 140px;
-    display: flex;
-    color: white
-}
-
-.information{
-    margin-left: 40px;
-    margin-top: 40px;
 }
 
 .mobileView{
     display: none;
 }
 
-
-
 @media only screen and (max-width: 400px) {
+   
+    #DesktopContent{
+        display: none;
+    }
 
-   .footerForMobile{
-        background-color: rgb(164, 203, 230);
-        width: 100vw;
-        height: 80px;
-        position: fixed;
-        bottom: 0vh;
-   }
-    
     .mobileView{
         display: block;
     }
@@ -63,13 +32,11 @@
     
 }
 
-
-
 .menu label i{
     font-size: 50px;
-    position: absolute;
-    left: 2px;
-    top: 4px;
+    position: relative;
+    left: 10px;
+    top: 5px;
     color: white;
 }
 
@@ -207,17 +174,6 @@
     text-decoration: none;
 }
 
-.container{
-    display: none;
-}
-.main{
-    display: none;
-}
-.functions{
-    display: none;
-}
+/* end sa mobile css */
 
-.footer,.header{
-    display: none;
-}
 }
