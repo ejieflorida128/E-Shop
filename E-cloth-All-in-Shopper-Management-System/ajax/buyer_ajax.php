@@ -1571,6 +1571,74 @@ if (isset($_POST['ItemsSearchInTheCurrentShopForMobile']) && $_POST['ItemsSearch
     }
 
 
+    // display cart for mlobile
+    if(isset($_POST['displayCartForMobile']) && $_POST['displayCartForMobile'] == true){
+
+        echo '<div style="max-height: 600px; max-width: 400px; font-size: 9px; position: relative; left: 0px; top: 20px; overflow-y: auto; " class="table">';
+        $table = '<table class="table table-bordered table-hover">
+                <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+                <tr> 
+                    <th scope="col" class="text-center align-middle">Item Name</th>
+                    <th scope="col" class="text-center align-middle">Item Price</th>
+                    <th scope="col" class="text-center align-middle">Item Source</th>
+                    <th scope="col" class="text-center align-middle">Buyer Gcash Number</th>
+                    <th scope="col" class="text-center align-middle">Action</th>
+                </tr>
+                </thead>
+                <tbody>';
+
+                $BuyerId =  $_SESSION['id'];
+                $sql = "SELECT * FROM cart_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
+
+                $result = mysqli_query($connforMyOnlineDb,$sql);
+                $number = 1;
+
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+
+                      $Cartid = $row['id'];
+                      $BuyerID = $row['BuyerId'];
+                      $SellerId = $row['SellerId'];
+                      $itemName = $row['item_name'];
+                      $itemPrice = $row['item_price'];
+                      $itemSource = $row['item_source'];
+                      $BuyerFullname = $row['buyer_fullname'];
+                      $BuyerLocation = $row['buyer_location'];
+                      $BuyerAge = $row['buyer_age'];
+                      $Seller = $row['seller'];
+                      $GcashNumber = "0".$row['number'];
+                      
+                      
+                     
+                    
+              
+                      $table .= '<tr>
+                          <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                          <td scope="row" class="text-center align-middle">' . $GcashNumber . '</td>
+                          <td class="text-center align-middle" style = "display:flex;">
+                              <button class="btn btn-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); font-size: 9px; padding: 5px;" onclick="ManagePayment('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\',\''.$GcashNumber.'\')" >Buy Product</button>
+                              <button class = "btn btn-danger"  style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); font-size: 9px; padding: 5px;" onclick = "DeleteCart('. $Cartid .')">Delete</button>
+                          </td
+                          
+                      </tr>';
+              
+                      $number++;
+              
+              
+                  }
+              } else {
+                  // If no data, display a row with "No Data Information"
+                  $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+              }
+              
+                  $table .= '</tbody></table>';
+                  echo $table;
+                  echo '</div>';
+    }
+
+
     if(isset($_POST['toDeleteCart']) && $_POST['toDeleteCart'] == true){
 
             $cartIdToDelete = $_POST['CartId'];
@@ -1675,6 +1743,73 @@ if (isset($_POST['ItemsSearchInTheCurrentShopForMobile']) && $_POST['ItemsSearch
                 echo '</div>';
 
     }
+
+    // for mobile pending
+    if(isset($_POST['DisplayPendingOrderForMobile']) && $_POST['DisplayPendingOrderForMobile'] == true){
+
+        echo '<div style="max-height: 600px; max-width: 400px; font-size: 11px; position: relative; left: 0px; top: 20px; overflow-y: auto; " class="table">';
+        $table = '<table class="table table-bordered table-hover">
+                <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+                <tr> 
+                    <th scope="col" class="text-center align-middle">Item Name</th>
+                    <th scope="col" class="text-center align-middle">Item Price</th>
+                    <th scope="col" class="text-center align-middle">Item Source</th>
+                    <th scope="col" class="text-center align-middle">Delivery Status</th>
+                    <th scope="col" class="text-center align-middle">Action</th>
+                </tr>
+                </thead>
+                <tbody>';
+  
+                $BuyerId =  $_SESSION['id'];
+                $sql = "SELECT * FROM order_pending WHERE BuyerId = $BuyerId ORDER BY id DESC";
+  
+                $result = mysqli_query($connforMyOnlineDb,$sql);
+                $number = 1;
+  
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+  
+                      $Cartid = $row['id'];
+                      $BuyerID = $row['BuyerId'];
+                      $SellerId = $row['SellerId'];
+                      $itemName = $row['item_name'];
+                      $itemPrice = $row['item_price'];
+                      $itemSource = $row['item_source'];
+                      $BuyerFullname = $row['buyer_fullname'];
+                      $BuyerLocation = $row['buyer_location'];
+                      $BuyerAge = $row['buyer_age'];
+                      $Seller = $row['seller'];
+                      
+                      
+                     
+                    
+              
+                      $table .= '<tr>
+                          <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                          <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                          <td scope="row" class="text-center align-middle">P E N D I N G</td>         
+                          <td class="text-center align-middle">
+                              <button class="btn btn-danger" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); font-size: 9px; padding: 5px;" onclick="Cancel('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Cancel</button>
+                             
+                          </tsuc
+                          
+                      </tr>';
+              
+                      $number++;
+              
+              
+                  }
+              } else {
+                  // If no data, display a row with "No Data Information"
+                  $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+              }
+              
+                  $table .= '</tbody></table>';
+                  echo $table;
+                  echo '</div>';
+  
+      }
 
 
     // PARA NE SA CANCELLATION SA ORDER SA PENDINNG ORDER
@@ -1782,6 +1917,81 @@ if(isset($_POST['displayTableForCancelledOrderList']) && $_POST['displayTableFor
 }
 
 
+//mobile view 
+if(isset($_POST['displayTableForCancelledOrderListForMobile']) && $_POST['displayTableForCancelledOrderListForMobile'] == true){
+
+    echo '<div style="max-height: 600px; max-width: 400px; font-size: 11px; position: relative; left: 0px; top: 20px; overflow-y: auto; " class="table">';
+    $table = '<table class="table table-bordered table-hover">
+            <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+            <tr> 
+                <th scope="col" class="text-center align-middle">Item Name</th>
+                <th scope="col" class="text-center align-middle">Item Price</th>
+                <th scope="col" class="text-center align-middle">Item Source</th>
+                <th scope="col" class="text-center align-middle">Buyer Fullname</th>
+                <th scope="col" class="text-center align-middle">Buyer Location</th>
+                <th scope="col" class="text-center align-middle">Buyer Age</th>
+                <th scope="col" class="text-center align-middle">Item Seller</th>
+                <th scope="col" class="text-center align-middle">Time Cancelled</th>
+                <th scope="col" class="text-center align-middle">Delivery Status</th>
+                
+            </tr>
+            </thead>
+            <tbody>';
+  
+            $BuyerId =  $_SESSION['id'];
+            $sql = "SELECT * FROM cancelled WHERE BuyerId = $BuyerId ORDER BY id DESC";
+  
+            $result = mysqli_query($connForMyDatabase,$sql);
+            $number = 1;
+  
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+  
+                  $Cartid = $row['id'];
+                  $BuyerID = $row['BuyerId'];
+                  $SellerId = $row['SellerId'];
+                  $itemName = $row['item_name'];
+                  $itemPrice = $row['item_price'];
+                  $itemSource = $row['item_source'];
+                  $BuyerFullname = $row['buyer_fullname'];
+                  $BuyerLocation = $row['buyer_location'];
+                  $BuyerAge = $row['buyer_age'];
+                  $cancelled = $row['time'];
+                  $Seller = $row['seller'];
+                  
+                  
+                 
+                
+          
+                  $table .= '<tr>
+                      <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerFullname . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
+                      <td scope="row" class="text-center align-middle">' . $Seller . '</td>
+                      <td scope="row" class="text-center align-middle">' . $cancelled . '</td>
+                      <td scope="row" class="text-center align-middle"><h6 style = "border: 2px solid red; padding: 5px;">Cancelled</h6></td>         
+                     
+                      
+                  </tr>';
+          
+                  $number++;
+          
+          
+              }
+          } else {
+              // If no data, display a row with "No Data Information"
+              $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+          }
+          
+              $table .= '</tbody></table>';
+              echo $table;
+              echo '</div>';
+  }
+
+
 if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
 
   echo '<div style="max-height: 300px; max-width: 1200px; font-size: 11px; position: relative; left: 0px; top: 40px; overflow-y: auto; " class="table">';
@@ -1856,6 +2066,84 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
             echo $table;
             echo '</div>';
 }
+
+
+
+// mobile ver 
+if(isset($_POST['displayOrderStatusForMobile']) && $_POST['displayOrderStatusForMobile'] == true){
+
+    echo '<div style="max-height: 600px; max-width: 400px; font-size: 11px; position: relative; left: 0px; top: 40px; overflow-y: auto; " class="table">';
+    $table = '<table class="table table-bordered table-hover">
+            <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+            <tr> 
+                <th scope="col" class="text-center align-middle">Item Name</th>
+                <th scope="col" class="text-center align-middle">Item Price</th>
+                <th scope="col" class="text-center align-middle">Item Source</th>
+                <th scope="col" class="text-center align-middle">Buyer Fullname</th>
+                <th scope="col" class="text-center align-middle">Buyer Location</th>
+                <th scope="col" class="text-center align-middle">Buyer Age</th>
+                <th scope="col" class="text-center align-middle">Item Seller</th>
+                <th scope="col" class="text-center align-middle">Delivery Rider</th>
+                <th scope="col" class="text-center align-middle">Delivery Status</th>
+                
+            </tr>
+            </thead>
+            <tbody>';
+  
+            $BuyerId =  $_SESSION['id'];
+            $sql = "SELECT * FROM confirmedorder WHERE BuyerId = '$BuyerId' AND status IS NOT NULL AND status != ''";
+  
+            $result = mysqli_query($connforMyOnlineDb,$sql);
+            $number = 1;
+  
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+  
+                  $Cartid = $row['id'];
+                  $BuyerID = $row['BuyerId'];
+                  $SellerId = $row['SellerId'];
+                  $itemName = $row['item_name'];
+                  $itemPrice = $row['item_price'];
+                  $itemSource = $row['item_source'];
+                  $BuyerFullname = $row['buyer_fullname'];
+                  $BuyerLocation = $row['buyer_location'];
+                  $BuyerAge = $row['buyer_age'];
+                  $Seller = $row['seller'];
+                  $status = $row['status'];
+                  $rider = $row['rider'];
+                  
+                  
+                 
+                
+          
+                  $table .= '<tr>
+                      <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerFullname . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
+                      <td scope="row" class="text-center align-middle">' . $Seller . '</td>
+                      <td scope="row" class="text-center align-middle">' . $rider . '</td>
+  
+                      <td scope="row" class="text-center align-middle">'.$status.'</td>         
+                     
+                      
+                  </tr>';
+          
+                  $number++;
+          
+          
+              }
+          } else {
+              // If no data, display a row with "No Data Information"
+              $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+          }
+          
+              $table .= '</tbody></table>';
+              echo $table;
+              echo '</div>';
+  }
 
 
 if(isset($_POST['ApproveOrder'])   && $_POST['ApproveOrder'] == true){
@@ -1954,6 +2242,80 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
             echo $table;
             echo '</div>';
 }
+
+// mobile
+
+if(isset($_POST['tableForCompleteDeliveriesForMobile']) && $_POST['tableForCompleteDeliveriesForMobile'] == true){
+    echo '<div style="max-height: 600px; max-width: 400px; font-size: 11px; position: relative; left: 0px; top: 20px; overflow-y: auto; " class="table">';
+    $table = '<table class="table table-bordered table-hover">
+            <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+            <tr> 
+                <th scope="col" class="text-center align-middle">Item Name</th>
+                <th scope="col" class="text-center align-middle">Item Price</th>
+                <th scope="col" class="text-center align-middle">Item Source</th>
+                <th scope="col" class="text-center align-middle">Buyer Fullname</th>
+                <th scope="col" class="text-center align-middle">Buyer Location</th>
+                <th scope="col" class="text-center align-middle">Buyer Age</th>
+                <th scope="col" class="text-center align-middle">Item Seller</th>
+                <th scope="col" class="text-center align-middle">Delivery Success Date</th>
+                <th scope="col" class="text-center align-middle">Delivery Status</th>
+                
+            </tr>
+            </thead>
+            <tbody>';
+  
+            $BuyerId =  $_SESSION['id'];
+            $sql = "SELECT * FROM complete_order WHERE BuyerId = $BuyerId ORDER BY id DESC";
+  
+            $result = mysqli_query($connForMyDatabase,$sql);
+            $number = 1;
+  
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+  
+                  $Cartid = $row['id'];
+                  $BuyerID = $row['BuyerId'];
+                  $SellerId = $row['SellerId'];
+                  $itemName = $row['item_name'];
+                  $itemPrice = $row['item_price'];
+                  $itemSource = $row['item_source'];
+                  $BuyerFullname = $row['buyer_fullname'];
+                  $BuyerLocation = $row['buyer_location'];
+                  $BuyerAge = $row['buyer_age'];
+                  $Seller = $row['seller'];
+                  $complete = $row['time'];
+                  
+                  
+                 
+                
+          
+                  $table .= '<tr>
+                      <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                      <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerFullname . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerLocation . '</td>
+                      <td scope="row" class="text-center align-middle">' . $BuyerAge . '</td>
+                      <td scope="row" class="text-center align-middle">' . $Seller . '</td>
+                      <td scope="row" class="text-center align-middle">' . $complete . '</td>
+                      <td scope="row" class="text-center align-middle"><h6 style = "border: 2px solid green; padding: 5px;">Delivery Complete</h6></td>         
+                     
+                      
+                  </tr>';
+          
+                  $number++;
+          
+          
+              }
+          } else {
+              // If no data, display a row with "No Data Information"
+              $table .= '<tr><td colspan="9" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+          }
+          
+              $table .= '</tbody></table>';
+              echo $table;
+              echo '</div>';
+  }
 
 if(isset($_POST['ToMessage']) && $_POST['ToMessage'] == true){
 

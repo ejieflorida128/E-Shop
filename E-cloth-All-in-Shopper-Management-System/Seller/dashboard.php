@@ -9,10 +9,89 @@
     <title>Dashboard</title>
     <link rel = "stylesheet" href = "../Seller_Design/dashboard.css">
     <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-      <div class="header">
+<div class="mobileView">
+           <div class="sidebar">
+            <div class="menu">
+                <input type="checkbox" id = "menu" hidden>
+                <label for="menu"><i class='bx bx-menu'></i></label>
+                <div class="contentForSidebar">
+                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
+                        
+                        <div class="forHome">
+                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
+                        </div>
+
+                        <div class="forStore">
+                            <a href="LoadToStore.php"><i class='bx bx-store'><span>My Store</span></i></a>
+                        </div>
+
+                        <div class="forCart">
+                            <a href="LoadToPending.php"><i class='bx bx-cart-alt' ><span>Pending Delivery</span></i></a>
+                        </div>
+
+                        <div class="forProfile">
+                            <a href="LoadToProfile.php"><i class='bx bx-user' ><span>Seller Profile</span></i></a>
+                        </div>
+
+                        <div class="forLogout">
+                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
+                        </div>
+                </div>
+
+                
+            </div>
+            
+           </div>
+
+           <div class="content">
+                        <!-- content aria for mobile! -->
+
+                        <a href="LoadToHome.php" style = "text-decoration:none;">
+                            <div class="box1">
+                                        <div class="title" style = "display:flex; justify-content:center; margin: 20px;">Home</div>
+                                        <div class="icon"  style = "display:flex; justify-content:center; font-size: 120px; margin: 20px; margin-top: -10px; color: rgb(114, 111, 111);"><i class='bx bx-store'></i></div>
+                                        <div class="info"  style = "display:flex; justify-content:center; margin: 20px; color: rgb(114, 111, 111);">Proceed to Home page..</div>
+                            </div>
+                        </a>
+
+                        <a href="LoadToStore.php" style = "text-decoration:none;">
+                            <div class="box2">
+                            <div class="title" style = "display:flex; justify-content:center; margin: 20px;">My Store</div>
+                                        <div class="icon"  style = "display:flex; justify-content:center; font-size: 120px; margin: 20px; margin-top: -10px; color: rgb(114, 111, 111);"><i class='bx bx-store'></i></div>
+                                        <div class="info"  style = "display:flex; justify-content:center; margin: 20px; color: rgb(114, 111, 111);">Proceed to My Store..</div>
+                            </div>
+                        </a>
+
+                        <a href="LoadToPending.php" style = "text-decoration:none;">
+                            <div class="box3">
+                            <div class="title" style = "display:flex; justify-content:center; margin: 20px;">Pending</div>
+                                        <div class="icon"  style = "display:flex; justify-content:center; font-size: 120px; margin: 20px; margin-top: -10px; color: rgb(114, 111, 111);"><i class='bx bx-cart-alt' ></i></div>
+                                        <div class="info"  style = "display:flex; justify-content:center; margin: 20px; color: rgb(114, 111, 111);">Proceed to Pending Deliveries..</div>
+                            </div>
+                        </a>
+
+                        <a href="LoadToProfile.php" style = "text-decoration:none;">
+                            <div class="box4">
+                            <div class="title" style = "display:flex; justify-content:center; margin: 20px;">Profile</div>
+                                        <div class="icon"  style = "display:flex; justify-content:center; font-size: 120px; margin: 20px; margin-top: -10px; color: rgb(114, 111, 111);"><i class='bx bx-user' ></i></div>
+                                        <div class="info"  style = "display:flex; justify-content:center; margin: 20px; color: rgb(114, 111, 111);">Proceed to Seller Profile..</div>
+                            </div>
+                        </a>
+           </div>
+
+           
+    </div>
+
+
+    <div class="desktop">
+    <div class="header">
             <div class="logo">
                 <img src="../images/logo.png" alt="logo of the shop">
             </div>
@@ -103,6 +182,38 @@
           </div>
 
       </div>    
+    </div>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+                            function toggleSidebar() {
+                                    var sidebarContent = document.getElementById('sidebarContent');
+                                        if (sidebarContent) {
+                                            if (sidebarContent.style.right === '0px') {
+                                                sidebarContent.style.right = '-360px'; // Adjust the value based on the width of your sidebar
+                                            } else {
+                                                sidebarContent.style.right = '200px';
+                                            }
+                                        }
+                                }
+
+
+
+                                                        document.addEventListener('DOMContentLoaded', function () {
+                            const menuCheckbox = document.getElementById('menu');
+
+                            menuCheckbox.addEventListener('change', function () {
+                                const contentForSidebar = document.querySelector('.contentForSidebar');
+
+                                if (menuCheckbox.checked) {
+                                    contentForSidebar.style.left = '0';
+                                } else {
+                                    contentForSidebar.style.left = '-360px';
+                                }
+                            });
+                        });
+
+                    </script>   
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </body>
 </html>

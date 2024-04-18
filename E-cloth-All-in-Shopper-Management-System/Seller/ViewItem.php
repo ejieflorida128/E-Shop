@@ -15,8 +15,335 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<div class = "mobileView">
+
+
+<!-- modals -->
+
+<div class="modal" tabindex="-1" id = "modalForDeletion" style = "margin-top: 120px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notice!</h5>
+        
+        
+      </div>
+      <div class="modal-body">
+        <p>Item is successfully Deleted!</p>
+      </div>
+      <div class="modal-footer">
+            <a href="store.php" class = "btn btn-danger">CLOSE</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style = "position:relative; top: 190px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <label for="item_Name">Item Name:</label><br>   
+              <input type="text" id = "item_Name" class = "form-control">
+              <label for="item_Price">Item Price:</label><br>
+              <input type="text" id = "item_Price" class = "form-control">       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick = "EditItemFromTheSelectedShop()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="sidebar">
+            <div class="menu" style = "position:fixed; z-index: 20;">
+                <input type="checkbox" id = "menu" hidden>
+                <label for="menu"><i class='bx bx-menu'></i></label>
+                <div class="contentForSidebar">
+                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
+                        
+                        <div class="forHome">
+                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
+                        </div>
+
+                        <div class="forStore">
+                            <a href="LoadToStore.php"><i class='bx bx-store'><span>Store</span></i></a>
+                        </div>
+
+                        <div class="forCart">
+                            <a href="LoadToPending.php"><i class='bx bx-cart-alt' ><span>My cart</span></i></a>
+                        </div>
+
+                        <div class="forProfile">
+                            <a href="LoadToProfile.php"><i class='bx bx-user' ><span>Buyer Profile</span></i></a>
+                        </div>
+
+                        <div class="forLogout">
+                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
+                        </div>
+                </div>
+
+                
+            </div>
+            
+           </div>
+        <div class="content" style = "margin-top: 80px;" >
+                    <div class = "contain">
+                            <?php
+                            $id = $_GET['ItemId'];
+                                $sql = "SELECT * FROM items WHERE id = $id";
+                                $query = mysqli_query($connforMyOnlineDb,$sql);
+
+                                while($test = mysqli_fetch_assoc($query)){
+
+                             
+                            ?>
+                               
+                            <div class="forItemPicture" style = "display:flex; justify-content: center;">
+                                <img src="<?php echo $test['img']?>" alt="item picture" style="width: 100vw; height: 50vh; display:flex; justify-content:center; ">
+                            </div>
+                            <div class="moreInformation">
+                                <p style = "font-weight: bold; letter-spacing: 2px; margin: 5px; font-size: 13px; color: rgb(92, 104, 116);"><?php  echo $test['item_source']; ?></p>
+                                <h4 style = "font-weight:bold; letter-spacing: 2px; margin:5px; font-size: 25px; color: rgb(92, 104, 116);"><?php echo $test['item_name']; ?></h4>
+                                <h4 style = "font-weight:bolder; letter-spacing: 2px; margin:5px; font-size: 35px; color:rgb(28, 90, 148); "><?php  echo $test['item_price'] ?></h4>
+                                <a href="rating_analysis.php?item_id=<?php  echo $test['id']; ?>">
+
+                                <div class="rate" style = "margin-left: 10px;">
+                                <?php
+                                      $selectAllRatingCondition = "SELECT * FROM irate_ratings WHERE item_id = $id";
+                                      $check = mysqli_query($connforMyOnlineDb, $selectAllRatingCondition);
+
+                                      $totalnumberofrating = 0;
+                                      $totaluserRate = 0;
+
+                                      while ($test = mysqli_fetch_assoc($check)) {
+                                          $totaluserRate++;
+                                          $totalnumberofrating += $test['rate'];
+                                      }
+
+                                      if ($totaluserRate == 0) {
+                                          $rateOfanItem = 0;
+                                      } else {
+                                          $rateOfanItem = round($totalnumberofrating / $totaluserRate, 1);
+                                      }
+                      
+                                     
+                                    
+                                         
+
+                                      if($rateOfanItem == 1){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                        </svg>';
+                                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>';
+                                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>';
+                                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>';
+                                      }else if($rateOfanItem >= 1.1 && $rateOfanItem <= 1.9){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+                                    <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+                                  </svg>';
+                                  echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+    
+                                      }else if ($rateOfanItem == 2){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                    </svg>';
+                                                    echo'<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>';
+                                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>';
+                                      }else if($rateOfanItem >= 2.1 && $rateOfanItem <= 2.9){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>';
+                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+                                <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+                              </svg>';
+                              echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                     
+                                      }else if($rateOfanItem == 3){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+    
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>';
+                                            echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>';
+                                      } else if ($rateOfanItem >= 3.1 && $rateOfanItem <= 3.9){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>';
+                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>';
+                            echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+                            <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+                          </svg>';
+                          echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                   
+                                      }else if($rateOfanItem == 4){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>';
+                                      
+                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                      } else if($rateOfanItem >= 4.1 && $rateOfanItem <= 4.9){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>';
+                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>';
+                            echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>';
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+                        <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+                      </svg>';
+                                     
+                                      }else if($rateOfanItem == 5){
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>';
+                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>';
+                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>';
+                            echo'<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>';
+                        
+                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>';
+                                      }
+                               
+    
+                                    if($rateOfanItem == 0) {
+                                        echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                      </svg>';
+                                                      echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                  </svg>';
+                                                  echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                              </svg>';
+                                              echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>';
+                                          echo '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>';
+                            }
+                                      ?>
+
+                                </div>
+                                </a>
+                            </div>
+                           
+                            <div class="footerForMobile">
+                                    <div class="moreInfor" style = "display:flex;">
+                                    <a href = "../Seller/store.php" class = "btn btn-primary" style="margin-top: 0px; height: 60px; margin-top: 10px; margin-left: 10px; width: 100px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); align-items:center; padding: 18px;">Back</a>
+                                    <button class = "btn btn-danger" id = "forDeleteItem" onclick = "deleteItemFromTheSelectedShop()" style="margin-top: 0px; height: 60px; margin-top: 10px; margin-left: 10px;">DELETE</button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModal" style="margin-top: 0px; height: 60px; margin-top: 10px; margin-left: 10px;" onclick = "openEditBoxWithValues()">
+                                    Edit Information
+                                    </button>
+                                    </div>
+                            </div>
+
+
+                            <?php
+                               }
+                            ?>
+                                
+                    </div>
+        </div>
+    </div>
 
 
 <div class="main">
@@ -95,7 +422,7 @@
                             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                         </svg>';
-                  }else if($rateOfanItem == 1.5){
+                  }else if($rateOfanItem >= 1.1 && $rateOfanItem <= 1.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -128,7 +455,7 @@
                             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                         </svg>';
-                  }else if($rateOfanItem == 2.5){
+                  }else if($rateOfanItem >= 2.1 && $rateOfanItem <= 2.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -162,7 +489,7 @@
                         $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                     </svg>';
-                  } else if ($rateOfanItem == 3.5){
+                  } else if ($rateOfanItem >= 3.1 && $rateOfanItem <= 3.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -172,7 +499,7 @@
             $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>';
-        $div.= '    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
+        $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-half" viewBox="0 0 16 16">
         <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
       </svg>';
                   $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
@@ -196,7 +523,7 @@
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-star" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
-                  } else if($rateOfanItem == 4.5){
+                  } else if($rateOfanItem >= 4.1 && $rateOfanItem <= 4.9){
                     $div.= '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="yellow" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                 </svg>';
@@ -481,6 +808,38 @@
 
 
 </script>
+
+
+<script>
+                            function toggleSidebar() {
+                                    var sidebarContent = document.getElementById('sidebarContent');
+                                        if (sidebarContent) {
+                                            if (sidebarContent.style.right === '0px') {
+                                                sidebarContent.style.right = '-360px'; // Adjust the value based on the width of your sidebar
+                                            } else {
+                                                sidebarContent.style.right = '200px';
+                                            }
+                                        }
+                                }
+
+
+
+                                                        document.addEventListener('DOMContentLoaded', function () {
+                            const menuCheckbox = document.getElementById('menu');
+
+                            menuCheckbox.addEventListener('change', function () {
+                                const contentForSidebar = document.querySelector('.contentForSidebar');
+
+                                if (menuCheckbox.checked) {
+                                    contentForSidebar.style.left = '0';
+                                } else {
+                                    contentForSidebar.style.left = '-360px';
+                                }
+                            });
+                        });
+
+                    </script>   
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     
 </body>

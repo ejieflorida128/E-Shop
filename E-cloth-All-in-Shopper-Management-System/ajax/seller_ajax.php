@@ -518,6 +518,141 @@ session_start();
 
     }
 
+    // mobile
+
+     //now
+     if (isset($_POST['searchItemsForMobile']) && $_POST['searchItemsForMobile'] == true){ 
+
+      $value = $_POST['searchValue'];
+
+      if($value == null){
+        // if walay value ang search bar
+
+        $getAllItems = "SELECT * FROM items ORDER BY id DESC";
+        $queryForItems = mysqli_query($connforMyOnlineDb, $getAllItems);
+        
+        $itemCount = 0;
+        
+        // Start the container div
+        $div = '<div class="row">';
+        
+        while ($get = mysqli_fetch_assoc($queryForItems)) {
+            $itemCount++;
+        
+            $picInDb = $get['img'];
+            $itemName = $get['item_name'];
+            $itemId = $get['id'];
+        
+            $selectAllRatingCondition = "SELECT * FROM irate_ratings WHERE item_id = $itemId";
+            $check = mysqli_query($connforMyOnlineDb, $selectAllRatingCondition);
+        
+            $totalnumberofrating = 0;
+            $totaluserRate = 0;
+        
+            while ($test = mysqli_fetch_assoc($check)) {
+                $totaluserRate++;
+                $totalnumberofrating += $test['rate'];
+            }
+        
+            if ($totaluserRate == 0) {
+                $rateOfanItem = 0;
+            } else {
+                $rateOfanItem = round($totalnumberofrating / $totaluserRate, 1);
+            }
+        
+            $div .= '
+            <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+               
+                    <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                        <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                        <div class="card-body">
+                            <p class="card-text" style="display:flex; justify-content: center; font-size: 10px; margin-top: -10px;">' . $itemName . '</p>
+                        </div>
+                    </div>
+              
+            </div>
+            ';
+        
+            if ($itemCount % 2 == 0) {
+                // Close the current row and start a new one
+                $div .= '</div><div class="row">';
+            }
+        }
+        
+        // Close the container div
+        $div .= '</div>';
+        
+        echo $div;
+        
+          
+      }else{
+
+        // if naay value ang search bar
+
+        $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
+        $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
+
+        $itemCount = 0;
+        
+        // Start the container div
+        $div = '<div class="row">';
+        
+        while ($get = mysqli_fetch_assoc($queryForItems)) {
+            $itemCount++;
+        
+            $picInDb = $get['img'];
+            $itemName = $get['item_name'];
+            $itemId = $get['id'];
+        
+            $selectAllRatingCondition = "SELECT * FROM irate_ratings WHERE item_id = $itemId";
+            $check = mysqli_query($connforMyOnlineDb, $selectAllRatingCondition);
+        
+            $totalnumberofrating = 0;
+            $totaluserRate = 0;
+        
+            while ($test = mysqli_fetch_assoc($check)) {
+                $totaluserRate++;
+                $totalnumberofrating += $test['rate'];
+            }
+        
+            if ($totaluserRate == 0) {
+                $rateOfanItem = 0;
+            } else {
+                $rateOfanItem = round($totalnumberofrating / $totaluserRate, 1);
+            }
+        
+            $div .= '
+            <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+              
+                    <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                        <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                        <div class="card-body">
+                            <p class="card-text" style="display:flex; justify-content: center; font-size: 10px; margin-top: -10px;">' . $itemName . '</p>
+                        </div>
+                    </div>
+               
+            </div>
+            ';
+        
+            if ($itemCount % 2 == 0) {
+                // Close the current row and start a new one
+                $div .= '</div><div class="row">';
+            }
+        }
+        
+        // Close the container div
+        $div .= '</div>';
+        
+        echo $div;
+      }
+
+
+   
+
+    
+
+  }
+
 
         // start sa query if ahu ge click ang Create Shop
         if(isset($_POST['shopName'])){
@@ -582,6 +717,65 @@ session_start();
 
 
         }
+
+        // mobile
+
+        // list of shop sa Buyer
+if(isset($_POST['ListOfShopMobile'])){
+
+ 
+  $shopCreator =  $_SESSION['username'];
+                
+                $queryToGetAllCreatedStore = "SELECT * FROM shop WHERE shop_creator = '$shopCreator'";
+  $query = mysqli_query($connForMyDatabase,$queryToGetAllCreatedStore);
+
+
+  $itemCount = 0;
+
+  $div = '<div class = "row">';
+
+  while($get = mysqli_fetch_assoc($query)){
+
+          $itemCount ++;
+
+            $picInDb = $get['shop_pic'];
+            $shopname = $get['shop_name'];
+            $shop_contact = $get['shop_contactNo'];
+
+            $div.='
+            <div class="col-md-3" style = "width:170px; margin:5px;">
+            <a href="../Seller/shopDetail.php?shopName='.$shopname.'" style = "text-decoration:none;">
+            <div class="card" sstyle="width: 350px; height: 300px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+            <img src='.$picInDb.' class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title" style = "display: flex; justify-content: center; color: rgb(114, 111, 111); font-size: 12px; font-weight:bolder;">'.$shopname.'</h5>
+              <h6 class="card-text"  style = "display: flex; justify-content: center; color: rgb(114, 111, 111);"> '.$shop_contact.' </h6>
+              
+            
+              </div>
+              </a>
+          </div>
+          </div>
+            
+            
+            ';
+
+          
+            if ($itemCount % 2 == 0) {
+              // Close the current row and start a new one
+              $div .= '</div><div class="row">';
+          }
+        }
+
+
+        
+         // Close the container div
+      $div .= '</div>';
+      
+      echo $div;
+
+
+}
 
 
 
@@ -1124,6 +1318,125 @@ session_start();
   }
 
 
+  // mobile
+
+  //para ni sa ShopDetail pero sa mobile version!
+
+if (isset($_POST['ItemsSearchInTheCurrentShopForMobile']) && $_POST['ItemsSearchInTheCurrentShopForMobile'] == true){
+
+  $value = $_POST['ItemSearchValue'];
+  $currentlySelectedShop = $_POST['SelectedShop'];
+
+
+  if($value == null){
+    // if walay value ang search bar
+
+      $getAllItems = "SELECT * FROM items WHERE item_source = '$currentlySelectedShop' ORDER BY id DESC";
+      $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
+
+      $itemCount = 0;
+
+      $div = '<div class = "row">';
+
+      while($get = mysqli_fetch_assoc($queryForItems)){
+
+        $itemCount ++;
+
+          $picInDb = $get['img'];
+          $itemPrice = $get['item_price'];
+          $itemName = $get['item_name'];
+
+          $itemId = $get['id'];
+
+       
+          
+         
+
+          $div.='
+          <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+              <a href="../Seller/ViewItem.php?ItemId='.$itemId.'" style="text-decoration: none; color: black;"> <!-- Anchor tag -->
+                  <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                      <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                      <div class="card-body">
+                          <p class="card-text" style="display:flex; justify-content: center; font-size: 10px;">' . $itemName . '</p>
+                      </div>
+                  </div>
+              </a> <!-- Closing anchor tag -->
+          </div>
+          
+          
+          ';
+
+        
+          if ($itemCount % 2 == 0) {
+              // Close the current row and start a new one
+              $div .= '</div><div class="row">';
+          }
+      }
+
+
+      
+      $div.='</div>';
+      echo $div;
+
+      
+  }else{
+
+    // if naay value ang search bar
+
+    $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ";
+    $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
+
+    $itemCount = 0;
+
+    $div = '<div class = "row">';
+
+    while($get = mysqli_fetch_assoc($queryForItems)){
+
+      $itemCount ++;
+
+        $picInDb = $get['img'];
+        $itemPrice = $get['item_price'];
+        $itemName = $get['item_name'];
+
+        $itemId = $get['id'];
+
+     
+        
+       
+
+        $div.='
+        <div class="col-md-3" style = "width:150px; margin:10px;"> <!-- Each item occupies 6 columns in a 12-column grid system -->
+            <a href="../Buyer/ViewItem.php?ItemId='.$itemId.'" style="text-decoration: none; color: black;"> <!-- Anchor tag -->
+                <div class="card" style="width: 150px; height: 200px;  box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                    <img src="' . $picInDb . '" class="card-img-top" style="width: 150px; height:150px;">
+                    <div class="card-body">
+                        <p class="card-text" style="display:flex; justify-content: center; font-size: 10px;">' . $itemName . '</p>
+                    </div>
+                </div>
+            </a> <!-- Closing anchor tag -->
+        </div>
+        
+        
+        ';
+
+      
+        if ($itemCount % 2 == 0) {
+            // Close the current row and start a new one
+            $div .= '</div><div class="row">';
+        }
+    }
+
+
+    
+    $div.='</div>';
+    echo $div;
+  }
+
+
+}
+
+
 
   if(isset($_POST['item_image']) && isset($_POST['item_price']) && isset($_POST['item_name'])){
              $Pic = $_POST['item_image'];  
@@ -1231,6 +1544,73 @@ if(isset($_POST['EditClicked'])){
 if(isset($_POST['DisplayPendingOrder']) && $_POST['DisplayPendingOrder'] == true){
 
   echo '<div style="max-height: 300px; max-width: 1200px; font-size: 11px; position: relative; left: 0px; top: 40px; overflow-y: auto; " class="table">';
+  $table = '<table class="table table-bordered table-hover">
+          <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
+          <tr> 
+              <th scope="col" class="text-center align-middle">Item Name</th>
+              <th scope="col" class="text-center align-middle">Item Price</th>
+              <th scope="col" class="text-center align-middle">Item Source</th>
+              <th scope="col" class="text-center align-middle">Delivery Status</th>
+              <th scope="col" class="text-center align-middle">Action</th>
+          </tr>
+          </thead>
+          <tbody>';
+
+          $SellerId =  $_SESSION['sellerID'];
+          $sql = "SELECT * FROM seller_approval_list WHERE SellerId = '$SellerId'";
+
+          $result = mysqli_query($connforMyOnlineDb,$sql);
+          $number = 1;
+
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                $Cartid = $row['id'];
+                $BuyerID = $row['BuyerId'];
+                $SellerId = $row['SellerId'];
+                $itemName = $row['item_name'];
+                $itemPrice = $row['item_price'];
+                $itemSource = $row['item_source'];
+                $BuyerFullname = $row['buyer_fullname'];
+                $BuyerLocation = $row['buyer_location'];
+                $BuyerAge = $row['buyer_age'];
+                $Seller = $row['seller'];
+                
+                
+               
+              
+        
+                $table .= '<tr>
+                    <td scope="row" class="text-center align-middle">' . $itemName . '</td>
+                    <td scope="row" class="text-center align-middle">' . $itemPrice . '</td>
+                    <td scope="row" class="text-center align-middle">' . $itemSource . '</td>
+                    <td scope="row" class="text-center align-middle">W a i t i n g   f o r   a p p r o v a l</td>         
+                    <td class="text-center align-middle">
+                        <button class="btn btn-outline-success" style="box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick="Approve('.$Cartid.','.$BuyerID.','.$SellerId.',\''.$itemName.'\',\''.$itemPrice.'\',\''.$itemSource.'\',\''.$BuyerFullname.'\',\''.$BuyerLocation.'\',\''.$BuyerAge.'\',\''.$Seller.'\')">Approve Order</button>             
+                    </td
+                    
+                </tr>';
+        
+                $number++;
+        
+        
+            }
+        } else {
+            // If no data, display a row with "No Data Information"
+            $table .= '<tr><td colspan="8" class="text-center" style = "font-size: 20px; letter-spacing: 4px; background-color: #d95f57;">No Data Information</td></tr>';
+        }
+        
+            $table .= '</tbody></table>';
+            echo $table;
+            echo '</div>';
+
+}
+
+//mobile
+
+if(isset($_POST['DisplayPendingOrderForMobile']) && $_POST['DisplayPendingOrderForMobile'] == true){
+
+  echo '<div style="max-height: 600px; max-width: 400px; font-size: 11px; position: relative; left: 0px; top: 0px; margin-top: 160px; overflow-y: auto; " class="table">';
   $table = '<table class="table table-bordered table-hover">
           <thead class="table-dark" id="table-header" style="position: sticky; top: 0; background-color: #343a40; color: white;">
           <tr> 

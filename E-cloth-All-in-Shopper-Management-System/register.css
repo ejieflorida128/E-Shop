@@ -133,10 +133,6 @@
     }
 }
 
-body{
-    overflow: hidden;
-}
-
 
 
 .firstPicture{
@@ -389,10 +385,18 @@ body{
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        height: 730px;
+        height: 100vh;
         overflow: hidden;
     }
+
     
+    .mobileView{
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
     .mobileView h4{
         color: white;
         display: flex;

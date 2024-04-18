@@ -135,3 +135,198 @@ left: 10px;
 #forEditOfItem{
     margin-top:30px;
 }
+
+.mobileView{
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 400px) {
+
+    .footerForMobile{
+         background-color: rgb(164, 203, 230);
+         width: 100vw;
+         height: 80px;
+         position: fixed;
+         bottom: 0vh;
+    }
+    
+     
+     .mobileView{
+         display: block;
+     }
+ 
+    .header{
+     display: none;
+    }
+    .footer{
+     display: none;
+    }
+ 
+ 
+    /* start sa mobile css */
+ 
+    .mobileView{
+     overflow-x: hidden;
+     
+ }
+ 
+ 
+ 
+ .menu label i{
+     font-size: 50px;
+     position: absolute;
+     left: 2px;
+     top: 4px;
+     color: white;
+ }
+ 
+ .menu{
+     background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
+     box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
+     height: 60px;
+     position: fixed;
+     width: 100vw;
+ }
+ .contentForSidebar{
+     
+     height: 100vh; /* Ensure the sidebar takes up the full height of the viewport */
+     width: 360px; /* Set the width of the sidebar */
+     background: url('../images/pexels-skylar-kang-6044224.jpg');
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;
+     background-repeat: no-repeat;
+     position: fixed; /* Fix the position of the sidebar */
+     top: 60px; /* Position it at the top of the viewport */
+     left: -360px; /* Hide it off-screen initially */
+     transition: left 0.3s ease; /* Smooth transition when sliding in/out */
+     z-index: 20;
+     
+ }
+ 
+ 
+ .mlogo img{
+     width: 270px;
+     height: 150px;
+    border-radius: 20px;
+     
+ }
+ 
+ .mlogo{
+     display: flex;
+     justify-content: center;
+     position: relative;
+     top: 30px; border-radius: 20px;
+ }
+ 
+ .forHome,.forStore,.forCart,.forProfile,.forLogout{
+     color: white;
+     border: 1px solid black;
+     width: 300px;
+     display: flex;
+     justify-content: center;
+     margin-left: 35px;
+     margin-top: 5px;
+ }
+ 
+ .forHome,.forStore,.forCart,.forProfile{
+     background-color: black;
+     border-radius: 20px;
+     font-size: 25px;
+ }
+ .forHome{
+     margin-top: 80px;
+ }
+ .forHome a,.forStore a,.forCart a,.forProfile a,.forLogout a{
+     color: white;
+     display: flex;
+     justify-content: center;
+     padding: 20px;
+     font-size: 25px;
+ }
+ 
+ 
+ 
+ .forHome a i{
+     position: relative;
+     left: -70px;
+ }
+ .forHome a i span{
+     position: relative;
+     left: 65px;
+ }
+ 
+ 
+ .forStore a i{
+     position: relative;
+     left: -75px;
+ }
+ 
+ .forStore a i span{
+     position: relative;
+     left: 70px;
+ }
+ 
+ .forCart a i{
+     position: relative;
+     left: -58px;
+ }
+ 
+ .forCart a i span{
+     position: relative;
+     left: 50px;
+ }
+ 
+ .forProfile a i{
+     position: relative;
+     left: -22px;
+ }
+ 
+ .forProfile a i span{
+     position: relative;
+     left: 20px;
+ }
+ 
+ .forLogout{
+     margin-top:50px;
+     background-color: rgb(189, 35, 35);
+     border-radius: 20px;
+     font-size: 25px;
+ }
+ 
+ .forLogout a i{
+     position: relative;
+     left: -55px;
+ }
+ 
+ .forLogout a i span{
+     position: relative;
+     left: 45px;
+ }
+ .mobileView{
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+    overflow-x: hidden;
+}
+ 
+ .menu a{
+     text-decoration: none;
+ }
+ 
+ .container{
+     display: none;
+ }
+ .main{
+     display: none;
+ }
+ .functions{
+     display: none;
+ }
+ 
+ .footer,.header{
+     display: none;
+ }
+ }

@@ -13,23 +13,77 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class = "mobileView" style = "position: fixed; top: 0px;">
+    <div class="sidebar">
+            <div class="menu" style = "position:fixed; z-index: 20;">
+                <input type="checkbox" id = "menu" hidden>
+                <label for="menu"><i class='bx bx-menu'></i></label>
+                <div class="contentForSidebar">
+                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
+                        
+                        <div class="forHome">
+                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
+                        </div>
 
-        <div class="optionForCart" style = "margin-top: 120px; margin-left: 40px; display:flex;">
-           
-            <a href="pending_order.php" class = "btn btn-primary" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin: 10px;">Pending Orders</a>
-           
-        </div>
+                        <div class="forStore">
+                            <a href="LoadToStore.php"><i class='bx bx-store'><span>My Store</span></i></a>
+                        </div>
 
-        <div class="container">
-                <div class="table">
-                        <div class="tableInfo" id = "tableForPending">
-                            <!-- displaying current cart of the buyer -->
+                        <div class="forCart">
+                            <a href="LoadToPending.php"><i class='bx bx-cart-alt' ><span>Pending</span></i></a>
+                        </div>
 
+                        <div class="forProfile">
+                            <a href="LoadToProfile.php"><i class='bx bx-user' ><span>Seller Profile</span></i></a>
+                        </div>
+
+                        <div class="forLogout">
+                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
                         </div>
                 </div>
+
+                
+            </div>
+            
+           </div>
+        <div class="content" style = "margin-top: 60px;" >
+                    <div class = "contain">
+                                <!-- item list for mobile -->
+                                <div class="tableForPendingForMobile" id = "tableForPendingForMobile" style = "margin-left: 8px;">
+                                     <!-- search items from the database -->
+                                 </div>
+
+                               
+                                
+                    </div>
         </div>
+    </div>
+
+      <div class="desktop">
+      <div class="optionForCart" style = "margin-top: 90px; margin-left: 0px; display:flex;">
+           
+           <a href="pending_order.php" class = "btn btn-primary" style = "box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1); margin: 10px;">Pending Orders</a>
+          
+       </div>
+
+       <div class="container">
+               <div class="table">
+                       <div class="tableInfo" id = "tableForPending">
+                           <!-- displaying current cart of the buyer -->
+
+                       </div>
+               </div>
+       </div>
+      </div>
+
+
+     
 
 
 
@@ -52,17 +106,22 @@
 </div>
     
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
         <script>
 
 $(document).ready(function () {
-         displayForSellerPending();  
+         displayForSellerPending(); 
+         displayForSellerPendingForMobile(); 
                   
 });
 
 function refreshIfClose(){
         $(document).ready(function () {
          location.reload();
-         displayForSellerPending();              
+         displayForSellerPending();     
+         displayForSellerPendingForMobile();       
 });
 }
 
@@ -77,6 +136,20 @@ function displayForSellerPending(){
             success:function (data, status) {
                 console.log(data); // Check the data in the console
                 $('#tableForPending').html(data);                       
+            }
+        });
+}
+
+function displayForSellerPendingForMobile(){
+    $.ajax({
+            url: "../ajax/seller_ajax.php",
+            type: 'post',
+            data: {
+                    DisplayPendingOrderForMobile:true
+            },
+            success:function (data, status) {
+                console.log(data); // Check the data in the console
+                $('#tableForPendingForMobile').html(data);                       
             }
         });
 }
@@ -124,5 +197,36 @@ function Approve(cartId,BuyerId,SellerId,itemname,itemPrice,itemSource,buyerFull
 
 
 </script>
+
+<script>
+                            function toggleSidebar() {
+                                    var sidebarContent = document.getElementById('sidebarContent');
+                                        if (sidebarContent) {
+                                            if (sidebarContent.style.right === '0px') {
+                                                sidebarContent.style.right = '-360px'; // Adjust the value based on the width of your sidebar
+                                            } else {
+                                                sidebarContent.style.right = '200px';
+                                            }
+                                        }
+                                }
+
+
+
+                                                        document.addEventListener('DOMContentLoaded', function () {
+                            const menuCheckbox = document.getElementById('menu');
+
+                            menuCheckbox.addEventListener('change', function () {
+                                const contentForSidebar = document.querySelector('.contentForSidebar');
+
+                                if (menuCheckbox.checked) {
+                                    contentForSidebar.style.left = '0';
+                                } else {
+                                    contentForSidebar.style.left = '-360px';
+                                }
+                            });
+                        });
+
+                    </script>   
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
 </body>
 </html>
