@@ -97,8 +97,9 @@
     width: 100vw;
 }
 .contentForSidebar{
+    height: calc(100vh - 60px); /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
     
-    height: 100vh; /* Ensure the sidebar takes up the full height of the viewport */
     width: 360px; /* Set the width of the sidebar */
     background: url('../images/pexels-skylar-kang-6044224.jpg');
     background-position: center;
@@ -212,12 +213,12 @@
     position: relative;
     left: 45px;
 }
-.mobileView{
-    position: absolute;
-    left: 0px;
-    width: 100vw;
-    overflow-x: hidden;
+.mobileView {
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    height: 100vh; /* Ensure the container takes up the full height of the viewport */
 }
+
 
 .menu a{
     text-decoration: none;

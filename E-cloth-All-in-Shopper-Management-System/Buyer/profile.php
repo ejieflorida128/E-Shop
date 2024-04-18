@@ -113,18 +113,18 @@ include("../connection/conn.php");
     <div class="rightside">
         <div class="buyerInformation">
                 <label for="BuyerFullname"> Fullname:</label>
-            <input type="text" id="BuyerFullname" class="form-control" style="width: 300px">
+            <input type="text" id="BuyerFullnameD" class="form-control" style="width: 300px">
             <label for="BuyerAge">Age:</label>
-            <input type="number" id="BuyerAge" class="form-control" style="width: 100px">
-            <label for="BuyerNumber">Gcash Number:</label>
-            <input type="number" id="BuyerNumber" class="form-control" style="width: 200px">
-            <label for="BuyerLocation">Location:</label>
-            <textarea class="form-control" rows="3" style="width: 500px" id = "BuyerLocation"></textarea>
+            <input type="number" id="BuyerAgeD" class="form-control" style="width: 100px">
+            <label for="BuyerNumberD">Gcash Number:</label>
+            <input type="number" id="BuyerNumberD" class="form-control" style="width: 200px">
+            <label for="BuyerLocationD">Location:</label>
+            <textarea class="form-control" rows="3" style="width: 500px" id = "BuyerLocationD"></textarea>
 
 
             <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px;" for="selectProfilePicture" id = "chooseBtnForPic">Choose Profile Pic</label>
             <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImage(event)">
-            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" onclick = "EditDataFromTheProfile()">Save Edit</button>
+            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" onclick = "EditDataFromTheProfileD()">Save Edit</button>
         </div>
     </div>
 </div>
@@ -160,6 +160,7 @@ include("../connection/conn.php");
     window.onload = function() {
       
         DisplayAllDataOfTheSaidAccount();
+        DisplayAllDataOfTheSaidAccountD();
 
        
         setTimeout(function() {
@@ -202,6 +203,21 @@ include("../connection/conn.php");
         });
     }
 
+    function DisplayAllDataOfTheSaidAccountD() {
+        var username = '<?php echo $_SESSION['username']; ?>';
+      
+        $.post("../ajax/buyer_ajax.php", { EditInformationOfTheSaidProfileAccount: username }, function(data, status) {
+            console.log(data); // Log the raw response to the console
+
+            var SelectedProfileDatas = JSON.parse(data);
+
+            $('#BuyerFullnameD').val(SelectedProfileDatas.fullname);
+            $('#BuyerAgeD').val(SelectedProfileDatas.age);
+            $('#BuyerNumberD').val(SelectedProfileDatas.number);
+            $('#BuyerLocationD').val(SelectedProfileDatas.location);
+        });
+    }
+
 
     function EditDataFromTheProfile(){
                 var EditClicked = true;
@@ -234,6 +250,38 @@ include("../connection/conn.php");
                                     });
                       
                 }
+
+
+        function EditDataFromTheProfileD(){
+            var EditClicked = true;
+                var BuyerFullname = $('#BuyerFullnameD').val();
+                var BuyerAge = $('#BuyerAgeD').val();
+                var BuyerNumber = $('#BuyerNumberD').val();
+                var BuyerLocation = $('#BuyerLocationD').val();
+                var Username = '<?php echo $_SESSION['username']; ?>';
+                var SelectedProfilePicture = $('#selectProfilePicture').val();
+                var BuyerPic = SelectedProfilePicture.replace(/C:\\fakepath\\/i, '');
+        
+
+                          $.ajax({
+                                        url: "../ajax/buyer_ajax.php",
+                                        type: 'post',
+                                        data: {
+                                           
+                                            BuyerFullname: BuyerFullname,
+                                            BuyerAge: BuyerAge,
+                                            BuyerNumber:BuyerNumber,
+                                            BuyerLocation: BuyerLocation,
+                                            BuyerPic:BuyerPic,
+                                            EditClicked:EditClicked,
+                                            SelectedUserNameTObeEdited:Username
+                                        },
+                                        success: function (data, status) {
+                                                        
+                                            $('#SuccesfullEdit').modal('show');
+                                        }
+                                    });
+        }
 
                 
 </script>

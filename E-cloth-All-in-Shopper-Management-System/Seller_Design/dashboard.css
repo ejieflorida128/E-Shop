@@ -131,8 +131,9 @@ body{
     width: 100vw;
 }
 .contentForSidebar{
-    
-    height: 100vh; /* Ensure the sidebar takes up the full height of the viewport */
+    height: calc(100vh - 60px); /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+   
     width: 360px; /* Set the width of the sidebar */
     background: url('../images/pexels-skylar-kang-6044224.jpg');
     background-position: center;

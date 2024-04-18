@@ -364,229 +364,144 @@
     display: none;
 }
 
-.mobileView{
+#mobileView{
     display: none;
 }
 
 @media only screen and (max-width: 400px) {
 
-    .header, .main{
+    .desktop{
         display: none;
-    }
-
-     .mobileView{
+      }
+      .header{
+        display: none;
+      }
+      #mobileView{
         display: block;
-     }
-
-     .mobileView{
-        /* background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%)); */
-        background: url('images/pexels-edgars-kisuro-1488463.jpg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
         height: 100vh;
-        overflow: hidden;
-    }
-
-    
-    .mobileView{
+        background: url('images/pexels-skylar-kang-6044224.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
         position: absolute;
-        left: 0px;
-        width: 100vw;
-        overflow-x: hidden;
+        top: -170px;
+      }
+    
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',sans-serif;
     }
-
-    .mobileView h4{
-        color: white;
-        display: flex;
-        justify-content: center;
-        margin-top: 90px;
-        font-weight: bolder;
-        font-family: 'Rubik', sans-serif;
-        letter-spacing: 2px;
-        font-size: 25px;
-        transition: color 0.3s ease-in-out;
-        animation: fall 1s ease-in-out forwards;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    
-    
+    body{
+      background: #318cc4;
+      overflow: hidden;
+    }
+    ::selection{
+      background: rgba(26,188,156,0.3);
+    }
+    .container{
+      max-width: 440px;
+      padding: 0 20px;
+      margin: 170px auto;
+    }
+    .wrapper{
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+    }
+    .wrapper .title{
+      height: 90px;
+      background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
+      border-radius: 5px 5px 0 0;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form{
+      padding: 30px 25px 25px 25px;
+    }
+    .wrapper form .row{
+      height: 45px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .wrapper form .row input{
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding-left: 60px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    form .row input:focus{
+      border-color: #16a085;
+      box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
+    }
+    form .row input::placeholder{
+      color: #999;
+    }
+    .wrapper form .row i{
+      position: absolute;
+      width: 47px;
+      height: 100%;
+      color: #fff;
+      font-size: 18px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form .pass{
+      margin: -8px 0 20px 0;
+    }
+    .wrapper form .pass a{
+      color: #16a085;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .wrapper form .pass a:hover{
+      text-decoration: underline;
+    }
+    .wrapper form .button input{
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      padding-left: 0px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      cursor: pointer;
+    }
+    form .button input:hover{
+      background: #12876f;
+    }
+    .wrapper form .signup-link{
+      text-align: center;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+    .wrapper form .signup-link a{
+      color: #16a085;
+      text-decoration: none;
+    }
+    form .signup-link a:hover{
+      text-decoration: underline;
     }
     
-    .bag{
-        display: flex;
-        color: white;
-        justify-content: center;
-        font-size: 120px;
-        transition: color 0.3s ease-in-out;
-    }
     
-    .mobileView h2{
-        color: white;
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        font-family: 'Great Vibes', cursive;
-        font-size: 50px;
-        animation: shake 0.5s infinite;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        
-        
-       
-    }
-    
-    .login{
-        margin-top: 50px;
-        height: 430px;
-        /* background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%)); */
-        /* background: transparent; */
-        background-color: white;
-        backdrop-filter: blur(5px);
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-        border: 2px solid white;
       
-    }
     
-    .login input{
-        width: 300px;
-        padding: 25px;
-        border-radius: 20px;
-        letter-spacing: 3px;
-        display: flex;
-        justify-content: center;
-        border: 1px solid black;
-        box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-        
-    }
-    
-    .username,.password{
-        display: flex;
-        justify-content: center;
-        margin: 20px;
-    }
-    
-    .inputs{
-        position: relative;
-        top: 70px;
-    
-    }
-    
-    .inputs h4{
-        color: #000000;
-    }
-    
-    .password{
-        position:relative;
-        top: 170px;
-        left: -230px;
-    }
-    
-    .loginBtn input{
-        padding: 10px;
-        width: 150px;
-        border-radius: 10px;
-        outline: none;
-        box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-    }
-    
-    .loginBtn{
-        display: flex;
-        justify-content: center;
-    }
-    
-    .loginBtn input[type="submit"] {
-        width: 200px;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #28a745;
-        color: #fff;
-        font-size: 18px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .loginBtn input[type="submit"]:hover {
-        background-color: #218838;
-    }
-    
-    @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
-    }
-    
-    @keyframes fall {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(0); }
-    }
-    
-    .classForRegister a{
-        text-decoration: none;
-        color: rgb(0, 0, 0);
-        font-size: 20px;
-        letter-spacing: 3px;
-        font-weight: bolder;
-        padding: 5px;
-        margin: 10px;
-        position: absolute;
-        top: -380px;
-        background-color: white;
-        border-radius: 10px;
-        animation: swipe 2s forwards;
-    
-    
-    }
-    
-    @keyframes swipe {
-    
-        0% {
-            transform: translateX(400px);
-        }
-        100% {
-            transform: translateX(0%);
-        }
-        
-    }
-
-    .option{
-        position: absolute;
-        top: 150px;
-        left: -195px;
-    }
-
-    #dropdown{
-        width: 100px;
-    border-radius: 10px;
-    outline: none;
-    box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
-    padding: 5px;
-    }
-
-    .classForLogin{
-        text-decoration: none;
-        color: rgb(0, 0, 0);
-        font-size: 20px;
-        letter-spacing: 3px;
-        font-weight: bolder;
-        padding: 5px;
-        margin: 10px;
-        position: absolute;
-        top: -380px;
-        background-color: white;
-        border-radius: 10px;
-        animation: swipe 2s forwards;   
-
-    }
-
-    .classForLogin a{
-        color: #000000;
-    }
-    
-    
-        
 
 }
 

@@ -75,6 +75,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
    
 </head>
@@ -96,33 +97,30 @@
             <!-- end sa header section -->
 
         </div>
-        <div class="mobileView">
-                        <form action="index.php" method = "post">
-                            <h4>E-shop Online </h4>
-                            <div class="bag"><i class='bx bxs-shopping-bags'></i></div>
-                            <h2>Welcome Back!</h2>
+        <form action="index.php" method = "post">
+                        <div class="container" id = "mobileView">
+                                <div class="wrapper" style = "margin-top:50%;">
+                                    <div class="title"><span>Login Form</span></div>
+                                    <form action="#">
+                                        <div class="row" style = "display: flex; justify-content: center; margin-top: 30px;">
+                                            <input type="text" class = "form-control" style = "width: 70%;" name = "username" placeholder = "Username">
+                                        </div>
 
-                            <div class="login">
-                                        <div class="classForRegister">
-                                             <a href="LoadRegister.php"><i class='bx bx-message-square-add'>Register</i></a>     
+                                        <div class="row" style = "display: flex; justify-content: center; margin-top: 20px;">
+                                            <input type="text" class = "form-control" style = "width: 70%;" name = "password" placeholder = "Password">
                                         </div>
-                                    <div class="inputs">
-                                        <h4>LOGIN</h4>
-                                        <div class="username">
-                                            <input type="text" name = "username" class = "form-control" id = "username"  placeholder="Username">
-                                        </div>
-                                        <div class="password">
-                                            <input type="password" name = "password" class = "form-control" id = "password"  placeholder="Password">
-                                        </div>
-                                        <div class="loginBtn">
-                                            <input type="submit" value = "Login" class = "btn btn-success" >
-                                        </div>
+                                    
+                                    <div class="row button" style = "display:flex; justify-content:center; margin-top: 30px;">
+                                        <input type="submit" value="Login" class = "btn btn-success" style = "width: 50%;">
                                     </div>
-                            </div>
+                                    <div class="signup-link" style = "display:flex; justify-content:center; margin-top:10px; margin-bottom: 100px; padding: 10px;">Not a member? <a href="register.php">Signup now</a></div>
+                                    </form>
+                                </div>
+                                </div>
                         </form>
-                    </div>
                     
-        <div class = "main">
+  <div class="desktop">
+  <div class = "main">
            <!-- start sa main na section -->
 
                  
@@ -191,6 +189,7 @@
             <!-- end sa main na section -->
 
         </div>
+  </div>
 
         <?php
     if (isset($modalPutCredintials)) {

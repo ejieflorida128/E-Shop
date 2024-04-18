@@ -120,8 +120,8 @@
                                 <img src="<?php echo $test['img']?>" alt="item picture" style="width: 100vw; height: 50vh; display:flex; justify-content:center; ">
                             </div>
                             <div class="moreInformation">
-                                <p style = "font-weight: bold; letter-spacing: 2px; margin: 5px; font-size: 13px; color: rgb(92, 104, 116);"><?php  echo $test['item_source']; ?></p>
-                                <h4 style = "font-weight:bold; letter-spacing: 2px; margin:5px; font-size: 25px; color: rgb(92, 104, 116);"><?php echo $test['item_name']; ?></h4>
+                                <p style = "font-weight: bold; letter-spacing: 2px; margin: 5px; font-size: 11px; color: rgb(92, 104, 116);"><?php  echo $test['item_source']; ?></p>
+                                <h4 style = "font-weight:bold; letter-spacing: 2px; margin:5px; font-size: 22px; color: rgb(92, 104, 116);"><?php echo $test['item_name']; ?></h4>
                                 <h4 style = "font-weight:bolder; letter-spacing: 2px; margin:5px; font-size: 35px; color:rgb(28, 90, 148); "><?php  echo $test['item_price'] ?></h4>
                                 <a href="rating_analysis.php?item_id=<?php  echo $test['id']; ?>">
 
@@ -335,6 +335,8 @@
                                     </button>
                                     </div>
                             </div>
+
+                            
 
 
                             <?php
@@ -606,11 +608,83 @@
 
                     ?>
 
-                    <button class = "btn btn-danger" id = "forDeleteItem" onclick = "deleteItemFromTheSelectedShop()">DELETE</button>
+                    <button class = "btn btn-danger" id = "forDeleteItem" onclick = "deleteItemFromTheSelectedShopD()">DELETE</button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModal" style = "margin-top: 30px;" onclick = "openEditBoxWithValues()">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModalD" style = "margin-top: 30px;" onclick = "openEditBoxWithValuesD()">
                     Edit Information
                     </button>
+
+
+                    <!-- modals -->
+
+<div class="modal" tabindex="-1" id = "modalForDeletionD" style = "margin-top: 120px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notice!</h5>
+        
+        
+      </div>
+      <div class="modal-body">
+        <p>Item is successfully Deleted!</p>
+      </div>
+      <div class="modal-footer">
+            <a href="store.php" class = "btn btn-danger">CLOSE</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="EditModalD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <label for="item_Name">Item Name:</label><br>   
+              <input type="text" id = "item_NameD" class = "form-control">
+              <label for="item_Price">Item Price:</label><br>
+              <input type="text" id = "item_PriceD" class = "form-control">       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick = "EditItemFromTheSelectedShopD()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <label for="item_Name">Item Name:</label><br>   
+              <input type="text" id = "item_Name" class = "form-control">
+              <label for="item_Price">Item Price:</label><br>
+              <input type="text" id = "item_Price" class = "form-control">       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick = "EditItemFromTheSelectedShop()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
          
 
@@ -677,53 +751,7 @@
 
 
 
-<!-- modals -->
 
-<div class="modal" tabindex="-1" id = "modalForDeletion" style = "margin-top: 120px;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Notice!</h5>
-        
-        
-      </div>
-      <div class="modal-body">
-        <p>Item is successfully Deleted!</p>
-      </div>
-      <div class="modal-footer">
-            <a href="store.php" class = "btn btn-danger">CLOSE</a>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Information</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-              <label for="item_Name">Item Name:</label><br>   
-              <input type="text" id = "item_Name" class = "form-control">
-              <label for="item_Price">Item Price:</label><br>
-              <input type="text" id = "item_Price" class = "form-control">       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" onclick = "EditItemFromTheSelectedShop()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -755,6 +783,23 @@
                         });
                     }
 
+                    function deleteItemFromTheSelectedShopD() {  
+                        $.ajax({
+                            url: "../ajax/seller_ajax.php",
+                            type: 'post',
+                            data: {
+                                clickForDelete: true,
+                                deleteThisItem: '<?php echo $_GET['ItemId']; ?>'
+                            },
+                            success: function (data, status) {
+                                console.log("clicked!");
+                                // Handle success response if needed
+
+                                $('#modalForDeletionD').modal('show');
+                            }
+                        });
+                    }
+
 
 
                     function openEditBoxWithValues(){
@@ -772,6 +817,22 @@
                             
                           });
                     }
+
+                    function openEditBoxWithValuesD(){
+
+var id =  '<?php echo $_GET['ItemId']; ?>';
+
+$.post("../ajax/seller_ajax.php", { editIdForTheSelectedItem:id}, function(data, status) {
+  console.log(data); // Log the raw response to the console
+
+  var SelectedItemDatas = JSON.parse(data);
+
+  $('#item_NameD').val(SelectedItemDatas.item_name);
+  $('#item_PriceD').val(SelectedItemDatas.item_price);
+  
+
+});
+}
 
 
                     function EditItemFromTheSelectedShop() {  
@@ -799,6 +860,33 @@
                             }
                         });
                     }
+
+
+                    function EditItemFromTheSelectedShopD() {  
+
+var itemName = $('#item_Name').val();
+var itemPrice = $('#item_Price').val();
+
+
+  $.ajax({
+      url: "../ajax/seller_ajax.php",
+      type: 'post',
+      data: {
+          clickForEdit: true,
+          item_name:itemName,
+          item_price:itemPrice,
+          EditThisItem: '<?php echo $_GET['ItemId']; ?>'
+      },
+      success: function (data, status) {
+          console.log("clicked!");
+          // Handle success response if needed
+
+          refreshIfClose();
+
+          // $('#modalForDeletion').modal('show');
+      }
+  });
+}
 
 
 

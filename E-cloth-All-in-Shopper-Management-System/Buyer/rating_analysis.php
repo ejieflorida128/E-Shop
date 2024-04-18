@@ -79,7 +79,7 @@ include("../includes/footer.php");
 
                                        <div class = "ForProfile">
                                                     <img src="<?php echo $check['img'] ?>" style = "width: 100vw;height: 250px; margin-left: -8px;">
-                                                    <p style = "font-weight: bold; letter-spacing: 2px; margin: 5px; font-size: 13px; color: rgb(92, 104, 116);"><?php  echo $check['item_source']; ?></p>
+                                                    <p style = "font-weight: bold; letter-spacing: 2px; margin: 5px; font-size: 13px; color: rgb(92, 104, 116);" id = "item_source"><?php  echo $check['item_source']; ?></p>
                                                     <h4 style = "font-weight:bold; letter-spacing: 2px; margin:5px; font-size: 25px; color: rgb(92, 104, 116);"><?php echo $check['item_name']; ?></h4>
                                                     <h4 style = "font-weight:bolder; letter-spacing: 2px; margin:5px; font-size: 35px; color:rgb(28, 90, 148); "><?php  echo $check['item_price'] ?></h4>
                                                     <div class="percentage" style = "margin-left: -10px;">

@@ -29,6 +29,31 @@ session_start();
 <body>
 <div id="top" style = "position: absolute; top: 0;"></div>
 <div class = "mobileView">
+<div class="modal fade" id="putItemToChosenStoreM" style="margin-top: 100px;" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Item Details</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="item_img">Item Img:</label><br>
+                            <input type="file" class="form-control" id="item_img" required><br>
+                            <label for="item_price">Price:</label><br>
+                            <input type="text" class="form-control" id="item_price" required>
+                            <label for="item_name">Name of the product:</label><br>
+                            <input type="text" class="form-control" id="item_name" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick = "refreshIfClose()">Cancel</button>
+                        <button type="button" class="btn btn-success" onclick = "AddItemInDb()">Confirm Item Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     <div class="sidebar">
             <div class="menu" style = "position:fixed; z-index: 20;">
                 <input type="checkbox" id = "menu" hidden>
@@ -66,6 +91,16 @@ session_start();
         <div class="content" style = "margin-top: 80px;" >
                     <div class = "contain">
                                 <!-- item list for mobile -->
+                                <div class="buttonsForNew">
+                                <a href = "store.php" class = "btn btn-danger" style = " box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Back to list of Store</a>
+           
+                                <!-- Modal for shop creation -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#putItemToChosenStoreM" style = "">
+                                    Add Item
+                                </button>
+
+                  
+                                </div>
                                 <div class="searchItemsForMobile" id = "searchItemsForMobile" style = "margin-left: 8px;">
                                      <!-- search items from the database -->
                                  </div>
@@ -114,6 +149,8 @@ session_start();
             </div>
         </div>
         <!-- end sa add items -->
+
+        
         
 
           <!-- Notification Modal for Shop Creation -->

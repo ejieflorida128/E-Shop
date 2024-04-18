@@ -69,7 +69,7 @@ include("../connection/conn.php");
                 while($check = mysqli_fetch_assoc($query)) {
                     echo $check['profile_pic'];
                 }
-            ?>" style="height: 150px; width: 150px; border-radius: 50%; border: 4px solid black;margin-top: -70px;">
+            ?>" style="height: 150px; width: 150px; border-radius: 50%; border: 4px solid black;margin-top: -70px;" id = "profileImageM">
                                         </div>
                                 </div>
 
@@ -84,7 +84,7 @@ include("../connection/conn.php");
 
                                 <div class="buttons" style = "margin-top: -24px; margin-bottom: 10px; margin-left: 40px;">
                                 <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px; padding: 10px;" for="selectProfilePicture" id = "chooseBtnForPic" >Choose Profile Pic</label>
-                                <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImage(event)">
+                                <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImageM(event)">
                                 <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px; padding: 10px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);" onclick = "EditDataFromTheProfile()">Save Edit</button>
                                 </div>
 
@@ -97,29 +97,29 @@ include("../connection/conn.php");
 <div class="container" style="display: flex;">
     <div class="leftside">
         <div class="profilePic">
-            <img id="profileImage"  style = "height: 450px; width: 400px;" src="<?php
+            <img style = "height: 450px; width: 400px;" src="<?php
                 $LogInedUsername =  $_SESSION['username'];
                 $sql = "SELECT profile_pic FROM seller_account WHERE username = '$LogInedUsername' ";
                 $query = mysqli_query($connForMyDatabase, $sql);
                 while($check = mysqli_fetch_assoc($query)) {
                     echo $check['profile_pic'];
                 }
-            ?>" alt="Profile Picture" style="width: 450px;">
+            ?>" alt="Profile Picture" style="width: 450px;" id = "profileImageD">
         </div>
     </div>
     <div class="rightside">
         <div class="sellerInformation">
                 <label for="SellerFullname"> Fullname:</label>
-            <input type="text" id="SellerFullname" class="form-control" style="width: 300px">
-            <label for="SellerAge">Age:</label>
-            <input type="number" id="SellerAge" class="form-control" style="width: 100px">
+            <input type="text" id="SellerFullnameD" class="form-control" style="width: 300px">
+            <label for="SellerAgeD">Age:</label>
+            <input type="number" id="SellerAgeD" class="form-control" style="width: 100px">
             <label for="SellerBio">Bio:</label>
-            <textarea class="form-control" rows="6" style="width: 500px" id = "SellerBio"></textarea>
+            <textarea class="form-control" rows="6" style="width: 500px" id = "SellerBioD"></textarea>
 
 
             <label class="btn btn-primary" style="margin-left: 10px; margin-top: 20px;" for="selectProfilePicture" id = "chooseBtnForPic">Choose Profile Pic</label>
-            <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImage(event)">
-            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" onclick = "EditDataFromTheProfile()">Save Edit</button>
+            <input type="file" id="selectProfilePicture" hidden onchange="displaySelectedImageD(eventD)">
+            <button class="btn btn-success" style="margin-left: 10px; margin-top: 20px;" onclick = "EditDataFromTheProfileD()">Save Edit</button>
         </div>
     </div>
 </div>
@@ -150,6 +150,7 @@ include("../connection/conn.php");
     window.onload = function() {
       
         DisplayAllDataOfTheSaidAccount();
+        DisplayAllDataOfTheSaidAccountD();
 
        
         setTimeout(function() {
@@ -163,17 +164,33 @@ include("../connection/conn.php");
         });
     }
 
-    function displaySelectedImage(event) {
-        var selectedFile = event.target.files[0];
-        var reader = new FileReader();
-        
-        reader.onload = function(event) {
-            var imgElement = document.getElementById('profileImage');
-            imgElement.src = event.target.result;
-        };
-        
-        reader.readAsDataURL(selectedFile);
-    }
+    // JavaScript for desktop version
+function displaySelectedImageD(eventD) {
+    var selectedFile = eventD.target.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(eventD) {
+        var imgElement = document.getElementById('profileImageD');
+        imgElement.src = eventD.target.result;
+    };
+    
+    reader.readAsDataURL(selectedFile);
+}
+
+   // JavaScript for mobile version
+function displaySelectedImageM(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(event) {
+        var imgElement = document.getElementById('profileImageM');
+        imgElement.src = event.target.result;
+    };
+    
+    reader.readAsDataURL(selectedFile);
+}
+
+
 
 
 //     para ma display ang current na data sa usa ka seller account 
@@ -192,11 +209,57 @@ include("../connection/conn.php");
     }
 
 
+    function DisplayAllDataOfTheSaidAccountD() {
+        var username = '<?php echo $_SESSION['username']; ?>';
+      
+        $.post("../ajax/seller_ajax.php", { EditInformationOfTheSaidProfileAccount: username }, function(data, status) {
+            console.log(data); // Log the raw response to the console
+
+            var SelectedProfileDatas = JSON.parse(data);
+
+            $('#SellerFullnameD').val(SelectedProfileDatas.fullname);
+            $('#SellerAgeD').val(SelectedProfileDatas.age);
+            $('#SellerBioD').val(SelectedProfileDatas.bio);
+        });
+    }
+
+
     function EditDataFromTheProfile(){
                 var EditClicked = true;
                 var SellerFullname = $('#SellerFullname').val();
                 var SellerAge = $('#SellerAge').val();
                 var SellerBio = $('#SellerBio').val();
+                var Username = '<?php echo $_SESSION['username']; ?>';
+                var SelectedProfilePicture = $('#selectProfilePicture').val();
+                var SellerPic = SelectedProfilePicture.replace(/C:\\fakepath\\/i, '');
+        
+
+                          $.ajax({
+                                        url: "../ajax/seller_ajax.php",
+                                        type: 'post',
+                                        data: {
+                                           
+                                            SellerFullname: SellerFullname,
+                                            SellerAge: SellerAge,
+                                            SellerBio: SellerBio,
+                                            SellerPic:SellerPic,
+                                            EditClicked:EditClicked,
+                                            SelectedUserNameTObeEdited:Username
+                                        },
+                                        success: function (data, status) {
+                                                        
+                                            $('#SuccesfullEdit').modal('show');
+                                        }
+                                    });
+                      
+                }
+
+
+                function EditDataFromTheProfileD(){
+                var EditClicked = true;
+                var SellerFullname = $('#SellerFullnameD').val();
+                var SellerAge = $('#SellerAgeD').val();
+                var SellerBio = $('#SellerBioD').val();
                 var Username = '<?php echo $_SESSION['username']; ?>';
                 var SelectedProfilePicture = $('#selectProfilePicture').val();
                 var SellerPic = SelectedProfilePicture.replace(/C:\\fakepath\\/i, '');

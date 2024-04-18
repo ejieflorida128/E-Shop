@@ -1,13 +1,19 @@
-body{
-    overflow-y:hidden;
-
+body {
+    overflow-y: auto; /* Re-enable vertical scrolling */
+    margin: 0; /* Reset default margins */
 }
 
 .mobileView{
     display: none;
 }
 
-@media only screen and (max-width: 400px) {
+
+
+@media only screen and (max-width: 400px) and (max-height: 730px){
+
+    .forAnotherMobile2{
+        display: none;
+    }
    
     #DesktopContent{
         display: none;
@@ -48,8 +54,9 @@ body{
     width: 100vw;
 }
 .contentForSidebar{
-    
-    height: 100vh; /* Ensure the sidebar takes up the full height of the viewport */
+    height: calc(100vh - 60px); /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+   
     width: 360px; /* Set the width of the sidebar */
     background: url('../images/pexels-skylar-kang-6044224.jpg');
     background-position: center;
@@ -163,12 +170,12 @@ body{
     position: relative;
     left: 45px;
 }
-.mobileView{
-    position: absolute;
-    left: 0px;
-    width: 100vw;
-    overflow-x: hidden;
+.mobileView {
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    height: 100vh; /* Ensure the container takes up the full height of the viewport */
 }
+
 
 .menu a{
     text-decoration: none;
@@ -176,4 +183,12 @@ body{
 
 /* end sa mobile css */
 
+}
+
+/* clear and marylyn */
+@media only screen and (max-height: 650px){
+    #item_source{
+        font-size: 9px;
+    }
+   
 }

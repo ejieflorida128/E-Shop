@@ -158,94 +158,97 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         </div>
     </div>
 
-    <div class="mobileView">
-           <form action="">
-            <h4>E-shop Online </h4>
-            <div class="bag"><i class='bx bxs-shopping-bags'></i></div>
-            <h2>Register with us now!</h2>
+    <form action="index.php" method = "post">
+                        <div class="container" id = "mobileView">
+                                <div class="wrapper" style = "margin-top:50%">
+                                    <div class="title"><span>Register Form</span></div>
+                                    <form action="#">
 
-            <div class="login">
-            <div class="classForLogin">
-                                             <a href="LoadIndex.php"><i class='bx bx-message-square-add'>Login</i></a>     
+                                        <div class="row" style = "display: flex; justify-content: center; margin-top: 30px;">
+                                                <select id="dropdown" name = "choose_settings" class = "form-control" style = "width: 70%;">
+                                                <option value="None" name = "none">None</option>
+                                                <option value="BUYER" name = "choose">Buyer</option>
+                                                <option value="SELLER" name = "choose">Seller</option>                        
+                                                </select>
+                                        </div>  
+
+
+                                        <div class="row" style = "display: flex; justify-content: center; margin-top: 20px;">
+                                            <input type="text" class = "form-control" style = "width: 70%;" name = "username" placeholder = "Username">
                                         </div>
-                    <div class="inputs">
-                        <div class="option">
-                            <select name="choose_settings" id="dropdown" class = "form-control">
-                                <option value="None" name = "none">None</option>
-                                <option value="BUYER" name = "choose">Buyer</option>
-                                <option value="SELLER" name = "choose">Seller</option>     
-                            </select>
+
+                                        <div class="row" style = "display: flex; justify-content: center; margin-top: 20px;">
+                                            <input type="text" class = "form-control" style = "width: 70%;" name = "password" placeholder = "Password">
+                                        </div>
+                                    
+                                    <div class="row button" style = "display:flex; justify-content:center; margin-top: 30px;">
+                                        <input type="submit" value="Register" class = "btn btn-success" style = "width: 50%;">
+                                    </div>
+                                    <div class="signup-link" style = "display:flex; justify-content:center; margin-top:10px; margin-bottom: 100px; padding: 10px;">Already a member? <a href="index.php">Login now</a></div>
+                                    
+                                    </form>
+                                </div>
                         </div>
-                        <div class="username">
-                            <input type="text" name = "username" class = "form-control" id = "username" required placeholder="Username">
-                        </div>
-                        <div class="password">
-                            <input type="text" name = "password" class = "form-control" id = "password" required placeholder="Password">
-                        </div>
-                        <div class="loginBtn">
-                            <input type="submit" value = "Register" class = "btn btn-success" >
-                        </div>
-                    </div>
-            </div>
-           </form>
-    </div>
+     </form>
     
-    <div class = "main">
+  <div class="desktop">
+  <div class = "main">
    
 
-        <div class = "part1">
-            <div class = "picStorage1">
-                <div class = "firstPicture"></div>
-                <div class = "ShopNaText">
-                   <b>Shop na!</b>
-                   <div class = "line1"></div>
-                   <div class = "line2"></div>
-                   <div class = "SecondPicture"></div>
-                </div>
-            </div>
-            <div class = "picStorage2">
-                <div class = "line3"></div>
-                <div class = "ThirdPicture"></div>
-                <div class = "storage3">
-                    <p class = "paragraph1">
-                        "E-Cloth All-In Shopper Management System" stands as a sophisticated and 
-                        forward-thinking digital solution poised to redefine the landscape of retail 
-                        operations. This comprehensive platform is meticulously designed to address the
-                         multifaceted needs of both retailers and consumers, ushering in a new era of efficiency 
-                         and convenience.
-                    </p>
-                    <a href = "LoadIndex.php" class = "linkToRegister">LOG IN</a>
-                </div>
-            </div>
-        </div>
-        <div class="part2">
-            <form action = "register.php" method = "post">
-                <div class="storageForLogIn">
-                    <img src = "images/bag.png" class = "bagImage">
-                </div>
-                <div class="option">
-                    <img src="images/option_icon.png">
-                    <select id="dropdown" name = "choose_settings">
-                        <option value="None" name = "none">None</option>
-                        <option value="BUYER" name = "choose">Buyer</option>
-                        <option value="SELLER" name = "choose">Seller</option>                        
-                    </select>
-                </div>
-                <div class="user">
-                    <img src="images/profile_icon.png">
-                    <input type = "username" name = "username">
-                </div>
-                <div class="password">
-                    <img src="images/password_icon.png">
-                    <input type = "password" name = "password">
-                </div>
-                <div class="forLoginButton">
-                    <input type = "submit" value = "SIGN UP" name = "signup_button">
-                </div>
-            </form>
-        </div>
-    </div>
+   <div class = "part1">
+       <div class = "picStorage1">
+           <div class = "firstPicture"></div>
+           <div class = "ShopNaText">
+              <b>Shop na!</b>
+              <div class = "line1"></div>
+              <div class = "line2"></div>
+              <div class = "SecondPicture"></div>
+           </div>
+       </div>
+       <div class = "picStorage2">
+           <div class = "line3"></div>
+           <div class = "ThirdPicture"></div>
+           <div class = "storage3">
+               <p class = "paragraph1">
+                   "E-Cloth All-In Shopper Management System" stands as a sophisticated and 
+                   forward-thinking digital solution poised to redefine the landscape of retail 
+                   operations. This comprehensive platform is meticulously designed to address the
+                    multifaceted needs of both retailers and consumers, ushering in a new era of efficiency 
+                    and convenience.
+               </p>
+               <a href = "LoadIndex.php" class = "linkToRegister">LOG IN</a>
+           </div>
+       </div>
+   </div>
+   <div class="part2">
+       <form action = "register.php" method = "post">
+           <div class="storageForLogIn">
+               <img src = "images/bag.png" class = "bagImage">
+           </div>
+           <div class="option">
+               <img src="images/option_icon.png">
+               <select id="dropdown" name = "choose_settings">
+                   <option value="None" name = "none">None</option>
+                   <option value="BUYER" name = "choose">Buyer</option>
+                   <option value="SELLER" name = "choose">Seller</option>                        
+               </select>
+           </div>
+           <div class="user">
+               <img src="images/profile_icon.png">
+               <input type = "username" name = "username">
+           </div>
+           <div class="password">
+               <img src="images/password_icon.png">
+               <input type = "password" name = "password">
+           </div>
+           <div class="forLoginButton">
+               <input type = "submit" value = "SIGN UP" name = "signup_button">
+           </div>
+       </form>
+   </div>
+</div>
 
+  </div>
 
     
 <?php
