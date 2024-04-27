@@ -279,7 +279,7 @@ include("../connection/conn.php");
 
           // if naay value ang search bar
 
-          $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
+          $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' ORDER BY id DESC";
           $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
           $counToRow = 0;
@@ -619,7 +619,7 @@ include("../connection/conn.php");
 
         // if naay value ang search bar
 
-        $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%'";
+        $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' ORDER BY id DESC";
         $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
         $itemCount = 0;
@@ -731,7 +731,7 @@ if(isset($_POST['ListOfShop'])){
 
  
   
-  $queryToGetAllCreatedStore = "SELECT * FROM shop ";
+  $queryToGetAllCreatedStore = "SELECT * FROM shop ORDER BY id DESC";
   $query = mysqli_query($connForMyDatabase,$queryToGetAllCreatedStore);
 
 
@@ -783,7 +783,7 @@ if(isset($_POST['ListOfShopMobile'])){
 
  
   
-    $queryToGetAllCreatedStore = "SELECT * FROM shop ";
+    $queryToGetAllCreatedStore = "SELECT * FROM shop ORDER BY id DESC";
     $query = mysqli_query($connForMyDatabase,$queryToGetAllCreatedStore);
   
   
@@ -1098,7 +1098,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
             $div.='
               <h5 class="card-title" style = "display:flex; justify-content: center; font-size: 30px;">'.$itemPrice.'</h5>
               <p class="card-text" style = "display:flex; justify-content: center;">'.$itemName.'</p>
-              <a href = "../Buyer/cartInfo.php?id='.$itemId.'" class = "btn btn-danger" style = "position: absolute; bottom: 10px;width: 200px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Show Item</a>
+              <a href = "../Buyer/cartInfo.php?id='.$itemId.'" class = "btn btn-primary" style = "position: absolute; bottom: 10px;width: 200px; box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">Show Item</a>
               
               
             </div>
@@ -1125,7 +1125,7 @@ if(isset($_POST['addtoCart']) && $_POST['addtoCart'] == true){
 
       // if naay value ang search bar
 
-      $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ";
+      $getAllItems = "SELECT * FROM items WHERE item_name LIKE '%$value%' AND item_source = '$currentlySelectedShop' ORDER BY id DESC";
       $queryForItems = mysqli_query($connforMyOnlineDb,$getAllItems);
 
       $counToRow = 0;
@@ -2013,7 +2013,7 @@ if(isset($_POST['displayOrderStatus']) && $_POST['displayOrderStatus'] == true){
           <tbody>';
 
           $BuyerId =  $_SESSION['id'];
-          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = '$BuyerId' AND status IS NOT NULL AND status != ''";
+          $sql = "SELECT * FROM confirmedorder WHERE BuyerId = '$BuyerId' AND status IS NOT NULL AND status != '' ";
 
           $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
@@ -2160,7 +2160,7 @@ if(isset($_POST['ApproveOrder'])   && $_POST['ApproveOrder'] == true){
 
 
   $cancel = "INSERT INTO complete_order (cartPendingId,BuyerId,SellerId,item_name,item_price,item_source,buyer_fullname,buyer_location,buyer_age,seller) VALUES ('$cartId','$BuyerId','$SellerId','$itemName','$itemPrice','$itemSource','$buyerFullname','$buyerLocation','$buyerAge','$Seller')";
-  mysqli_query($connForMyDatabase,$cancel);
+  mysqli_query($connforMyOnlineDb,$cancel);
 
   $cancelData = "DELETE FROM confirmedorder WHERE id = $cartId";
   mysqli_query($connforMyOnlineDb,$cancelData);
@@ -2193,7 +2193,7 @@ if(isset($_POST['tableForCompleteDeliveries']) && $_POST['tableForCompleteDelive
           $BuyerId =  $_SESSION['id'];
           $sql = "SELECT * FROM complete_order WHERE BuyerId = $BuyerId ORDER BY id DESC";
 
-          $result = mysqli_query($connForMyDatabase,$sql);
+          $result = mysqli_query($connforMyOnlineDb,$sql);
           $number = 1;
 
           if (mysqli_num_rows($result) > 0) {
@@ -2267,7 +2267,7 @@ if(isset($_POST['tableForCompleteDeliveriesForMobile']) && $_POST['tableForCompl
             $BuyerId =  $_SESSION['id'];
             $sql = "SELECT * FROM complete_order WHERE BuyerId = $BuyerId ORDER BY id DESC";
   
-            $result = mysqli_query($connForMyDatabase,$sql);
+            $result = mysqli_query($connforMyOnlineDb,$sql);
             $number = 1;
   
             if (mysqli_num_rows($result) > 0) {

@@ -86,11 +86,11 @@
     position: absolute;
     left: 2px;
     top: 4px;
-    color: white;
+    color: black;
 }
 
 .menu{
-    background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
+   background-color: white;
     box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);
     height: 60px;
     position: fixed;
@@ -101,7 +101,7 @@
     overflow-y: auto; /* Enable vertical scrolling */
     
     width: 360px; /* Set the width of the sidebar */
-    background: url('../images/pexels-skylar-kang-6044224.jpg');
+    background-color: #1a4d2f;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;

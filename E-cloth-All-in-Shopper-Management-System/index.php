@@ -2,7 +2,7 @@
     // start sa php code
     session_start();
     
-    include("connection/conn.php");
+    include("connection/connection.php");
   
 
     
@@ -22,8 +22,10 @@
                         if($buyer['username'] == $username && $buyer['password'] == $password){
                             // code for redirecting to the buyer dashboard
                            
-                            $_SESSION['username'] = $username; 
+                            $_SESSION['username'] = $username;
                             $_SESSION['id'] = $buyer['id'];
+                            $_SESSION['fullname'] = $buyer['fullname'];
+                            $_SESSION['profile_pic'] = $buyer['profile_pic'];
                             header('Location: Buyer/LoadToUserDashboard.php');
                         }
                     }
@@ -88,6 +90,11 @@
                 <img src = "images/logo.png">
              
             </div>
+
+            <div class="xml">
+            <a href="xml/pages/export.php" class = "btn btn-primary" style = "box-shadow: 0px 4px 10px 1px rgba(14, 205, 75, 0.1); position: relative; top: 40px; left: 30px;">Offline Mode</a>
+            </div>
+            
             
             <div class = "loginText">
                 LOG IN
@@ -102,6 +109,7 @@
                                 <div class="wrapper" style = "margin-top:50%;">
                                     <div class="title"><span>Login Form</span></div>
                                     <form action="#">
+                                        
                                         <div class="row" style = "display: flex; justify-content: center; margin-top: 30px;">
                                             <input type="text" class = "form-control" style = "width: 70%;" name = "username" placeholder = "Username">
                                         </div>

@@ -1,5 +1,5 @@
 <?php
-include("connection/conn.php");
+include("connection/connection.php");
 
 
 
@@ -151,7 +151,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <div class = "header">
         <div class = "logo">
             <img src = "images/logo.png">
-            <h6>E-Shop Mobile Platform </h6>
+           
         </div>
         <div class = "loginText">
             CREATE ACCOUNT

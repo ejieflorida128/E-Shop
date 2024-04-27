@@ -30,27 +30,14 @@
                         <label for = "searchDataForMobile"><i class='bx bx-search-alt'style="position:absolute; left: 150px;z-index: 10; font-size: 35px; color:black; top: 11px;"></i></label>
                         <input type = "text" id = "searchDataForMobile" name = "searchDataForMobile" class = "form-control" style="width: 200px; height: 40px; position: absolute; right: 10px; top:8px; padding-left: 30px;">
                 <div class="contentForSidebar">
-                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
-                        
-                        <div class="forHome">
-                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
-                        </div>
-
-                        <div class="forStore">
-                            <a href="LoadToStore.php"><i class='bx bx-store'><span>My Store</span></i></a>
-                        </div>
-
-                        <div class="forCart">
-                            <a href="LoadToPending.php"><i class='bx bx-cart-alt' ><span>Pending</span></i></a>
-                        </div>
-
-                        <div class="forProfile">
-                            <a href="LoadToProfile.php"><i class='bx bx-user' ><span>Seller Profile</span></i></a>
-                        </div>
-
-                        <div class="forLogout">
-                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
-                        </div>
+                <div class="containerS" style=" height: 100vh; margin-top: 50px;">
+                    <a href="LoadToSellerDashboard.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">DASHBOARD</a>
+                    <a href="LoadToHome.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 70px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">HOME</a>
+                    <a href="LoadToStore.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 140px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">MY STORE</a>
+                    <a href="LoadToPending.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 210px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">PENDING</a>
+                    <a href="LoadToProfile.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 280px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">PROFILE</a>
+                    <a href="LoadToLogout.php" style="color: black; background-color: red; color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; bottom: 10px; margin-top: 350px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">LOGOUT</a>
+                </div>
                 </div>
 
                 
@@ -76,14 +63,14 @@
 
                 <div class="home">
                         <a href="LoadToHome.php">
-                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-house" viewBox="0 0 16 16">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-house" viewBox="0 0 16 16">
                                     <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                                     </svg>
                          </a>  
                 </div>
                 <div class="stores">
                     <a href="LoadToStore.php">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-shop" viewBox="0 0 16 16">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-shop" viewBox="0 0 16 16">
                                     <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
                                     </svg>
 
@@ -91,7 +78,7 @@
                 </div>
                 <div class="cart">
                     <a href="LoadToPending.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-truck" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-truck" viewBox="0 0 16 16">
                                 <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
                                 </svg>
                         </a>
@@ -99,7 +86,7 @@
 
                 <div class="about">
                     <a href="LoadToProfile.php">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-person-check" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-person-check" viewBox="0 0 16 16">
                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                                     <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
                                     </svg>
@@ -137,20 +124,20 @@
                 </div>
             
             <div class = "searchBar">
-                <input type = "text" name = "searchData" id = "searchData" class = "form-control">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <input type = "text" name = "searchData" id = "searchData" class = "form-control" style = " box-shadow: 0 4px 8px rgba(4, 4, 4, 1.1);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg>
             </div>    
             
             <div class="logout">
                 <a href="LoadToLogout.php">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-door-closed" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-door-closed" viewBox="0 0 16 16">
                         <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3zm1 13h8V2H4z"/>
                         <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/>
                         </svg>
 
-                        <h6>LOGOUT</h6>
+                        <h6 style = "color: black;">LOGOUT</h6>
 
                         </a>    
             </div>
@@ -217,13 +204,13 @@
                 </div>
         </a>
 
-        <a href="LoadToMessage.php">
+        <!-- <a href="LoadToMessage.php">
             <div class="mess">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
                 <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                 </svg>
             </div>
-        </a>
+        </a> -->
 </div>
 
 </div>
@@ -312,7 +299,7 @@
                                 const contentForSidebar = document.querySelector('.contentForSidebar');
 
                                 if (menuCheckbox.checked) {
-                                    contentForSidebar.style.left = '0';
+                                    contentForSidebar.style.left = '-150px';
                                 } else {
                                     contentForSidebar.style.left = '-360px';
                                 }

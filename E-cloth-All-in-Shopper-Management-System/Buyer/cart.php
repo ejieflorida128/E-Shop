@@ -28,27 +28,14 @@
                 <label for="menu"><i class='bx bx-menu'></i></label>
                       
                 <div class="contentForSidebar">
-                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
-                        
-                        <div class="forHome">
-                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
-                        </div>
-
-                        <div class="forStore">
-                            <a href="LoadToStore.php"><i class='bx bx-store'><span>Store</span></i></a>
-                        </div>
-
-                        <div class="forCart">
-                            <a href="LoadToMyCart.php"><i class='bx bx-cart-alt' ><span>My cart</span></i></a>
-                        </div>
-
-                        <div class="forProfile">
-                            <a href="LoadToMyProfile.php"><i class='bx bx-user' ><span>Buyer Profile</span></i></a>
-                        </div>
-
-                        <div class="forLogout">
-                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
-                        </div>
+                <div class="containerS" style=" height: 100vh; margin-top: 50px;">
+                    <a href="LoadToUserDashboard.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">DASHBOARD</a>
+                    <a href="LoadToHome.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 70px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">HOME</a>
+                    <a href="LoadToStore.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 140px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">STORE</a>
+                    <a href="LoadToMyCart.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 210px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">CART</a>
+                    <a href="LoadToMyProfile.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 280px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">PROFILE</a>
+                    <a href="LoadToLogout.php" style="color: black; background-color: red; color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; bottom: 10px; margin-top: 350px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">LOGOUT</a>
+                </div>
                 </div>
 
                 
@@ -312,7 +299,7 @@
                                 const contentForSidebar = document.querySelector('.contentForSidebar');
 
                                 if (menuCheckbox.checked) {
-                                    contentForSidebar.style.left = '0';
+                                    contentForSidebar.style.left = '-150px';
                                 } else {
                                     contentForSidebar.style.left = '-360px';
                                 }

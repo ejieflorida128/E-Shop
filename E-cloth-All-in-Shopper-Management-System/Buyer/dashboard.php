@@ -1,4 +1,5 @@
     <?php
+    session_start();
         include("../includes/footer.php");
     ?>
     <!DOCTYPE html>
@@ -26,7 +27,7 @@
                 <a href = "LoadToLogout.php" id = "logout">
                 <div class="logoutBtn">
                     
-                        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="black" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                         </svg>
@@ -39,35 +40,26 @@
 
         <div class="mobileView">
            <div class="sidebar">
-            <div class="menu">
-                <input type="checkbox" id = "menu" hidden>
-                <label for="menu"><i class='bx bx-menu'></i></label>
-                <div class="contentForSidebar">
-                        <div class="mlogo"><img src="../images/Screenshot 2024-04-13 141001.png"></div>
+                    <div class="menu">
+                        <input type="checkbox" id = "menu" hidden>
+                        <label for="menu"><i class='bx bx-menu'></i></label>
+                                <div class="contentForSidebar">
+
+                                            <div class="containerS" style=" height: 100vh; margin-top: 50px;">
+                                                <a href="LoadToUserDashboard.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">DASHBOARD</a>
+                                                <a href="LoadToHome.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 70px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">HOME</a>
+                                                <a href="LoadToStore.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 140px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">STORE</a>
+                                                <a href="LoadToMyCart.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 210px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">CART</a>
+                                                <a href="LoadToMyProfile.php" style="color: black; background-color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; margin-top: 280px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">PROFILE</a>
+                                                <a href="LoadToLogout.php" style="color: black; background-color: red; color: white; padding: 15px; font-weight: bold; position: absolute; left: 170px; bottom: 10px; margin-top: 350px; width: 160px; display: flex; justify-content:center; border-radius: 10px;">LOGOUT</a>
+                                            </div>
+
+
+                                            
+                                </div>
+
                         
-                        <div class="forHome">
-                            <a href="LoadToHome.php"><i class='bx bx-home-smile'><span>Home</span></i></a>
-                        </div>
-
-                        <div class="forStore">
-                            <a href="LoadToStore.php"><i class='bx bx-store'><span>Store</span></i></a>
-                        </div>
-
-                        <div class="forCart">
-                            <a href="LoadToMyCart.php"><i class='bx bx-cart-alt' ><span>My cart</span></i></a>
-                        </div>
-
-                        <div class="forProfile">
-                            <a href="LoadToMyProfile.php"><i class='bx bx-user' ><span>Buyer Profile</span></i></a>
-                        </div>
-
-                        <div class="forLogout">
-                            <a href="LoadToLogout.php"><i class='bx bx-door-open'><span>Logout</span></i></a>
-                        </div>
-                </div>
-
-                
-            </div>
+                    </div>
             
            </div>
 
@@ -208,7 +200,7 @@
                                 const contentForSidebar = document.querySelector('.contentForSidebar');
 
                                 if (menuCheckbox.checked) {
-                                    contentForSidebar.style.left = '0';
+                                    contentForSidebar.style.left = '-150px';
                                 } else {
                                     contentForSidebar.style.left = '-360px';
                                 }

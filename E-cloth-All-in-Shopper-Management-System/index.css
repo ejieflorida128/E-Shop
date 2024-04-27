@@ -3,7 +3,7 @@
     margin: 0px;
 }
 .header{
-    background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
+    background-color: white;
     height: 121px;
     width: 1280px;
     display: flex;
@@ -22,7 +22,7 @@
     position: relative;
     left: 815px;
     margin-top:29px;
-    color: white;
+    color: black;
     font-size: 50px;
     font-weight: bold;
 }
@@ -397,13 +397,13 @@ body{
   width: 100%;
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
 }
 .wrapper .title{
   height: 90px;
-  background-image: linear-gradient(45deg, hsl(240, 50%, 10%), hsl(240, 50%, 15%), hsl(215, 56%, 63%), hsl(240, 50%, 20%));
+    background-color: white;
   border-radius: 5px 5px 0 0;
-  color: #fff;
+  color: black;
   font-size: 30px;
   font-weight: 600;
   display: flex;
